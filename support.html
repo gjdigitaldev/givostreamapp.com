@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — GiVo Stream</title>
+<meta name="description" content="Help, FAQs, and contact information for GiVo Stream and GiVo Server.">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <img src="/assets/favicon-64.png" alt="">
+    <a class="brand" href="/">GiVo Stream</a>
+    <div class="links">
+      <a href="/#download">DVR Server</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <h1>Support</h1>
+  <p class="updated">We're a small team and read every message. Email
+  <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+  and we'll get back to you as quickly as we can.</p>
+
+  <h2>Getting started</h2>
+
+  <div class="faq-item">
+    <h3>What do I need to use GiVo Stream?</h3>
+    <p>An iPhone, iPad, or Apple TV running iOS/iPadOS/tvOS 17 or later, and
+    a playlist from your own content source — either a standard M3U URL or an
+    Xtream Codes login. GiVo Stream does not provide any channels or content
+    itself.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How do I add my playlist?</h3>
+    <p>Open Settings → Playlist Manager → Add Playlist, choose M3U &amp; EPG
+    or Xtream Codes, and paste your details. Guide data (XMLTV/EPG) can be
+    filled automatically for Xtream logins or supplied as a separate URL.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Do I need the GiVo Server app?</h3>
+    <p>Only for DVR features — recording, scheduling, and watching recordings
+    across devices. Live TV, the guide, and pause/rewind of live television
+    work without it. <a href="/#download">Download GiVo Server</a> for macOS
+    or Windows, install it on a computer that stays on your home network, and
+    pair from the app.</p>
+  </div>
+
+  <h2>Pairing &amp; the DVR server</h2>
+
+  <div class="faq-item">
+    <h3>My server doesn't show up under Available Servers</h3>
+    <p>Discovery uses your local network (mDNS/Bonjour), so the computer and
+    your Apple device must be on the same network and VLAN.</p>
+    <ul>
+      <li><strong>Windows:</strong> make sure the firewall allowed
+      <code>givo-server.exe</code> — the installer sets this up, so if you use
+      the portable zip instead, allow it when Windows asks (Private networks).</li>
+      <li><strong>Any platform:</strong> you can always connect directly —
+      choose <strong>Add Server Manually</strong>, enter the computer's IP
+      address and port (8088 by default), and pair with the code as usual. The
+      server's address is shown in its menu under “URL”.</li>
+    </ul>
+  </div>
+
+  <div class="faq-item">
+    <h3>Where do I find the pairing code?</h3>
+    <p>Click the GiVo icon in the Mac menu bar or Windows system tray — the
+    current pairing code is shown right in the menu and can be clicked to
+    copy. A random code is generated each launch, or you can set your own
+    6-digit code in the server's Settings.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Where are my recordings stored?</h3>
+    <p>On the computer running GiVo Server, in the <code>GiVo Recordings</code>
+    folder inside your user folder by default. You can change the location in
+    the server's Settings. Recordings never leave your hardware.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Windows says the app is unrecognized / SmartScreen warning</h3>
+    <p>The Windows installer is currently unsigned, so SmartScreen shows a
+    one-time warning for new downloads. Click “More info” → “Run anyway”. The
+    macOS app is notarized by Apple and opens normally.</p>
+  </div>
+
+  <h2>Playback</h2>
+
+  <div class="faq-item">
+    <h3>A channel says “temporarily unavailable” or takes a while to load</h3>
+    <p>That message comes from your content provider — it usually means the
+    provider is limiting simultaneous connections on your account. GiVo Stream
+    retries automatically and shows the status while it does. If it happens
+    constantly, check how many devices are using the same login at once and
+    your plan's connection limit.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Pause and rewind — how far back can I go?</h3>
+    <p>From the moment you tune to a channel, GiVo Stream keeps a rolling
+    timeshift buffer on-device, so you can pause and scrub back within the
+    current session. For permanent copies, record to your GiVo Server.</p>
+  </div>
+
+  <h2>Contact</h2>
+  <p>Email <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+  with a description of the issue, your device model, and — if it's about the
+  DVR — whether the server runs on macOS or Windows. Screenshots help a lot.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 GJ Digital LLC · GiVo Stream</span>
+    <div class="links">
+      <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

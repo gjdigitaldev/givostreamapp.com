@@ -366,3 +366,7 @@ nav .links a:hover { color: var(--blue); }
 @media (max-width: 920px) {
   nav .links { display: none; }
 }
+
+/* Real-screenshot TV frame */
+.tv-frame-img { padding: 12px; }
+.tv-frame-img img { display: block; width: 100%; border-radius: 12px; }

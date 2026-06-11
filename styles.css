@@ -291,3 +291,18 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; j
 footer, footer a { color: var(--dim); font-size: 14px; text-decoration: none; }
 footer a:hover { color: var(--blue); }
 footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
+
+/* ---- Mobile nav: deliberate two-row layout instead of garbled wrap ---- */
+@media (max-width: 700px) {
+  nav .wrap { flex-wrap: wrap; row-gap: 2px; padding: 10px 16px 8px; }
+  nav img { width: 34px; height: 34px; }
+  nav .brand { font-size: 19px; white-space: nowrap; }
+  nav .links {
+    flex-basis: 100%; margin-left: 0; margin-top: 6px;
+    justify-content: space-between; gap: 8px;
+  }
+  nav .links a { font-size: 13.5px; }
+  .hero { padding: 56px 0 48px; }
+  .hero img.appicon { width: 108px; height: 108px; }
+  .badges { padding: 0 8px; }
+}

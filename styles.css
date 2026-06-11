@@ -351,3 +351,18 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 .mini .icon { font-size: 24px; }
 .mini h4 { font-size: 15.5px; margin: 10px 0 6px; letter-spacing: -0.1px; }
 .mini p { font-size: 13.5px; color: var(--dim); margin: 0; line-height: 1.5; }
+
+/* ---- Responsive nav: centered inline links on wide screens, hamburger when they can't fit ---- */
+nav .links {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 28px; align-items: center;
+}
+nav .wrap { position: relative; }
+nav .links a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: 14.5px; }
+nav .links a:hover { color: var(--blue); }
+@media (min-width: 921px) {
+  nav details.menu { display: none; }
+}
+@media (max-width: 920px) {
+  nav .links { display: none; }
+}

@@ -53,6 +53,7 @@ nav details.menu summary {
   box-shadow: var(--shadow-sm);
 }
 nav details.menu summary::-webkit-details-marker { display: none; }
+nav details.menu summary::marker { content: ""; display: none; }
 nav details.menu summary span {
   display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text);
   transition: transform 0.15s ease, opacity 0.15s ease;
@@ -60,7 +61,13 @@ nav details.menu summary span {
 nav details.menu[open] summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 nav details.menu[open] summary span:nth-child(2) { opacity: 0; }
 nav details.menu[open] summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@keyframes ddIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 nav .dropdown {
+  animation: ddIn 0.18s ease;
+  transform-origin: top right;
   position: absolute; right: 0; top: calc(100% + 10px);
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
   box-shadow: var(--shadow-lg); min-width: 250px; padding: 8px; z-index: 30;

@@ -338,3 +338,16 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
   .hero img.appicon { width: 108px; height: 108px; }
   .badges { padding: 0 8px; }
 }
+
+/* ---- Mini features grid ---- */
+.minifeatures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 960px) { .minifeatures { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .minifeatures { grid-template-columns: 1fr; } }
+.mini {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.mini .icon { font-size: 24px; }
+.mini h4 { font-size: 15.5px; margin: 10px 0 6px; letter-spacing: -0.1px; }
+.mini p { font-size: 13.5px; color: var(--dim); margin: 0; line-height: 1.5; }

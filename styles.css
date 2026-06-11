@@ -43,9 +43,39 @@ nav .brand {
   font-weight: 800; font-size: 21px; letter-spacing: -0.3px;
   color: var(--text); text-decoration: none;
 }
-nav .links { margin-left: auto; display: flex; gap: 26px; flex-wrap: wrap; }
-nav .links a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: 14.5px; }
-nav .links a:hover { color: var(--blue); }
+/* Hamburger menu */
+nav details.menu { margin-left: auto; position: relative; }
+nav details.menu summary {
+  list-style: none; cursor: pointer;
+  width: 46px; height: 38px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+  border: 1px solid var(--line); border-radius: 11px; background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+nav details.menu summary::-webkit-details-marker { display: none; }
+nav details.menu summary span {
+  display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--text);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+nav details.menu[open] summary span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+nav details.menu[open] summary span:nth-child(2) { opacity: 0; }
+nav details.menu[open] summary span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+nav .dropdown {
+  position: absolute; right: 0; top: calc(100% + 10px);
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: var(--shadow-lg); min-width: 250px; padding: 8px; z-index: 30;
+}
+nav .dropdown a {
+  display: block; padding: 12px 15px; border-radius: 10px;
+  color: var(--text); font-weight: 600; font-size: 15px; text-decoration: none;
+}
+nav .dropdown a:hover { background: var(--bg-alt); color: var(--blue); }
+nav .dropdown .soon-pill {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.06em;
+  background: rgba(199, 116, 0, 0.12); color: var(--orange);
+  border-radius: 99px; padding: 2px 8px; margin-left: 6px;
+}
+.dd-sep { height: 1px; background: var(--line); margin: 7px 9px; }
 
 /* ---- Hero ---- */
 .hero {
@@ -292,16 +322,11 @@ footer, footer a { color: var(--dim); font-size: 14px; text-decoration: none; }
 footer a:hover { color: var(--blue); }
 footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 
-/* ---- Mobile nav: deliberate two-row layout instead of garbled wrap ---- */
+/* ---- Mobile tweaks ---- */
 @media (max-width: 700px) {
-  nav .wrap { flex-wrap: wrap; row-gap: 2px; padding: 10px 16px 8px; }
-  nav img { width: 34px; height: 34px; }
-  nav .brand { font-size: 19px; white-space: nowrap; }
-  nav .links {
-    flex-basis: 100%; margin-left: 0; margin-top: 6px;
-    justify-content: space-between; gap: 8px;
-  }
-  nav .links a { font-size: 13.5px; }
+  nav .wrap { padding: 10px 16px; }
+  nav img { width: 36px; height: 36px; }
+  nav .brand { font-size: 20px; white-space: nowrap; }
   .hero { padding: 56px 0 48px; }
   .hero img.appicon { width: 108px; height: 108px; }
   .badges { padding: 0 8px; }

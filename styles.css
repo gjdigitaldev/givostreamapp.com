@@ -370,3 +370,8 @@ nav .links a:hover { color: var(--blue); }
 /* Real-screenshot TV frame */
 .tv-frame-img { padding: 12px; }
 .tv-frame-img img { display: block; width: 100%; border-radius: 12px; }
+
+/* TV screenshots must shrink on small screens (flex min-width trap) */
+.shots .shot { min-width: 0; max-width: 100%; }
+.shot.tv { flex: 1 1 auto; width: 100%; }
+.shot.tv img { width: 100%; max-width: 660px; height: auto; }

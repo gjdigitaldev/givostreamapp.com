@@ -360,12 +360,98 @@ nav .links {
 nav .wrap { position: relative; }
 nav .links a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: 14.5px; }
 nav .links a:hover { color: var(--blue); }
-@media (min-width: 921px) {
+@media (min-width: 1001px) {
   nav details.menu { display: none; }
 }
-@media (max-width: 920px) {
+@media (max-width: 1000px) {
   nav .links { display: none; }
 }
+
+/* ---- User guide (book) page ---- */
+article.book { max-width: 820px; }
+article h2[id], article h3[id] { scroll-margin-top: 86px; }
+.toc {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 18px; padding: 24px 30px 26px;
+  box-shadow: var(--shadow-sm); margin: 0 0 26px;
+}
+.toc h2 { margin: 0 0 12px; font-size: 19px; letter-spacing: -0.3px; }
+.toc ol { margin: 0; padding-left: 24px; columns: 2; column-gap: 44px; }
+@media (max-width: 640px) { .toc ol { columns: 1; } }
+.toc li { margin: 5px 0; font-size: 15.5px; break-inside: avoid; }
+.toc a { font-weight: 600; }
+.chapter-end { display: block; font-size: 13.5px; font-weight: 600; margin: 30px 0 4px; }
+.key {
+  display: inline-block; background: var(--bg-alt);
+  border: 1px solid var(--line); border-bottom-width: 2px;
+  border-radius: 7px; padding: 0 8px 1px;
+  font-size: 13.5px; font-weight: 600; color: var(--text);
+  white-space: nowrap; line-height: 1.5;
+}
+.gtable {
+  overflow-x: auto; background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; box-shadow: var(--shadow-sm); margin: 18px 0 22px;
+}
+.gtable table { width: 100%; border-collapse: collapse; min-width: 540px; }
+.gtable th, .gtable td {
+  padding: 12px 16px; text-align: left; font-size: 14.5px;
+  border-bottom: 1px solid var(--line); color: var(--dim); vertical-align: top;
+}
+.gtable tr:last-child td { border-bottom: none; }
+.gtable thead th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.gtable td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+/* Color legend swatches */
+.swatch {
+  display: inline-block; width: 34px; height: 13px; border-radius: 7px;
+  vertical-align: -2px; margin-right: 9px; border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.swatch.dot { width: 13px; border-radius: 50%; }
+.sw-red { background: #e5484d; }
+.sw-blue { background: linear-gradient(90deg, #2f7cf6, rgba(47, 124, 246, 0.28)); }
+.sw-green { background: #1f9d63; }
+.sw-green-mid { background: rgba(31, 157, 99, 0.55); }
+.sw-green-low { background: rgba(31, 157, 99, 0.25); }
+.sw-gray { background: #d6d6dc; }
+.sw-white { background: #fff; border-color: rgba(0, 0, 0, 0.28); }
+.sw-black { background: #26262b; }
+/* Progress-bar diagrams (drawn, until real screenshots land) */
+.bar-demo {
+  background: linear-gradient(180deg, #101a2e, #0a1322);
+  border-radius: 16px; padding: 20px 26px 18px; margin: 22px 0;
+  box-shadow: var(--shadow-sm);
+}
+.bd-label {
+  color: #8da2c8; font-size: 11.5px; font-weight: 700;
+  letter-spacing: 0.05em; margin-bottom: 10px;
+}
+.bd-track {
+  position: relative; display: flex; height: 10px;
+  border-radius: 99px; background: rgba(255, 255, 255, 0.10);
+}
+.bd-seg { height: 10px; }
+.bd-track .bd-seg:first-child { border-radius: 99px 0 0 99px; }
+.bd-track .bd-seg:last-of-type { border-radius: 0 99px 99px 0; }
+.bd-red { background: rgba(229, 72, 77, 0.92); }
+.bd-blue { background: linear-gradient(90deg, #2f7cf6, rgba(47, 124, 246, 0.30)); }
+.bd-greenhi { background: #23b873; }
+.bd-greenmid { background: rgba(35, 184, 115, 0.45); }
+.bd-gray { background: rgba(255, 255, 255, 0.14); }
+.bd-tickw { flex: 0 0 2px; background: #fff; border-radius: 0 !important; }
+.bd-knob {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 9px rgba(47, 124, 246, 0.95);
+}
+.bd-livedot {
+  position: absolute; top: 50%; right: -2px; transform: translateY(-50%);
+  width: 9px; height: 9px; border-radius: 50%; background: var(--red);
+  box-shadow: 0 0 7px rgba(229, 72, 77, 0.85);
+}
+.bd-times {
+  display: flex; justify-content: space-between;
+  color: #8da2c8; font-size: 11px; font-weight: 600; margin-top: 9px;
+}
+.bd-live-label { color: #ff6b6f; }
 
 /* Real-screenshot TV frame */
 .tv-frame-img { padding: 12px; }

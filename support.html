@@ -108,6 +108,59 @@
     macOS app is notarized by Apple and opens normally.</p>
   </div>
 
+  <h2>Away from home — remote DVR access</h2>
+
+  <div class="faq-item">
+    <h3>Can I connect to my DVR server when I'm not at home?</h3>
+    <p>Yes — the easiest and most secure way is
+    <a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale</a>,
+    a free (for personal use) app that creates a private network between your
+    own devices. Your server's local IP address (like
+    <code>192.168.x.x</code>) only works while you're on your home Wi-Fi —
+    away from home it's unreachable. Tailscale gives the computer running
+    GiVo Server a stable private address that works from anywhere, with no
+    router port-forwarding and nothing exposed to the public internet.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How do I set up remote access with Tailscale?</h3>
+    <ol>
+      <li><strong>On the computer running GiVo Server</strong> — install
+      Tailscale from tailscale.com and sign in.</li>
+      <li><strong>On your iPhone, iPad, or Apple TV</strong> — install the
+      Tailscale app from the App Store and sign in to the
+      <em>same</em> Tailscale account.</li>
+      <li><strong>Find the server's Tailscale address</strong> — in the
+      Tailscale menu (or admin console), note the computer's Tailscale IP.
+      It starts with <code>100.</code> — for example
+      <code>100.84.23.7</code>.</li>
+      <li><strong>In GiVo Stream</strong> — go to Settings → DVR →
+      <strong>Add Server Manually</strong>, enter the Tailscale IP address
+      and port (8088 by default), and pair with the code as usual.</li>
+    </ol>
+    <p>You must add the server manually using the Tailscale address —
+    automatic discovery under Available Servers only works on your home
+    network, and a server added with its local IP will not connect once you
+    leave home.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Remote access worked at home but not when I'm out</h3>
+    <ul>
+      <li><strong>Tailscale must be running on your device.</strong> Open
+      the Tailscale app on your iPhone, iPad, or Apple TV and make sure
+      it's connected (the VPN toggle is on) before opening GiVo Stream.</li>
+      <li><strong>Use the Tailscale address, not the local one.</strong>
+      If you paired with the local <code>192.168.x.x</code> address, add the
+      server again with its <code>100.x.x.x</code> Tailscale IP — the local
+      address only works on your home Wi-Fi.</li>
+      <li><strong>The home side has to be up too:</strong> the computer must
+      be awake with both GiVo Server and Tailscale running. On a Mac, check
+      Energy/Battery settings so it doesn't sleep; Tailscale's menu shows
+      the machine as “Connected” when it's reachable.</li>
+    </ul>
+  </div>
+
   <h2>Playback</h2>
 
   <div class="faq-item">

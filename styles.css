@@ -453,6 +453,17 @@ article h2[id], article h3[id] { scroll-margin-top: 86px; }
 }
 .bd-live-label { color: #ff6b6f; }
 
+/* Guide-page figures */
+.fig { margin: 22px 0 26px; text-align: center; }
+.fig img {
+  max-width: 100%; height: auto; border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+}
+.fig.phone img { max-width: 300px; }
+.fig figcaption { color: var(--dim); font-size: 13.5px; margin-top: 10px; font-weight: 500; }
+.fig-row { display: flex; gap: 20px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+.fig-row .fig { flex: 1 1 280px; min-width: 0; }
+
 /* Real-screenshot TV frame */
 .tv-frame-img { padding: 12px; }
 .tv-frame-img img { display: block; width: 100%; border-radius: 12px; }

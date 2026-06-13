@@ -469,7 +469,7 @@ article h2[id], article h3[id] { scroll-margin-top: 86px; }
 
 /* Real-screenshot TV frame */
 .tv-frame-img { padding: 12px; }
-.tv-frame-img img { display: block; width: 100%; border-radius: 12px; }
+.tv-frame-img img { display: block; width: 100%; height: auto; border-radius: 12px; }
 
 /* TV screenshots must shrink on small screens (flex min-width trap) */
 .shots .shot { min-width: 0; max-width: 100%; }

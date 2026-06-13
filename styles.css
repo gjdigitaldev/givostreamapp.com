@@ -363,10 +363,10 @@ nav .links {
 nav .wrap { position: relative; }
 nav .links a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: 14.5px; }
 nav .links a:hover { color: var(--blue); }
-@media (min-width: 1001px) {
+@media (min-width: 1080px) {
   nav details.menu { display: none; }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1079px) {
   nav .links { display: none; }
 }
 

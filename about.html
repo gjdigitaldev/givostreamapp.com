@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — GiVo Stream</title>
+<meta name="description" content="About GiVo Stream — a modern media player for iPhone, iPad, and Apple TV, with a DVR companion for Mac and Windows, made by GJ Digital LLC.">
+<meta property="og:title" content="About GiVo Stream">
+<meta property="og:description" content="A modern media player for iPhone, iPad, and Apple TV, with a DVR companion for Mac and Windows. Bring your own playlists; your media stays yours.">
+<meta property="og:image" content="https://givostreamapp.com/assets/icon-180.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="stylesheet" href="/styles.css?v=12">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <img width="180" height="180" src="/assets/icon-180.png" alt="GiVo Stream icon">
+    <a class="brand" href="/">GiVo Stream</a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="/#download">DVR Server</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <details class="menu">
+      <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+      <div class="dropdown">
+        <a href="/#features">Features</a>
+        <a href="/#download">DVR Server Downloads</a>
+        <a href="/userguide.html">User Guide</a>
+        <a href="/support.html">Support</a>
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <div class="dd-sep"></div>
+        <a href="/#appstore">App Store <span class="soon-pill">COMING SOON</span></a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<article>
+  <h1>About GiVo Stream</h1>
+  <p class="updated">A modern media player for iPhone, iPad, and Apple&nbsp;TV —
+  with a free DVR companion for Mac and Windows. Made by GJ Digital LLC.</p>
+
+  <h2>What GiVo Stream is</h2>
+  <p>GiVo Stream turns the playlists you already have into something that feels
+  effortless. Point it at your own M3U or Xtream&nbsp;Codes source and you get a
+  gorgeous program guide, instant playback, pause and rewind on live streams, and
+  catchup replays — on your iPhone, iPad, and Apple&nbsp;TV, beautifully in sync.
+  Add the free <a href="/#download">GiVo Server</a> app on a Mac or Windows PC and
+  it becomes a full DVR you run yourself.</p>
+
+  <h2>What we believe</h2>
+  <ul>
+    <li><strong>Your media is yours.</strong> No accounts, no analytics, no
+    tracking. Your playlists and credentials stay on your devices, and your
+    recordings are kept on your own Mac or PC.</li>
+    <li><strong>It should feel like Apple made it.</strong> A player this central
+    to your day deserves real craft — frame-accurate seeking, a guide that stays
+    fast across thousands of streams, and details that just work.</li>
+    <li><strong>Every screen, one experience.</strong> Set a recording from the
+    couch and watch it on the train. Your favorites, settings, and library follow
+    you through your own private iCloud.</li>
+    <li><strong>You bring the content.</strong> GiVo Stream is the player; the
+    sources are yours to choose and control.</li>
+  </ul>
+
+  <h2>The DVR you own</h2>
+  <p>GiVo Server is a free companion app for macOS and Windows that records right
+  to the computer it runs on. One-tap recording, scheduled recordings with pre-
+  and post-roll padding, and recordings that are yours to keep. Every paired
+  device can schedule and play them back, at home or — with a little setup —
+  while you're away. See the <a href="/userguide.html">User Guide</a> for the full
+  tour, or <a href="/support.html">Support</a> for setup help.</p>
+
+  <h2>What it isn't</h2>
+  <p>GiVo Stream is <strong>media player software</strong>. It does not provide,
+  include, sell, or promote any channels, streams, or content — you add your own
+  sources, and you're responsible for having the right to access and record what
+  you watch.</p>
+
+  <h2>Who makes it</h2>
+  <p>GiVo Stream and GiVo Server are built by GJ Digital LLC, an independent
+  developer. We read every message — say hello at
+  <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 GJ Digital LLC · GiVo Stream</span>
+    <div class="links">
+      <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("details.menu .dropdown a").forEach(function (a) {
+  a.addEventListener("click", function () {
+    a.closest("details").removeAttribute("open");
+  });
+});
+document.addEventListener("click", function (e) {
+  var d = document.querySelector("details.menu[open]");
+  if (d && !d.contains(e.target)) d.removeAttribute("open");
+});
+</script>
+</body>
+</html>

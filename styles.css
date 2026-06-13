@@ -19,6 +19,9 @@
 
 html { scroll-behavior: smooth; }
 
+/* Anchor targets clear the sticky nav (and don't hide beneath it) */
+[id] { scroll-margin-top: 84px; }
+
 body {
   margin: 0;
   background: var(--bg);

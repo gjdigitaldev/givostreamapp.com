@@ -87,6 +87,31 @@ nav .dropdown .soon-pill {
 }
 .dd-sep { height: 1px; background: var(--line); margin: 7px 9px; }
 
+/* ---- Beta (TestFlight) bar ---- */
+.beta-bar {
+  background:
+    linear-gradient(135deg, rgba(47, 124, 246, 0.10), rgba(110, 61, 240, 0.10));
+  border-bottom: 1px solid var(--line);
+}
+.beta-bar .wrap {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 12px 18px; padding: 14px 24px; text-align: center;
+}
+.beta-pill {
+  flex: 0 0 auto; background: var(--accent-grad); color: #fff;
+  font-weight: 800; font-size: 12px; letter-spacing: 0.09em;
+  padding: 4px 11px; border-radius: 99px;
+}
+.beta-text { margin: 0; font-size: 15px; color: var(--dim); }
+.beta-text strong { color: var(--text); font-weight: 700; }
+.beta-btn {
+  flex: 0 0 auto; background: var(--blue); color: #fff;
+  font-weight: 700; font-size: 14.5px; white-space: nowrap;
+  padding: 9px 18px; border-radius: 99px; text-decoration: none;
+  box-shadow: var(--shadow-sm); transition: background 0.15s ease, transform 0.12s ease;
+}
+.beta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); text-decoration: none; }
+
 /* ---- Hero ---- */
 .hero {
   text-align: center; padding: 84px 0 64px;

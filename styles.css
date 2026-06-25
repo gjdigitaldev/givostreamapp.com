@@ -358,17 +358,13 @@ footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
 /* ---- Responsive nav: centered inline links on wide screens, hamburger when they can't fit ---- */
 nav .links {
   position: absolute; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 28px; align-items: center;
+  display: none; gap: 28px; align-items: center;
 }
 nav .wrap { position: relative; }
 nav .links a { color: var(--dim); text-decoration: none; font-weight: 600; font-size: 14.5px; }
 nav .links a:hover { color: var(--blue); }
-@media (min-width: 1080px) {
-  nav details.menu { display: none; }
-}
-@media (max-width: 1079px) {
-  nav .links { display: none; }
-}
+/* Hamburger menu is always shown — the single nav on every width */
+nav details.menu { display: block; }
 
 /* ---- User guide (book) page ---- */
 article.book { max-width: 820px; }

@@ -43,15 +43,18 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective June 26, 2026 · Applies to the GiVo Stream app
+  <p class="updated">Effective July 1, 2026 · Applies to the GiVo Stream app
   (iOS, iPadOS, tvOS) and the GiVo Server app (macOS, Windows), published by
   GJ Digital LLC.</p>
 
   <p><strong>The short version: we don't collect your data.</strong> GiVo
   Stream has no accounts, no advertising, and no tracking of our own. Your
   playlists, viewing activity, and recordings stay on your devices and your
-  own computer. The one third-party component is Google Cast, used only when
-  you cast from an iPhone or iPad (see <em>Casting</em> below).</p>
+  own computer. The only thing we can ever receive is a debug log you
+  explicitly choose to send us — never automatically (see <em>Optional
+  diagnostics you can send us</em> below). The one third-party component is
+  Google Cast, used only when you cast from an iPhone or iPad (see
+  <em>Casting</em> below).</p>
 
   <h2>What the apps store, and where</h2>
 
@@ -60,12 +63,17 @@
   Login credentials are kept in the device Keychain, Apple's encrypted
   credential store. The apps connect directly from your device to the content
   sources you configure — your playlist details are never sent to us or to
-  any intermediary we operate.</p>
+  any intermediary we operate, with one exception you control: if you choose
+  to send us a diagnostic log (see <em>Optional diagnostics you can send
+  us</em> below), playlist addresses can appear in it. Login credentials are
+  removed from the log before anything is uploaded.</p>
 
   <h3>Guide data and viewing</h3>
   <p>Programme-guide (EPG) data is downloaded from the source you configure
   and cached on-device. What you watch, your favorites, and your timeshift
-  buffer exist only on your device. We have no way to see any of it.</p>
+  buffer exist only on your device. We have no way to see any of it — unless
+  recent activity appears in a diagnostic log you choose to send us (see
+  <em>Optional diagnostics you can send us</em> below).</p>
 
   <h3>DVR recordings</h3>
   <p>If you use GiVo Server, recordings are written to a folder on your own
@@ -90,23 +98,47 @@
   by us — we never receive it. Casting and the Cast SDK are not present in the
   Apple TV app.</p>
 
+  <h2>Optional diagnostics you can send us</h2>
+  <p>If you're troubleshooting a problem with us, GiVo Stream can send us a
+  debug log — but only when you ask it to. In the app's Settings, under Debug
+  Mode, the "Send Debug Log to Support" button uploads, after a confirmation
+  screen, exactly this: the most recent portion (about 1.5&nbsp;MB) of the
+  app's diagnostic log, your device model, OS version, the app version and
+  build, and an optional note you type. Playlist addresses can appear in the
+  log; login credentials (usernames, passwords, and tokens) are removed
+  before anything leaves your device.</p>
+  <p>Nothing is ever sent automatically — every upload requires your explicit
+  tap and confirmation, each time. The log goes to a private support channel
+  that only the developer can read, delivered via Discord, Inc. acting as our
+  service provider. We use it solely to investigate the bug you reported,
+  keep it only as long as needed for that, and never sell it, share it, or
+  use it for advertising or tracking. It is not linked to your identity. To
+  have a log you sent deleted, email
+  <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>.</p>
+
   <h2>What we don't do</h2>
   <ul>
     <li>No user accounts or sign-ups.</li>
-    <li>No analytics, telemetry, or crash-reporting that we operate. (Google
-    Cast, used only when you cast from an iPhone or iPad, is the one
-    third-party component that collects data — see "Casting" above.)</li>
+    <li>No analytics, telemetry, or crash-reporting that we operate — and
+    nothing is ever sent to us automatically; diagnostics leave your device
+    only when you tap Send (see above). (Google Cast, used only when you cast
+    from an iPhone or iPad, is the one third-party component that collects
+    data — see "Casting" above.)</li>
     <li>No advertising and no cross-app tracking.</li>
-    <li>No sale or sharing of personal information — we never possess it in
-    the first place.</li>
+    <li>No sale or sharing of personal information — the only data we can
+    ever hold is a diagnostic log you chose to send us, and we never sell it,
+    share it, or use it for advertising.</li>
   </ul>
 
   <h2>Network connections the apps make</h2>
   <p>The apps connect only to: (1) the playlist, stream, and EPG sources you
   configure; (2) your own GiVo Server on your local network, if paired;
   (3) Apple's iCloud, if you enable sync; (4) GitHub, when you download
-  GiVo Server updates from this website; and (5) on iPhone and iPad, Google
-  Cast and your Cast-enabled TV, when you cast. Your content providers can see the
+  GiVo Server updates from this website; (5) on iPhone and iPad, Google
+  Cast and your Cast-enabled TV, when you cast; and (6) our private support
+  channel (operated on Discord), only at the moment you tap "Send Debug Log
+  to Support" — see <em>Optional diagnostics you can send us</em> above.
+  Your content providers can see the
   requests your device makes to them, exactly as they would with any player —
   their privacy practices are their own.</p>
 
@@ -122,13 +154,14 @@
   use it only to reply, and we don't add it to any mailing list.</p>
 
   <h2>Children</h2>
-  <p>The apps are not directed at children and collect no data from anyone,
-  children included.</p>
+  <p>The apps are not directed at children and collect no data automatically
+  from anyone, children included.</p>
 
   <h2>Changes</h2>
   <p>If this policy changes, the new version will be posted here with an
-  updated effective date. Since the apps collect nothing, changes would most
-  likely reflect new optional features (and would say so plainly).</p>
+  updated effective date. Since the apps collect nothing automatically,
+  changes would most likely reflect new optional features (and would say so
+  plainly — as the <em>Optional diagnostics</em> section above does).</p>
 
   <h2>Contact</h2>
   <p>GJ Digital LLC ·

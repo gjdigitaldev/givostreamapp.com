@@ -111,6 +111,14 @@ nav .dropdown .soon-pill {
   box-shadow: var(--shadow-sm); transition: background 0.15s ease, transform 0.12s ease;
 }
 .beta-btn:hover { background: var(--blue-dark); transform: translateY(-1px); text-decoration: none; }
+.discord-btn {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px;
+  background: #5865f2; color: #fff; font-weight: 700; font-size: 14.5px;
+  white-space: nowrap; padding: 9px 16px; border-radius: 99px; text-decoration: none;
+  box-shadow: var(--shadow-sm); transition: background 0.15s ease, transform 0.12s ease;
+}
+.discord-btn:hover { background: #4752c4; transform: translateY(-1px); text-decoration: none; }
+.discord-btn svg { width: 18px; height: 14px; }
 
 /* ---- Hero ---- */
 .hero {

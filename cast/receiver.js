@@ -89,6 +89,45 @@ function destroyHls() {
   mediaRetries = 0;
 }
 
+// --- Keep LIVE playback playing (BUG A). The receiver was dropping into a paused
+//     state ~12 s in and sitting there until the user pressed Play on the remote.
+//     A GiVo relay is live TV: there's no seek/rewind buffer to pause into, so any
+//     non-live pause is spurious and should immediately resume. We install ONE set
+//     of listeners per <video> element and re-issue play() on pause/waiting/stalled
+//     (debounced so a genuinely stalled network doesn't spin play() in a tight
+//     loop). The interval watchdog is the backstop for a pause with no event.
+var autoplayGuardEl = null;
+var autoplayResumeTimer = null;
+function resumeIfPaused(reason) {
+  var v = autoplayGuardEl;
+  if (!v || v.ended || !hls) return;
+  if (autoplayResumeTimer) return;
+  autoplayResumeTimer = setTimeout(function () {
+    autoplayResumeTimer = null;
+    if (v.paused && !v.ended && hls) {
+      log('auto-resume (' + reason + ')');
+      try { v.play(); } catch (e) {}
+    }
+  }, 400);
+}
+function installAutoplayGuard(videoEl) {
+  if (!videoEl || videoEl === autoplayGuardEl) return;
+  autoplayGuardEl = videoEl;
+  videoEl.addEventListener('pause', function () { resumeIfPaused('pause'); });
+  videoEl.addEventListener('waiting', function () { resumeIfPaused('waiting'); });
+  videoEl.addEventListener('stalled', function () { resumeIfPaused('stalled'); });
+}
+// Watchdog backstop: if the element is paused but has buffered data ready, nudge
+// it back to playing. `readyState >= HAVE_CURRENT_DATA` (2) means there's a frame
+// to show, so this never fights a genuine underrun (that goes through 'waiting').
+setInterval(function () {
+  var v = autoplayGuardEl;
+  if (v && hls && v.paused && !v.ended && v.readyState >= 2) {
+    log('watchdog auto-resume (paused with buffer)');
+    try { v.play(); } catch (e) {}
+  }
+}, 3000);
+
 function looksLikeHls(url, contentType) {
   if (contentType && /mpegurl|vnd\.apple/i.test(contentType)) return true;
   if (!url) return false;
@@ -119,6 +158,12 @@ playerManager.setMessageInterceptor(
     }
 
     log('LOAD (hls.js): ' + url);
+    // A GiVo Stream relay is always a live channel — CAF must autoplay and stay
+    // playing. `request.autoplay` guarantees CAF resumes after LOAD; the
+    // per-element guard + watchdog (BUG A) re-issue play() if the receiver ever
+    // drops into a paused state on its own.
+    request.autoplay = true;
+    installAutoplayGuard(videoEl);
     destroyHls();
     hls = new Hls(HLS_CONFIG);
 
@@ -187,14 +232,29 @@ playerManager.addEventListener(
     log('MEDIA_FINISHED — destroying hls.js');
     destroyHls();
   });
+// **Don't let the receiver LINGER after the sender leaves (T563 reliability).**
+// A session held open after the app disconnects gets AUTO-RESUMED stale on the
+// next cast ("connected but nothing plays", only cleared by a force-quit). When
+// the LAST sender disconnects, drop hls.js and stop the receiver so the next
+// cast starts fresh. Live playback keeps a sender connected, so this only fires
+// on a genuine disconnect, never mid-stream.
 context.addEventListener(cast.framework.system.EventType.SENDER_DISCONNECTED, function () {
-  log('SENDER_DISCONNECTED');
+  var remaining = 0;
+  try { remaining = context.getSenders() ? context.getSenders().length : 0; } catch (e) {}
+  log('SENDER_DISCONNECTED — remaining senders=' + remaining);
+  if (remaining === 0) {
+    destroyHls();
+    try { context.stop(); } catch (e) {}
+  }
 });
 
-// --- Start. Keep the session alive well past the VOD default (10 min) — this is
-//     live TV that runs for hours; the sender also holds it via the media session.
+// --- Start. `maxInactivity` is a BACKSTOP only — a connected sender's heartbeats
+//     + live media activity keep the session alive indefinitely while casting, so
+//     5 min of true idle (no sender, no media) is safe and prevents the
+//     zombie-session-holds-old-connection problem (the SENDER_DISCONNECTED handler
+//     above is the immediate terminate; this catches any edge it misses).
 var options = new cast.framework.CastReceiverOptions();
-options.maxInactivity = 6 * 3600;   // 6 h idle grace for a live session
+options.maxInactivity = 300;   // 5 min idle grace (was 6 h — that was the zombie cause)
 context.start(options);
 log('receiver started (hls.js '
     + (typeof Hls !== 'undefined' && Hls.version ? Hls.version : '?')

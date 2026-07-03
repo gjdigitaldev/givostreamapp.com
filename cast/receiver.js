@@ -87,6 +87,7 @@ function destroyHls() {
   }
   netRetries = 0;
   mediaRetries = 0;
+  isLiveContent = true;   // default safe for the next media until LEVEL_LOADED says otherwise
 }
 
 // --- Keep LIVE playback playing (BUG A). The receiver was dropping into a paused
@@ -98,13 +99,19 @@ function destroyHls() {
 //     loop). The interval watchdog is the backstop for a pause with no event.
 var autoplayGuardEl = null;
 var autoplayResumeTimer = null;
+// LIVE-only guard (T576). A GiVo relay is live TV by default → any pause is
+// spurious and we re-issue play(). But a VOD relay (a movie/recording) is a
+// real seekable asset where a user PAUSE must STICK. `isLiveContent` starts true
+// (safe for live) and flips false when hls.js reports a non-live playlist
+// (`details.live === false`, set on LEVEL_LOADED), disarming the auto-resume.
+var isLiveContent = true;
 function resumeIfPaused(reason) {
   var v = autoplayGuardEl;
-  if (!v || v.ended || !hls) return;
+  if (!v || v.ended || !hls || !isLiveContent) return;
   if (autoplayResumeTimer) return;
   autoplayResumeTimer = setTimeout(function () {
     autoplayResumeTimer = null;
-    if (v.paused && !v.ended && hls) {
+    if (v.paused && !v.ended && hls && isLiveContent) {
       log('auto-resume (' + reason + ')');
       try { v.play(); } catch (e) {}
     }
@@ -120,9 +127,10 @@ function installAutoplayGuard(videoEl) {
 // Watchdog backstop: if the element is paused but has buffered data ready, nudge
 // it back to playing. `readyState >= HAVE_CURRENT_DATA` (2) means there's a frame
 // to show, so this never fights a genuine underrun (that goes through 'waiting').
+// LIVE only — a VOD pause is intentional.
 setInterval(function () {
   var v = autoplayGuardEl;
-  if (v && hls && v.paused && !v.ended && v.readyState >= 2) {
+  if (v && hls && isLiveContent && v.paused && !v.ended && v.readyState >= 2) {
     log('watchdog auto-resume (paused with buffer)');
     try { v.play(); } catch (e) {}
   }
@@ -179,6 +187,17 @@ playerManager.setMessageInterceptor(
         request.media.contentUrl = videoEl.src;
         try { videoEl.play(); } catch (e) {}
         resolve(request);
+      });
+
+      // Live-vs-VOD detection (T576): the relay emits a VOD/EVENT playlist for a
+      // movie/recording (`details.live === false`) and a sliding-window LIVE
+      // playlist for a channel. Disarm the auto-resume guard for VOD so a user
+      // pause sticks. `details.live` is only reliable once a level is loaded.
+      hls.on(Hls.Events.LEVEL_LOADED, function (event, data) {
+        if (data && data.details && data.details.live === false) {
+          if (isLiveContent) log('LEVEL_LOADED → VOD (autoplay guard disarmed)');
+          isLiveContent = false;
+        }
       });
 
       hls.on(Hls.Events.ERROR, function (event, data) {

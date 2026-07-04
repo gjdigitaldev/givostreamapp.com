@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://givostreamapp.com/assets/icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/styles.css?v=15">
+<link rel="stylesheet" href="/styles.css?v=16">
 </head>
 <body>
 
@@ -433,9 +433,26 @@
   <div class="gtable"><table>
     <thead><tr><th>You see</th><th>It means</th><th>You can</th></tr></thead>
     <tbody>
-      <tr><td><span class="swatch sw-red"></span>Red</td>
-        <td>Recorded content — the part of the program your DVR has captured. A finished recording is solid red end to end.</td>
+      <tr><td><span class="swatch sw-red"></span>Solid red</td>
+        <td>Recorded content you've <strong>already watched</strong>. The bar fills
+        toward solid red behind the playhead as you make your way through a
+        recording.</td>
         <td>Scrub anywhere in it, freely.</td></tr>
+      <tr><td><span class="swatch sw-red-low"></span>Light red</td>
+        <td>Recorded content <strong>waiting for you</strong> — captured, but not
+        watched yet. A fresh recording starts light red end to end and turns
+        solid as you watch.</td>
+        <td>Skip ahead into it anytime.</td></tr>
+      <tr><td><span class="swatch sw-orange-low"></span>Light orange</td>
+        <td>A <strong>commercial break</strong> the server detected in the
+        recording (needs <span class="key">Ad&nbsp;Skip</span> — see
+        <a href="#commercial-skip">Commercial skip</a>). Light means you haven't
+        reached it yet.</td>
+        <td>Skip it with one press when you get there — or let Auto Skip jump it
+        for you.</td></tr>
+      <tr><td><span class="swatch sw-orange"></span>Solid orange</td>
+        <td>A commercial break you've already watched past or skipped.</td>
+        <td>Nothing — it's behind you.</td></tr>
       <tr><td><span class="swatch sw-blue"></span>Blue</td>
         <td>Your live buffer — the rewindable window GiVo Stream keeps on-device from the moment a stream starts. (On iPhone and iPad it's drawn in your theme's accent color.)</td>
         <td>Pause, rewind, and scrub within it.</td></tr>
@@ -500,6 +517,18 @@
       <div class="bd-knob" style="left:34%"></div>
     </div>
     <div class="bd-times"><span>2:00 PM</span><span>3:00 PM</span></div>
+
+    <div class="bd-label" style="margin-top:22px">PLAYING A RECORDING WITH AD&nbsp;SKIP — watched solid, unwatched light, ads in orange</div>
+    <div class="bd-track">
+      <span class="bd-seg bd-red" style="flex:0 0 24%"></span>
+      <span class="bd-seg bd-orange" style="flex:0 0 7%"></span>
+      <span class="bd-seg bd-red" style="flex:0 0 9%"></span>
+      <span class="bd-seg bd-red-low" style="flex:0 0 22%"></span>
+      <span class="bd-seg bd-orange-low" style="flex:0 0 7%"></span>
+      <span class="bd-seg bd-red-low" style="flex:1"></span>
+      <div class="bd-knob" style="left:40%"></div>
+    </div>
+    <div class="bd-times"><span>9:00 PM</span><span>9:30 PM</span></div>
   </div>
 
   <p>The same color language shows up in miniature all over the app: a
@@ -590,6 +619,15 @@
   <p>Commercial skip applies to server recordings and saved catchup programs.
   Detection accuracy varies with how a channel formats its breaks — and you
   can always scrub any recording normally.</p>
+
+  <h3 id="recording-captions">Captions on recordings</h3>
+  <p>Recordings keep their captions. When a channel broadcasts closed captions,
+  the server extracts them automatically after the recording finishes — they
+  show up in the player's captions menu like any other subtitle track, styled
+  by your caption-appearance settings. The same goes for movies and series you
+  save to the server: any subtitle tracks in the source are pulled out and
+  offered alongside the video. No setup needed — if the source carried
+  captions, your recording has them.</p>
 
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 

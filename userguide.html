@@ -565,8 +565,12 @@
     the server's settings.)</li>
   </ol>
   <p>If discovery can't see the server, <span class="key">Add Server
-  Manually</span> with its IP address and port works on any network — it's also how
-  you connect from <a href="/support.html">outside your home with Tailscale</a>.</p>
+  Manually</span> with its IP address and port works on any network. Each server
+  keeps a <span class="key">Local Address</span> for your home Wi-Fi and an
+  optional <span class="key">Remote Address</span> for
+  <a href="/support.html">connecting from outside your home with Tailscale</a> —
+  GiVo Stream switches between them automatically, so one paired server works both
+  at home and away.</p>
 
   <h3>Recording</h3>
   <ul>
@@ -862,9 +866,9 @@
     <li><strong>Same channel, better source.</strong> Channel Variants in the player
     lists the same channel from your other playlists — switch sources in two
     taps.</li>
-    <li><strong>Record away from home.</strong> Pair over Tailscale and the
-    schedule button works from anywhere —
-    <a href="/support.html">setup walkthrough on the Support page</a>.</li>
+    <li><strong>Record away from home.</strong> Add your server's Tailscale IP as
+    its <span class="key">Remote Address</span> and the schedule button works from
+    anywhere — <a href="/support.html">setup walkthrough on the Support page</a>.</li>
   </ul>
 
   <p>Stuck on something this guide doesn't cover? The

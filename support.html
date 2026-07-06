@@ -112,6 +112,19 @@
   </div>
 
   <div class="faq-item">
+    <h3>Can I set both a home and an away address for one server?</h3>
+    <p>Yes. Each paired server keeps a <strong>Local Address</strong> (your home
+    Wi-Fi, usually <code>192.168.x.x</code>) and an optional <strong>Remote
+    Address</strong> for when you're away from home. GiVo Stream uses the local
+    address at home and switches to the remote one automatically when you leave,
+    so a single paired server works both at home and on the go — no re-pairing.
+    Add or change either under Settings → DVR → your server →
+    <strong>Edit Server</strong>. See
+    <a href="#remote-access">remote DVR access</a> below for setting up the
+    remote address with Tailscale.</p>
+  </div>
+
+  <div class="faq-item">
     <h3>Where are my recordings stored?</h3>
     <p>On the computer running GiVo Server, in the <code>GiVo Recordings</code>
     folder inside your user folder by default. You can change the location in
@@ -129,14 +142,20 @@
 
   <div class="faq-item">
     <h3>Can I connect to my DVR server when I'm not at home?</h3>
-    <p>Yes — the easiest and most secure way is
+    <p>Yes. Each server you pair in GiVo Stream keeps <strong>two</strong>
+    addresses: a <strong>Local Address</strong> for your home Wi-Fi and a
+    <strong>Remote Address</strong> for when you're away. GiVo Stream uses the
+    local address at home and automatically switches to the remote address when
+    you leave — so a single paired server works both at home and on the go, with
+    no re-pairing.</p>
+    <p>The easiest and most secure way to get a remote address is
     <a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale</a>,
     a free (for personal use) app that creates a private network between your
-    own devices. Your server's local IP address (like
-    <code>192.168.x.x</code>) only works while you're on your home Wi-Fi —
-    away from home it's unreachable. Tailscale gives the computer running
-    GiVo Server a stable private address that works from anywhere, with no
-    router port-forwarding and nothing exposed to the public internet.</p>
+    own devices. Your server's local IP (like <code>192.168.x.x</code>) only
+    works on your home Wi-Fi; Tailscale gives the computer running GiVo Server a
+    stable private address that works from anywhere, with no router
+    port-forwarding and nothing exposed to the public internet. Put that
+    Tailscale address in the server's <strong>Remote Address</strong> field.</p>
   </div>
 
   <div class="faq-item">
@@ -151,14 +170,18 @@
       Tailscale menu (or admin console), note the computer's Tailscale IP.
       It starts with <code>100.</code> — for example
       <code>100.84.23.7</code>.</li>
-      <li><strong>In GiVo Stream</strong> — go to Settings → DVR →
-      <strong>Add Server Manually</strong>, enter the Tailscale IP address
-      and port (8088 by default), and pair with the code as usual.</li>
+      <li><strong>Add it as the server's Remote Address in GiVo Stream</strong>
+      — pair the server normally on your home network first (Available Servers,
+      or Add Server Manually with its local IP). Right after pairing, GiVo Stream
+      offers <strong>Add Remote Address</strong> — enter the Tailscale IP and
+      port (8088 by default) there. You can also set or change it any time under
+      Settings → DVR → your server → <strong>Edit Server → Remote
+      Address</strong>.</li>
     </ol>
-    <p>You must add the server manually using the Tailscale address —
-    automatic discovery under Available Servers only works on your home
-    network, and a server added with its local IP will not connect once you
-    leave home.</p>
+    <p>Put the Tailscale IP in the <strong>Remote Address</strong> field — not
+    the Local Address. GiVo Stream uses the Local Address on your home Wi-Fi and
+    automatically falls back to the Remote Address when you're away, so you don't
+    have to re-pair or switch anything by hand.</p>
   </div>
 
   <div class="faq-item">
@@ -167,10 +190,13 @@
       <li><strong>Tailscale must be running on your device.</strong> Open
       the Tailscale app on your iPhone, iPad, or Apple TV and make sure
       it's connected (the VPN toggle is on) before opening GiVo Stream.</li>
-      <li><strong>Use the Tailscale address, not the local one.</strong>
-      If you paired with the local <code>192.168.x.x</code> address, add the
-      server again with its <code>100.x.x.x</code> Tailscale IP — the local
-      address only works on your home Wi-Fi.</li>
+      <li><strong>Check your server's Remote Address.</strong> Open
+      Settings → DVR → your server → <strong>Edit Server</strong> and make sure
+      the <strong>Remote Address</strong> is set to the server's
+      <code>100.x.x.x</code> Tailscale IP. The Local Address
+      (<code>192.168.x.x</code>) only works on your home Wi-Fi — GiVo Stream
+      uses the Remote Address automatically when you're away, so there's no need
+      to re-pair or switch servers by hand.</li>
       <li><strong>The home side has to be up too:</strong> the computer must
       be awake with both GiVo Server and Tailscale running. On a Mac, check
       Energy/Battery settings so it doesn't sleep; Tailscale's menu shows

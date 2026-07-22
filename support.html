@@ -295,6 +295,33 @@
     recording.</p>
   </div>
 
+  <div class="faq-item">
+    <h3>Recordings are slow to start or fail — iCloud Private Relay &amp; VPNs</h3>
+    <p>If recordings from your iPhone or iPad take a long time to start (or
+    fail with a connection-limit message) while everything works instantly
+    from Apple&nbsp;TV, the usual cause is <strong>iCloud Private Relay</strong>
+    or a <strong>VPN</strong>. Both route your device's traffic through a
+    different address, so your provider sees the device as a separate
+    connection — and on accounts that allow only one stream at a time, that
+    extra "viewer" can delay or block a recording from starting.</p>
+    <p>Two ways to fix it:</p>
+    <ul>
+      <li><strong>Keep Private Relay, but exempt your home Wi-Fi
+      (recommended):</strong> on your iPhone/iPad, open Settings → Wi-Fi, tap
+      the ⓘ next to your home network, and turn off <em>Limit IP Address
+      Tracking</em>. Private Relay stays on everywhere else — cellular, public
+      Wi-Fi — but your device connects directly at home, where your DVR server
+      lives.</li>
+      <li><strong>Or turn it off entirely:</strong> Settings → [your name] →
+      iCloud → Private Relay → Off. If you use a third-party VPN app or
+      profile, disable it (or add a rule so it doesn't route local/home
+      traffic) while recording.</li>
+    </ul>
+    <p>Apple&nbsp;TV isn't affected because Private Relay doesn't exist on
+    tvOS. This also speeds up other same-account features between your
+    devices, like taking over a stream from another device.</p>
+  </div>
+
   <h2 id="contact">Contact</h2>
   <p>Email <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
   with a description of the issue, your device model, and — if it's about the

@@ -517,13 +517,21 @@ document.addEventListener("click", function (e) {
 });
 </script>
 <style>
-pre{position:relative}
+.prewrap{position:relative;margin:14px 0}
+.prewrap pre{margin:0;background:#f6f8fa;border:1px solid rgba(0,0,0,.08);border-radius:10px;
+padding:12px 88px 12px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.prewrap pre code{background:none;border:none;padding:0;white-space:pre;display:block}
 .copybtn{position:absolute;top:8px;right:8px;font:600 12px -apple-system,BlinkMacSystemFont,sans-serif;
-padding:4px 10px;border-radius:6px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#333;cursor:pointer}
+padding:4px 10px;border-radius:6px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#333;cursor:pointer;
+box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .copybtn:hover{background:#f2f6ff}
 </style>
 <script>
 document.querySelectorAll("pre").forEach(function (pre) {
+  var wrap = document.createElement("div");
+  wrap.className = "prewrap";
+  pre.parentNode.insertBefore(wrap, pre);
+  wrap.appendChild(pre);
   var b = document.createElement("button");
   b.className = "copybtn"; b.type = "button"; b.textContent = "Copy";
   b.addEventListener("click", function () {
@@ -533,7 +541,7 @@ document.querySelectorAll("pre").forEach(function (pre) {
       setTimeout(function () { b.textContent = "Copy"; }, 1600);
     });
   });
-  pre.appendChild(b);
+  wrap.appendChild(b);
 });
 </script>
 </body>

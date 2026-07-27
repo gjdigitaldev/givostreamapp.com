@@ -329,6 +329,9 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   (pairings live in the <code>config</code> folder, which survives):</p>
 <pre><code>docker rm -f givo-server
 </code></pre>
+  <p><strong>⚠️ A run command replaces ALL of your settings — copy the block
+  that matches YOUR setup</strong> (and keep any other lines yours uses).</p>
+  <p>Standard setup (port 8088):</p>
 <pre><code>docker run -d --name givo-server \
   -e GIVO_PASSWORD=123456 \
   -p 8088:8088 -p 8090:8090 \
@@ -336,9 +339,16 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   -v ~/givo-server/recordings:/recordings \
   ghcr.io/gjdigitaldev/givo-server:latest
 </code></pre>
-  <p>(Using the alternate port because the desktop app runs on the same
-  computer? Keep the <code>-e GIVO_PORT=18088</code> line and the 18088
-  port numbers from section 2 in that command too.)</p>
+  <p>Alternate-port setup from section&nbsp;2 (the GiVo Server desktop app
+  also runs on this computer):</p>
+<pre><code>docker run -d --name givo-server \
+  -e GIVO_PORT=18088 \
+  -e GIVO_PASSWORD=123456 \
+  -p 18088:18088 -p 18090:18090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
   <p><strong>systemd</strong> — add this line in the <code>[Service]</code>
   section of <code>givo-server.service</code>, then
   <code>sudo systemctl daemon-reload &amp;&amp; sudo systemctl restart givo-server</code>:</p>
@@ -392,6 +402,10 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   <code>givo-server</code> folders):</p>
 <pre><code>docker rm -f givo-server
 </code></pre>
+  <p><strong>⚠️ A run command replaces ALL of your settings — copy the block
+  that matches YOUR setup.</strong> If your command has other lines (a fixed
+  pairing code, a different name), keep them too.</p>
+  <p>Standard setup (port 8088):</p>
 <pre><code>docker run -d --name givo-server \
   -e GIVO_COMMERCIAL_SKIP=true \
   -e GIVO_WHISPER_CAPTIONS=true \
@@ -401,10 +415,18 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   -v ~/givo-server/recordings:/recordings \
   ghcr.io/gjdigitaldev/givo-server:latest
 </code></pre>
-  <p>(Keep any lines your setup already uses — e.g. the
-  <code>-e GIVO_PORT=18088</code> line and 18088 port numbers from
-  section&nbsp;2, or <code>-e GIVO_PASSWORD=…</code> — this command replaces
-  the whole run command, so it must carry ALL of your settings.)</p>
+  <p>Alternate-port setup from section&nbsp;2 (the GiVo Server desktop app
+  also runs on this computer):</p>
+<pre><code>docker run -d --name givo-server \
+  -e GIVO_PORT=18088 \
+  -e GIVO_COMMERCIAL_SKIP=true \
+  -e GIVO_WHISPER_CAPTIONS=true \
+  -e GIVO_WHISPER_MODEL=distil-large-v3 \
+  -p 18088:18088 -p 18090:18090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
   <p>Caption model tiers (pick one with <code>GIVO_WHISPER_MODEL</code>;
   approximate one-time download):</p>
   <ul>

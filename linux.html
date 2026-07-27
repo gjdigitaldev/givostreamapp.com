@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!-- DRAFT (R354 / R354-r2) — not linked from the site yet. Goes live only at
+     the coordinated Linux release moment: remove the /linux.html entry from
+     .git/info/exclude, wire the landing-page card from
+     drafts/index-linux-section.html, then commit. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GiVo Server for Linux &amp; NAS — GiVo Stream</title>
+<meta name="description" content="Run GiVo Server headless on Linux, Synology, Unraid, or any Docker host. Setup guides for Docker Compose, Docker Desktop, Synology, Unraid, and the native binary.">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="stylesheet" href="/styles.css?v=16">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <img width="180" height="180" src="/assets/icon-180.png" alt="GiVo Stream icon">
+    <a class="brand" href="/">GiVo Stream</a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="/#download">DVR Server</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/about.html">About</a>
+    </div>
+    <details class="menu">
+      <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+      <div class="dropdown">
+        <a href="/#features">Features</a>
+        <a href="/#download">DVR Server Downloads</a>
+        <a href="/userguide.html">User Guide</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/about.html">About</a>
+        <div class="dd-sep"></div>
+        <a href="/#appstore">App Store <span class="soon-pill">COMING SOON</span></a>
+        <a href="https://testflight.apple.com/join/amYRbhWM" target="_blank" rel="noopener">Join the Beta</a>
+        <a href="https://discord.gg/Vh5wXTSwYg" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<article>
+  <h1>GiVo Server for Linux &amp; NAS</h1>
+  <p class="updated">Run the DVR companion headless on any Linux machine or
+  NAS — Synology, Unraid, a home server, a Raspberry&nbsp;Pi, or Docker
+  Desktop on a Mac or PC. Same full DVR as the desktop apps: recording,
+  scheduling, catchup, live timeshift, commercial skip, and automatic
+  captions for every paired device. Everything runs on x86-64 (amd64) and
+  ARM (arm64).</p>
+
+  <div class="toc" id="contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#docker-compose">Docker Compose — Linux &amp; NAS (recommended)</a></li>
+      <li><a href="#docker-desktop">Docker Desktop — Mac &amp; Windows</a></li>
+      <li><a href="#synology">Synology (Container Manager)</a></li>
+      <li><a href="#unraid">Unraid</a></li>
+      <li><a href="#native">Native Linux binary (systemd)</a></li>
+      <li><a href="#pairing">Pairing — codes, rotation &amp; fixed codes</a></li>
+      <li><a href="#networking">Host vs. bridge networking</a></li>
+      <li><a href="#features-linux">Commercial skip &amp; auto captions</a></li>
+      <li><a href="#storage">Storage, backups &amp; updates</a></li>
+      <li><a href="#settings">All settings</a></li>
+    </ol>
+  </div>
+
+  <h2 id="docker-compose">1. Docker Compose — Linux &amp; NAS (recommended)</h2>
+  <p>Create a folder for the server, add this <code>docker-compose.yml</code>,
+  and start it:</p>
+<pre><code>services:
+  givo-server:
+    image: ghcr.io/gjdigitaldev/givo-server:latest
+    container_name: givo-server
+    network_mode: host
+    environment:
+      - GIVO_NAME=GiVo DVR
+      # Recommended when pairing several devices — see “Pairing” below:
+      # - GIVO_PASSWORD=123456
+      # Optional post-recording passes — see “Commercial skip &amp; auto captions”:
+      # - GIVO_COMMERCIAL_SKIP=true
+      # - GIVO_WHISPER_CAPTIONS=true
+      # - GIVO_WHISPER_MODEL=distil-large-v3
+    volumes:
+      - ./config:/config
+      - ./recordings:/recordings
+    restart: unless-stopped
+</code></pre>
+<pre><code>mkdir -p config recordings
+docker compose up -d
+docker compose logs givo-server     # the pairing code is in the banner
+</code></pre>
+  <p>That's the whole install. Point <code>./recordings</code> at your big
+  disk — that's where recordings are written — then jump to
+  <a href="#pairing">Pairing</a>.</p>
+
+  <h2 id="docker-desktop">2. Docker Desktop — Mac &amp; Windows</h2>
+  <p>Docker Desktop doesn't support host networking the way Linux does, so
+  use published ports (bridge). In a terminal:</p>
+<pre><code>mkdir -p ~/givo-server/config ~/givo-server/recordings
+docker run -d --name givo-server \
+  -p 8088:8088 -p 8090:8090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+docker logs givo-server             # the pairing code is in the banner
+</code></pre>
+  <p>With bridge networking the server is not auto-discovered — in the GiVo
+  app choose <strong>Add Server Manually</strong> and enter the computer's IP
+  address and port <code>8088</code>.</p>
+  <p><strong>Port 8088 already in use?</strong> (For example, the GiVo Server
+  desktop app is also running on the same machine.) Move the server to
+  another port — set <code>GIVO_PORT</code> and publish <em>the same
+  numbers</em> on both sides, keeping the second port at
+  <em>API&nbsp;port&nbsp;+&nbsp;2</em>:</p>
+<pre><code>docker run -d --name givo-server \
+  -e GIVO_PORT=18088 \
+  -p 18088:18088 -p 18090:18090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
+  <p>Then pair by IP with port <code>18088</code>. (Mismatched inside/outside
+  numbers — like <code>-p 18088:8088</code> — will pair and record fine but
+  break casting, so prefer the same-number form above.)</p>
+
+  <h2 id="synology">3. Synology (Container Manager)</h2>
+  <p>On DSM 7.2+ with <strong>Container Manager</strong> installed:</p>
+  <ol>
+    <li>Open Container Manager → <strong>Registry</strong>, search for
+    <code>gjdigitaldev/givo-server</code> on <code>ghcr.io</code> and
+    download the <code>latest</code> tag. (If your DSM can't search ghcr,
+    add it via Project → paste the compose file from
+    <a href="#docker-compose">section 1</a> instead — that's often the
+    easier path.)</li>
+    <li>Create two shared-folder locations first in File Station, e.g.
+    <code>/docker/givo-server/config</code> and a recordings folder on your
+    big volume, e.g. <code>/video/GiVo Recordings</code>.</li>
+    <li>Container Manager → <strong>Container</strong> → Create from the
+    image. In the wizard:
+      <ul>
+        <li><strong>Network:</strong> select <em>Use the same network as
+        Docker Host</em> if available — auto-discovery and casting then just
+        work. Otherwise keep <em>bridge</em> and add port mappings
+        <code>8088 → 8088</code> and <code>8090 → 8090</code> (TCP, same
+        numbers on both sides).</li>
+        <li><strong>Volumes:</strong> map
+        <code>/docker/givo-server/config</code> → <code>/config</code> and
+        your recordings folder → <code>/recordings</code>.</li>
+        <li><strong>Environment:</strong> optionally add
+        <code>GIVO_NAME</code>, <code>GIVO_PASSWORD</code> (fixed pairing
+        code), and the feature toggles from
+        <a href="#features-linux">section 8</a>.</li>
+        <li>Enable <strong>auto-restart</strong>.</li>
+      </ul>
+    </li>
+    <li>Start the container, open its <strong>Log</strong> tab, and read the
+    pairing code from the banner. With bridge networking, pair via
+    <strong>Add Server Manually</strong> using the NAS IP and port
+    <code>8088</code>.</li>
+  </ol>
+
+  <h2 id="unraid">4. Unraid</h2>
+  <p>Until a Community Applications template lands, add the container from
+  the Docker tab (<em>Add Container</em>) or a terminal. The equivalent
+  <code>docker run</code>:</p>
+<pre><code>docker run -d --name givo-server \
+  --network host \
+  -e GIVO_NAME="GiVo DVR" \
+  -v /mnt/user/appdata/givo-server:/config \
+  -v "/mnt/user/media/GiVo Recordings":/recordings \
+  --restart unless-stopped \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
+  <p>In the Add Container form that maps to: Repository
+  <code>ghcr.io/gjdigitaldev/givo-server:latest</code>, Network Type
+  <em>Host</em>, a path mapping for <code>/config</code> →
+  <code>/mnt/user/appdata/givo-server</code>, a path mapping for
+  <code>/recordings</code> → your media share, plus any
+  <code>GIVO_*</code> variables. Host networking is the Unraid-typical
+  choice and keeps auto-discovery + casting working; if you use a custom
+  bridge instead, publish <code>8088</code> and <code>8090</code> at the
+  same numbers and pair by IP. Read the pairing code with
+  <code>docker logs givo-server</code> (or the container's log icon in the
+  UI).</p>
+
+  <h2 id="native">5. Native Linux binary (systemd)</h2>
+  <p>Prefer no Docker? Download
+  <a href="https://github.com/gjdigitaldev/givostreamapp.com/releases/latest/download/GiVo-Server-Linux-amd64.tar.gz">GiVo-Server-Linux-amd64.tar.gz</a>
+  or
+  <a href="https://github.com/gjdigitaldev/givostreamapp.com/releases/latest/download/GiVo-Server-Linux-arm64.tar.gz">GiVo-Server-Linux-arm64.tar.gz</a>.
+  Each contains static binaries (the server plus the commercial-skip and
+  caption engines), a README with step-by-step instructions, and a
+  ready-made <code>givo-server.service</code> systemd unit. The only
+  requirement is ffmpeg from your distribution:</p>
+<pre><code>sudo apt install ffmpeg          # Debian/Ubuntu (dnf/pacman equivalents work too)
+tar xzf GiVo-Server-Linux-amd64.tar.gz &amp;&amp; cd givo-server-linux-amd64
+sudo useradd --system --home-dir /var/lib/givo-server --shell /usr/sbin/nologin givo
+sudo mkdir -p /opt/givo-server /var/lib/givo-server/recordings
+sudo cp givo-server comskip comskip.ini whisper-cli /opt/givo-server/
+sudo chown -R givo:givo /var/lib/givo-server
+sudo cp givo-server.service /etc/systemd/system/
+sudo systemctl daemon-reload &amp;&amp; sudo systemctl enable --now givo-server
+journalctl -u givo-server | grep "PAIRING CODE" | tail -1
+</code></pre>
+  <p>Keep <code>givo-server</code>, <code>comskip</code>,
+  <code>comskip.ini</code>, and <code>whisper-cli</code> in the same
+  directory — the server finds the feature binaries beside itself. Point
+  <code>--recordings-dir</code> in the unit file at a big disk.</p>
+
+  <h2 id="pairing">6. Pairing — codes, rotation &amp; fixed codes</h2>
+  <p>The server prints a six-digit pairing code in its logs, inside a clearly
+  marked banner:</p>
+<pre><code>docker logs givo-server
+...
+[Server]  ==============================================================
+[Server]    GiVo DVR is ready.
+[Server]    PAIRING CODE:  481523
+[Server]    API:           https://&lt;this machine's LAN IP&gt;:8088
+...</code></pre>
+  <p>On each iPhone, iPad, or Apple&nbsp;TV (same network):</p>
+  <ol>
+    <li>In GiVo Stream, open <strong>DVR → DVR Server</strong>.</li>
+    <li>If the server appears automatically, select it. If not (normal with
+    bridge networking), choose <strong>Add Server Manually</strong> and enter
+    the machine's IP address and port <code>8088</code>.</li>
+    <li>Enter the pairing code. Pairing is one-time per device.</li>
+  </ol>
+  <p><strong>The code rotates.</strong> For security, the random pairing code
+  changes after <em>every successful pairing</em> — the code that paired
+  your iPhone will not pair your Apple&nbsp;TV. Re-read the current code
+  right before pairing each device:</p>
+<pre><code>docker logs givo-server | grep "PAIRING CODE" | tail -1        # Docker
+journalctl -u givo-server | grep "PAIRING CODE" | tail -1      # systemd
+</code></pre>
+  <p><strong>Pairing several devices? Set a fixed code</strong> — it never
+  rotates, so every device uses the same one. Pick your own six digits:</p>
+<pre><code># docker-compose.yml
+    environment:
+      - GIVO_PASSWORD=123456
+
+# docker run
+  -e GIVO_PASSWORD=123456
+
+# systemd (givo-server.service, [Service] section)
+Environment=GIVO_PASSWORD=123456
+</code></pre>
+  <p>Restart the container/service after setting it. Treat the fixed code
+  like a password for your DVR — anyone on your network who has it can pair.</p>
+
+  <h2 id="networking">7. Host vs. bridge networking</h2>
+  <p><strong>Host networking</strong> (Linux/NAS only) is the simple path:
+  automatic discovery works, casting to AirPlay and Chromecast devices
+  works, no port bookkeeping.</p>
+  <p><strong>Bridge networking</strong> (Docker Desktop, Synology's default,
+  custom bridges) also works — publish both ports <em>at the same
+  numbers</em> and pair by IP:</p>
+<pre><code>    ports:
+      - "8088:8088"   # API
+      - "8090:8090"   # casting relay (always API port + 2)
+</code></pre>
+  <ul>
+    <li>Automatic discovery doesn't cross a bridge network — use
+    <strong>Add Server Manually</strong> with the machine's IP.</li>
+    <li>The casting relay must keep the <code>API&nbsp;port&nbsp;+&nbsp;2</code>
+    spacing, and both mappings must use identical numbers on both sides
+    (<code>8088:8088</code>, <code>8090:8090</code>) or casting won't work.
+    Moving ports? Set <code>GIVO_PORT</code> and publish the new pair at the
+    same numbers (see <a href="#docker-desktop">section 2</a>).</li>
+    <li>Both ports are LAN-safe: the API uses TLS with certificate pinning
+    plus per-device tokens, and the relay port is token-gated. Don't forward
+    either to the internet.</li>
+  </ul>
+
+  <h2 id="features-linux">8. Commercial skip &amp; auto captions</h2>
+  <p>The Linux build ships the same optional post-recording passes as the
+  macOS and Windows apps: <strong>commercial skip</strong> (powered by
+  Comskip) and <strong>automatic captions</strong> (speech-to-text via
+  Whisper) for recordings without broadcast captions. Both are off by
+  default — they are CPU-heavy passes that run after each recording
+  finishes — and recordings themselves are never delayed by them.</p>
+<pre><code>    environment:
+      - GIVO_COMMERCIAL_SKIP=true
+      - GIVO_WHISPER_CAPTIONS=true
+      - GIVO_WHISPER_MODEL=distil-large-v3
+</code></pre>
+  <p>Caption model tiers (pick one with <code>GIVO_WHISPER_MODEL</code>;
+  approximate one-time download):</p>
+  <ul>
+    <li><code>small.en</code> — ~0.5&nbsp;GB. Fastest, English only. Good
+    for modest NAS CPUs.</li>
+    <li><code>medium.en</code> — ~1.5&nbsp;GB. English only.</li>
+    <li><code>distil-large-v3</code> — ~1.5&nbsp;GB. <strong>Default</strong>;
+    best speed/quality balance, multilingual.</li>
+    <li><code>large-v3</code> — ~3&nbsp;GB. Best quality, slowest.</li>
+  </ul>
+  <p><strong>First-enable behavior:</strong> the model downloads
+  automatically the first time captions are enabled — watch progress in the
+  container log. It lands in <code>/config/models</code> on your config
+  volume and is kept there permanently, so container updates and restarts
+  never re-download it. Captions appear on new recordings once the model is
+  ready. On modest CPUs a transcription can take a large fraction of the
+  recording's length; passes queue one at a time so recording is never
+  starved.</p>
+  <p>Commercial skip needs no download — enable it and skip points appear on
+  new recordings (and can be added to older ones from the app). Comskip is
+  GPL-licensed; its license and notice ship inside the image and tarballs.</p>
+
+  <h2 id="storage">9. Storage, backups &amp; updates</h2>
+  <ul>
+    <li><code>/config</code> <strong>is your server's identity — back it up,
+    never delete it.</strong> It holds the database, the TLS keys your
+    devices pin when they pair, and the downloaded caption models. As long
+    as <code>cert.pem</code> and <code>key.pem</code> survive, your devices
+    never need to re-pair; lose them and every device must pair again.</li>
+    <li><code>/recordings</code> holds the recordings themselves. Size it
+    generously.</li>
+    <li>Updating is the normal Docker flow —
+    <code>docker compose pull &amp;&amp; docker compose up -d</code>. Your
+    <code>/config</code> and <code>/recordings</code> carry over
+    untouched.</li>
+  </ul>
+
+  <h2 id="settings">10. All settings</h2>
+  <p>Every setting is available as an environment variable (handy in
+  compose) or a command-line flag; flags win over environment:</p>
+  <ul>
+    <li><code>GIVO_NAME</code> — the server name shown in the app.</li>
+    <li><code>GIVO_PASSWORD</code> — fixed pairing code (otherwise a random
+    code that rotates after each pairing).</li>
+    <li><code>GIVO_PORT</code> — API port (default <code>8088</code>; the
+    casting relay always follows at port&nbsp;+&nbsp;2).</li>
+    <li><code>GIVO_RECORDINGS_DIR</code> — recordings folder (the image
+    defaults to <code>/recordings</code>).</li>
+    <li><code>GIVO_DB_PATH</code> — database location (the image defaults to
+    <code>/config/givo.db</code>; TLS keys and caption models live beside
+    it).</li>
+    <li><code>GIVO_COMMERCIAL_SKIP</code> — <code>true</code>/<code>false</code>,
+    commercial-break detection after each recording.</li>
+    <li><code>GIVO_WHISPER_CAPTIONS</code> — <code>true</code>/<code>false</code>,
+    automatic captions for recordings without broadcast captions.</li>
+    <li><code>GIVO_WHISPER_MODEL</code> — <code>large-v3</code> |
+    <code>distil-large-v3</code> | <code>medium.en</code> |
+    <code>small.en</code>.</li>
+  </ul>
+  <p>Questions or stuck? We're happy to help —
+  <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a> or
+  the <a href="https://discord.gg/Vh5wXTSwYg" target="_blank" rel="noopener">Discord</a>.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <a href="https://gj-digital.com" target="_blank" rel="noopener">GJ Digital LLC</a> · GiVo Stream</span>
+    <div class="links">
+      <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("details.menu .dropdown a").forEach(function (a) {
+  a.addEventListener("click", function () {
+    a.closest("details").removeAttribute("open");
+  });
+});
+document.addEventListener("click", function (e) {
+  var d = document.querySelector("details.menu[open]");
+  if (d && !d.contains(e.target)) d.removeAttribute("open");
+});
+</script>
+</body>
+</html>

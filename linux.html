@@ -95,27 +95,36 @@
 </code></pre>
 <pre><code>mkdir -p config recordings
 docker compose up -d
-docker compose logs givo-server     # the pairing code is in the banner
+docker compose logs givo-server
 </code></pre>
+  <p>The <code>logs</code> command prints the server's startup banner — your
+  pairing code is in it.</p>
   <p>That's the whole install. Point <code>./recordings</code> at your big
   disk — that's where recordings are written — then jump to
   <a href="#pairing">Pairing</a>.</p>
 
   <h2 id="docker-desktop">2. Docker Desktop — Mac &amp; Windows</h2>
   <p>Docker Desktop doesn't support host networking the way Linux does, so
-  use published ports (bridge). In a terminal:</p>
+  use published ports (bridge).</p>
+  <p><strong>First: is the GiVo Server desktop app also running on this same
+  computer?</strong> If yes, skip the block below and use the
+  <a href="#alt-port">alternate-port command</a> further down — the desktop
+  app already owns ports 8088/8090, so this first command will fail with
+  "address already in use." If no, carry on. In a terminal:</p>
 <pre><code>mkdir -p ~/givo-server/config ~/givo-server/recordings
 docker run -d --name givo-server \
   -p 8088:8088 -p 8090:8090 \
   -v ~/givo-server/config:/config \
   -v ~/givo-server/recordings:/recordings \
   ghcr.io/gjdigitaldev/givo-server:latest
-docker logs givo-server             # the pairing code is in the banner
+docker logs givo-server
 </code></pre>
+  <p>The <code>logs</code> command prints the server's startup banner — your
+  pairing code is in it.</p>
   <p>With bridge networking the server is not auto-discovered — in the GiVo
   app choose <strong>Add Server Manually</strong> and enter the computer's IP
   address and port <code>8088</code>.</p>
-  <p><strong>Port 8088 already in use?</strong> (For example, the GiVo Server
+  <p id="alt-port"><strong>Port 8088 already in use?</strong> (For example, the GiVo Server
   desktop app is also running on the same machine.) Move the server to
   another port — set <code>GIVO_PORT</code> and publish <em>the same
   numbers</em> on both sides, keeping the second port at
@@ -127,6 +136,10 @@ docker logs givo-server             # the pairing code is in the banner
   -v ~/givo-server/recordings:/recordings \
   ghcr.io/gjdigitaldev/givo-server:latest
 </code></pre>
+  <p>The <code>-e GIVO_PORT=18088</code> line is what moves the server itself
+  to the new port — don't drop it. Without it the server keeps listening on
+  8088 <em>inside</em> the container and the published 18088 port leads
+  nowhere, so the container runs but pairing can't connect.</p>
   <p>Then pair by IP with port <code>18088</code>. (Mismatched inside/outside
   numbers — like <code>-p 18088:8088</code> — will pair and record fine but
   break casting, so prefer the same-number form above.)</p>
@@ -378,6 +391,26 @@ document.querySelectorAll("details.menu .dropdown a").forEach(function (a) {
 document.addEventListener("click", function (e) {
   var d = document.querySelector("details.menu[open]");
   if (d && !d.contains(e.target)) d.removeAttribute("open");
+});
+</script>
+<style>
+pre{position:relative}
+.copybtn{position:absolute;top:8px;right:8px;font:600 12px -apple-system,BlinkMacSystemFont,sans-serif;
+padding:4px 10px;border-radius:6px;border:1px solid rgba(0,0,0,.15);background:#fff;color:#333;cursor:pointer}
+.copybtn:hover{background:#f2f6ff}
+</style>
+<script>
+document.querySelectorAll("pre").forEach(function (pre) {
+  var b = document.createElement("button");
+  b.className = "copybtn"; b.type = "button"; b.textContent = "Copy";
+  b.addEventListener("click", function () {
+    var code = pre.querySelector("code");
+    navigator.clipboard.writeText((code || pre).innerText.trim()).then(function () {
+      b.textContent = "Copied!";
+      setTimeout(function () { b.textContent = "Copy"; }, 1600);
+    });
+  });
+  pre.appendChild(b);
 });
 </script>
 </body>

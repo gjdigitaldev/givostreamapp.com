@@ -378,11 +378,33 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   Whisper) for recordings without broadcast captions. Both are off by
   default — they are CPU-heavy passes that run after each recording
   finishes — and recordings themselves are never delayed by them.</p>
+  <p><strong>Docker Compose</strong> — un-comment (or add) these lines in
+  your <code>docker-compose.yml</code>, then re-run
+  <code>docker compose up -d</code>:</p>
 <pre><code>    environment:
       - GIVO_COMMERCIAL_SKIP=true
       - GIVO_WHISPER_CAPTIONS=true
       - GIVO_WHISPER_MODEL=distil-large-v3
 </code></pre>
+  <p><strong>docker run</strong> — settings can't be added to an existing
+  container, so remove it and run it again with the extra lines (recordings,
+  pairings, and settings all survive — they live in your
+  <code>givo-server</code> folders):</p>
+<pre><code>docker rm -f givo-server
+</code></pre>
+<pre><code>docker run -d --name givo-server \
+  -e GIVO_COMMERCIAL_SKIP=true \
+  -e GIVO_WHISPER_CAPTIONS=true \
+  -e GIVO_WHISPER_MODEL=distil-large-v3 \
+  -p 8088:8088 -p 8090:8090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
+  <p>(Keep any lines your setup already uses — e.g. the
+  <code>-e GIVO_PORT=18088</code> line and 18088 port numbers from
+  section&nbsp;2, or <code>-e GIVO_PASSWORD=…</code> — this command replaces
+  the whole run command, so it must carry ALL of your settings.)</p>
   <p>Caption model tiers (pick one with <code>GIVO_WHISPER_MODEL</code>;
   approximate one-time download):</p>
   <ul>

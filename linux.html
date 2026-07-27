@@ -104,6 +104,25 @@ docker compose logs givo-server
   <a href="#pairing">Pairing</a>.</p>
 
   <h2 id="docker-desktop">2. Docker Desktop — Mac &amp; Windows</h2>
+  <p><strong>Never used Docker or a terminal? Start here.</strong></p>
+  <ol>
+    <li><strong>Install Docker Desktop</strong> (free) from
+      <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">docker.com</a>,
+      then open it. Wait until it says it's <em>running</em> (Mac: the whale
+      icon in the menu bar; Windows: the whale in the system tray). Every
+      command below fails if Docker Desktop isn't running.</li>
+    <li><strong>Open a command window.</strong> Mac: press Cmd&nbsp;+&nbsp;Space,
+      type <em>Terminal</em>, press Return. Windows: open the Start menu,
+      type <em>cmd</em>, press Enter (Command Prompt).</li>
+    <li><strong>Use the Copy button</strong> in the corner of each command
+      box below, paste into the command window, and press Return. A command
+      that spans several lines ending in <code>\</code> is still ONE
+      command — always copy and paste the whole box, never a single line
+      from inside it.</li>
+    <li><strong>Success often looks like nothing.</strong> Some commands
+      print nothing at all when they work; each box below says what you
+      should see.</li>
+  </ol>
   <p>Docker Desktop doesn't support host networking the way Linux does, so
   use published ports (bridge).</p>
   <p><strong>First: is the GiVo Server desktop app also running on this same
@@ -119,8 +138,21 @@ docker run -d --name givo-server \
   ghcr.io/gjdigitaldev/givo-server:latest
 docker logs givo-server
 </code></pre>
-  <p>The <code>logs</code> command prints the server's startup banner — your
-  pairing code is in it.</p>
+  <p><strong>What you should see:</strong> the first command prints nothing
+  (that's success). The <code>docker run</code> command downloads the server
+  the first time (a minute of progress lines), then prints one long string
+  of random letters and numbers — that string means it started. The
+  <code>logs</code> command prints the server's startup banner — your
+  pairing code is in it. To double-check it's running at any time, run
+  <code>docker ps</code>: you should see a <code>givo-server</code> row
+  whose STATUS starts with "Up".</p>
+  <p><strong>On Windows,</strong> use these one-line versions in Command
+  Prompt instead (the multi-line <code>\</code> style above is Mac/Linux
+  shell syntax):</p>
+<pre><code>mkdir "%USERPROFILE%\givo-server\config" "%USERPROFILE%\givo-server\recordings"
+</code></pre>
+<pre><code>docker run -d --name givo-server -p 8088:8088 -p 8090:8090 -v "%USERPROFILE%\givo-server\config:/config" -v "%USERPROFILE%\givo-server\recordings:/recordings" ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
   <p>With bridge networking the server is not auto-discovered — in the GiVo
   app choose <strong>Add Server Manually</strong> and enter the computer's IP
   address and port <code>8088</code>.</p>
@@ -139,7 +171,29 @@ docker logs givo-server
   <p>The <code>-e GIVO_PORT=18088</code> line is what moves the server itself
   to the new port — don't drop it. Without it the server keeps listening on
   8088 <em>inside</em> the container and the published 18088 port leads
-  nowhere, so the container runs but pairing can't connect.</p>
+  nowhere, so the container runs but pairing can't connect. (Windows
+  one-line version:)</p>
+<pre><code>docker run -d --name givo-server -e GIVO_PORT=18088 -p 18088:18088 -p 18090:18090 -v "%USERPROFILE%\givo-server\config:/config" -v "%USERPROFILE%\givo-server\recordings:/recordings" ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
+  <p><strong>Already ran the wrong command?</strong> No harm done — remove
+  the attempt and start over. This is always safe (your recordings and
+  settings live in the <code>givo-server</code> folders, not in the
+  container):</p>
+<pre><code>docker rm -f givo-server
+</code></pre>
+  <p><strong>Common errors, decoded:</strong></p>
+  <ul>
+    <li><code>bind: address already in use</code> — something on this
+      computer (usually the GiVo Server desktop app) already owns that
+      port. Use the alternate-port command above.</li>
+    <li><code>The container name "/givo-server" is already in use</code> —
+      a previous attempt is still there. Run
+      <code>docker rm -f givo-server</code>, then try again.</li>
+    <li><code>command not found</code> — only part of a command was pasted.
+      Use the Copy button and paste the whole box.</li>
+    <li><code>Cannot connect to the Docker daemon</code> — Docker Desktop
+      isn't running. Open it, wait for "running", try again.</li>
+  </ul>
   <p>Then pair by IP with port <code>18088</code>. (Mismatched inside/outside
   numbers — like <code>-p 18088:8088</code> — will pair and record fine but
   break casting, so prefer the same-number form above.)</p>
@@ -250,23 +304,48 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   changes after <em>every successful pairing</em> — the code that paired
   your iPhone will not pair your Apple&nbsp;TV. Re-read the current code
   right before pairing each device:</p>
-<pre><code>docker logs givo-server | grep "PAIRING CODE" | tail -1        # Docker
-journalctl -u givo-server | grep "PAIRING CODE" | tail -1      # systemd
+  <p>Docker:</p>
+<pre><code>docker logs givo-server | grep "PAIRING CODE" | tail -1
 </code></pre>
+  <p>systemd:</p>
+<pre><code>journalctl -u givo-server | grep "PAIRING CODE" | tail -1
+</code></pre>
+  <p>(Each prints just the newest code — any codes above it in the full log
+  are already used up.)</p>
   <p><strong>Pairing several devices? Set a fixed code</strong> — it never
-  rotates, so every device uses the same one. Pick your own six digits:</p>
-<pre><code># docker-compose.yml
-    environment:
+  rotates, so every device uses the same one. Pick your own six digits.
+  These are settings, not commands — a bare <code>-e GIVO_PASSWORD=…</code>
+  pasted on its own does nothing. Add the setting where your setup defines
+  the server, then restart it:</p>
+  <p><strong>Docker Compose</strong> — un-comment (or add) the line in your
+  <code>docker-compose.yml</code>, then re-run
+  <code>docker compose up -d</code>:</p>
+<pre><code>    environment:
       - GIVO_PASSWORD=123456
-
-# docker run
-  -e GIVO_PASSWORD=123456
-
-# systemd (givo-server.service, [Service] section)
-Environment=GIVO_PASSWORD=123456
 </code></pre>
-  <p>Restart the container/service after setting it. Treat the fixed code
-  like a password for your DVR — anyone on your network who has it can pair.</p>
+  <p><strong>docker run</strong> — a container's settings can't be changed
+  while it exists, so remove it and run it again with the extra
+  <code>-e</code> line included. Devices you already paired STAY paired
+  (pairings live in the <code>config</code> folder, which survives):</p>
+<pre><code>docker rm -f givo-server
+</code></pre>
+<pre><code>docker run -d --name givo-server \
+  -e GIVO_PASSWORD=123456 \
+  -p 8088:8088 -p 8090:8090 \
+  -v ~/givo-server/config:/config \
+  -v ~/givo-server/recordings:/recordings \
+  ghcr.io/gjdigitaldev/givo-server:latest
+</code></pre>
+  <p>(Using the alternate port because the desktop app runs on the same
+  computer? Keep the <code>-e GIVO_PORT=18088</code> line and the 18088
+  port numbers from section 2 in that command too.)</p>
+  <p><strong>systemd</strong> — add this line in the <code>[Service]</code>
+  section of <code>givo-server.service</code>, then
+  <code>sudo systemctl daemon-reload &amp;&amp; sudo systemctl restart givo-server</code>:</p>
+<pre><code>Environment=GIVO_PASSWORD=123456
+</code></pre>
+  <p>Treat the fixed code like a password for your DVR — anyone on your
+  network who has it can pair.</p>
 
   <h2 id="networking">7. Host vs. bridge networking</h2>
   <p><strong>Host networking</strong> (Linux/NAS only) is the simple path:

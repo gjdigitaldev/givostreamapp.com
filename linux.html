@@ -282,6 +282,19 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   directory — the server finds the feature binaries beside itself. Point
   <code>--recordings-dir</code> in the unit file at a big disk.</p>
 
+  <p><strong>Updating the native binary</strong> (build 37 and later): the
+  server updates itself in place —</p>
+<pre><code>sudo givo-server update --check    # see what's available
+sudo givo-server update            # download, verify, swap &amp; restart</code></pre>
+  <p>The update command never interrupts a recording — if one is running it
+  waits and tells you to retry, and the previous binary is kept beside the
+  new one as <code>givo-server.previous</code> in case you ever want to
+  roll back. Prefer it fully automatic? The tarball ships an optional
+  <code>givo-server-update.timer</code> systemd unit (off by default) that
+  checks once a day — enable it with
+  <code>sudo systemctl enable --now givo-server-update.timer</code>. See
+  §6 of the bundled README for details.</p>
+
   <h2 id="pairing">6. Pairing — codes, rotation &amp; fixed codes</h2>
   <p>The server prints a six-digit pairing code in its logs, inside a clearly
   marked banner:</p>
@@ -461,7 +474,24 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
     <li>Updating is the normal Docker flow —
     <code>docker compose pull &amp;&amp; docker compose up -d</code>. Your
     <code>/config</code> and <code>/recordings</code> carry over
-    untouched.</li>
+    untouched. The container shuts down gracefully (up to 90 seconds) so an
+    in-progress recording is finalized, never truncated.</li>
+    <li><strong>Automatic updates (optional):</strong> add
+    <a href="https://containrrr.dev/watchtower/">Watchtower</a> to your
+    compose file and it pulls new GiVo Server images on a schedule —
+    for example checking daily at 5&nbsp;AM, when a recording is least
+    likely to be running:
+<pre><code>  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 5 * * *" --cleanup givo-server</code></pre>
+    The 90-second grace period applies here too, so even an unlucky
+    mid-recording update finalizes the recording before swapping.</li>
+    <li><strong>Native binary:</strong> <code>sudo givo-server update</code>
+    (build 37+) — see the update notes in
+    <a href="#native">section 5</a>.</li>
   </ul>
 
   <h2 id="settings">10. All settings</h2>

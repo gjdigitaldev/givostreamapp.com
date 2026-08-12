@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!-- DRAFT (R354 / R354-r2) — not linked from the site yet. Goes live only at
-     the coordinated Linux release moment: remove the /linux.html entry from
-     .git/info/exclude, wire the landing-page card from
-     drafts/index-linux-section.html, then commit. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -69,6 +65,7 @@
       <li><a href="#pairing">Pairing — codes, rotation &amp; fixed codes</a></li>
       <li><a href="#networking">Host vs. bridge networking</a></li>
       <li><a href="#features-linux">Commercial skip &amp; auto captions</a></li>
+      <li><a href="#refresh-linux">Playlist &amp; guide refreshes for your devices</a></li>
       <li><a href="#storage">Storage, backups &amp; updates</a></li>
       <li><a href="#settings">All settings</a></li>
     </ol>
@@ -464,7 +461,52 @@ sudo givo-server update            # download, verify, swap &amp; restart</code>
   new recordings (and can be added to older ones from the app). Comskip is
   GPL-licensed; its license and notice ship inside the image and tarballs.</p>
 
-  <h2 id="storage">9. Storage, backups &amp; updates</h2>
+  <a class="chapter-end" href="#contents">↑ Back to contents</a>
+
+  <h2 id="refresh-linux">9. Playlist &amp; guide refreshes for your devices</h2>
+  <p>GiVo Server can handle playlist, guide, and on-demand refreshes for every
+  paired device: in GiVo Stream, turn on <strong>Settings → Playlist / EPG
+  Refresh → DVR Server</strong> on each device that should receive its data
+  from the server. The server downloads updates on its own cadence and hands
+  them over on your network; each device picks them up on its own schedule,
+  and any device with the switch off (or with the server unreachable) simply
+  refreshes itself as before.</p>
+  <p><strong>Server cadence, headless.</strong> On Linux and Docker, set how
+  often the server refreshes with an environment variable — hours between
+  refreshes, <code>0</code> for Off, valid range 0.25–168:</p>
+<pre><code>    environment:
+      - GIVO_REFRESH_INTERVAL_HOURS=4
+</code></pre>
+  <p>The variable supplies the <em>default</em>: if an interval has ever been
+  chosen from an app's Refresh Status screen or a desktop picker, that choice
+  wins and the variable is ignored from then on. To hand control back to it,
+  delete the <code>server_interval_hours</code> line from
+  <code>refresh_config.json</code> in your config folder and restart.</p>
+  <p><strong>The loopback control API.</strong> The server also exposes an
+  auth-free control endpoint bound to 127.0.0.1 only (never reachable from the
+  network), on <em>server port + 1</em> — <code>8089</code> for the standard
+  setup. On a native install, call it with curl on the host:</p>
+<pre><code># set the server's refresh cadence to every 8 hours (0 = off)
+curl -s -X POST -d '{"interval_hours":8}' http://127.0.0.1:8089/refresh/interval
+
+# wipe the server's cached playlist/guide data (refused while a refresh runs;
+# devices simply re-download fresh copies on their next refresh)
+curl -s -X POST http://127.0.0.1:8089/refresh/clear-data
+</code></pre>
+  <p>The container image ships no curl, so for Docker run a one-off curl
+  container inside the server's network namespace (loopback is shared, so
+  127.0.0.1 reaches the control endpoint):</p>
+<pre><code>docker run --rm --network container:givo-server curlimages/curl \
+  -s -X POST -d '{"interval_hours":8}' http://127.0.0.1:8089/refresh/interval
+
+docker run --rm --network container:givo-server curlimages/curl \
+  -s -X POST http://127.0.0.1:8089/refresh/clear-data
+</code></pre>
+  <p>If you changed <code>GIVO_PORT</code>, the control endpoint moves with it
+  (always one above the server port — <code>18089</code> for the section&nbsp;2
+  alternate-port setup).</p>
+
+  <h2 id="storage">10. Storage, backups &amp; updates</h2>
   <ul>
     <li><code>/config</code> <strong>is your server's identity — back it up,
     never delete it.</strong> It holds the database, the TLS keys your
@@ -496,7 +538,7 @@ sudo givo-server update            # download, verify, swap &amp; restart</code>
     <a href="#native">section 5</a>.</li>
   </ul>
 
-  <h2 id="settings">10. All settings</h2>
+  <h2 id="settings">11. All settings</h2>
   <p>Every setting is available as an environment variable (handy in
   compose) or a command-line flag; flags win over environment:</p>
   <ul>

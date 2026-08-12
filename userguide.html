@@ -126,6 +126,31 @@
   always there when you want it immediately, and guide data can be kept for up to
   <strong>7 days</strong> ahead.</p>
 
+  <h3>Let your DVR server do the downloading</h3>
+  <p>If you run the free GiVo Server app (chapter 6), flip on
+  <span class="key">Settings</span> → <span class="key">Playlist / EPG Refresh</span>
+  → <span class="key">DVR Server</span>. Your server then downloads playlist,
+  guide, and on-demand updates once and hands them to every paired device over
+  your network — quicker refreshes, and one download for the whole household
+  instead of one per device. A status line under the switch shows whether the
+  server is reachable, and each playlist's card says where its data came from:
+  <em>Received from DVR Server</em> or <em>Refreshed on this device</em>.</p>
+  <ul>
+    <li><strong>Per-device switch.</strong> The toggle applies only to the device
+    you set it on — on for the living-room Apple&nbsp;TV, off for an iPhone, or
+    any combination.</li>
+    <li><strong>Your schedule stays yours.</strong> Each device's Refresh
+    Interval controls that device only. The server keeps to its own schedule,
+    set in the GiVo Server app — or, on headless Linux and Docker, with the
+    <code>GIVO_REFRESH_INTERVAL_HOURS</code> setting (see the
+    <a href="/linux.html#refresh-linux">Linux &amp; NAS guide</a>).</li>
+    <li><strong>Automatic fallback.</strong> If the server is unreachable, the
+    device refreshes on its own and hands the job back by itself once the
+    server returns.</li>
+    <li><strong>Refresh Now always works.</strong> A manual refresh fetches the
+    very latest immediately, wherever the work normally runs.</li>
+  </ul>
+
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 
   <!-- ============================ 3 ============================ -->
@@ -837,7 +862,7 @@
     <tbody>
       <tr><td>Sync &amp; Data</td><td>iCloud sync — turn it on, choose exactly what syncs (chapter 11).</td></tr>
       <tr><td>Playlist Manager</td><td>Add, edit, reorder, and remove playlists; manage categories; rename and hide channels.</td></tr>
-      <tr><td>Playlist / EPG Refresh</td><td>Auto-refresh schedules for playlists and guide data, guide depth (up to 7 days), Refresh Now.</td></tr>
+      <tr><td>Playlist / EPG Refresh</td><td>Auto-refresh schedules for playlists and guide data, the DVR Server refresh switch (your server downloads for every device), guide depth (up to 7 days), Refresh Now.</td></tr>
       <tr><td>Playback</td><td>Rewind &amp; fast-forward jump sizes (10/15/30/60s), caption appearance, buffering and stream-recovery behavior.</td></tr>
       <tr><td>Customization</td><td>Themes, Home Tabs (iPhone &amp; iPad), info-overlay elements and button mapping (Apple TV), channel zapping, overlay auto-hide timing, clock format, sounds.</td></tr>
       <tr><td>DVR</td><td>Enable DVR, server pairing and status, recordings, schedule, padding (chapter 6).</td></tr>

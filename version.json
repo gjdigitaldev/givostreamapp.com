@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 46,
-  "released": "2026-08-12",
-  "notes": "GiVo Server 1.0 (build 46). Commercial skip now snaps break ends to the show's return, existing recordings re-check themselves, and missed captions heal automatically.",
+  "build": 47,
+  "released": "2026-08-15",
+  "notes": "GiVo Server 1.0 (build 47). Recordings now work on providers that only serve HLS streams, and recordings can identify themselves like your player does.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.46/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.46/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.46/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.46/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.46"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.47/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.47/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.47/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.47/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.47"
   }
 }

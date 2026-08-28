@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 51,
-  "released": "2026-08-25",
-  "notes": "GiVo Server 1.0 (build 51).",
+  "build": 52,
+  "released": "2026-08-28",
+  "notes": "Guide data now carries forward when a provider response omits channels; invalid refresh URLs fail fast instead of retrying.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.51/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.51/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.51/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.51/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.51"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.52/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.52/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.52/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.52/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.52"
   }
 }

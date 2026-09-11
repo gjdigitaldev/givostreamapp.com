@@ -10,7 +10,7 @@
 <meta property="og:image" content="https://givostreamapp.com/assets/icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/styles.css?v=16">
+<link rel="stylesheet" href="/styles.css?v=17">
 </head>
 <body>
 
@@ -67,6 +67,8 @@
       <li><a href="#vod">VOD: Movies &amp; series</a></li>
       <li><a href="#multiview">Multiview</a></li>
       <li><a href="#reminders">Reminders</a></li>
+      <li><a href="#profiles">Profiles &amp; sharing</a></li>
+      <li><a href="#customization">Customization, room by room</a></li>
       <li><a href="#sync">Sync &amp; Data</a></li>
       <li><a href="#parental">Parental controls</a></li>
       <li><a href="#settings">Settings, room by room</a></li>
@@ -105,7 +107,8 @@
 
   <h3>Add a playlist</h3>
   <p>Open <span class="key">Settings</span> → <span class="key">Playlist Manager</span> →
-  <span class="key">Add Playlist</span> and choose one of two types:</p>
+  <span class="key">Add Playlist</span> and choose the type that matches what your
+  provider gave you:</p>
   <ul>
     <li><strong>M3U &amp; EPG</strong> — paste your M3U URL, and optionally a guide
     (XMLTV/EPG) URL. The guide URL can be left empty if your source doesn't provide
@@ -113,7 +116,18 @@
     <li><strong>Xtream Codes</strong> — enter the server address, username, and
     password. Guide data is filled in automatically, or you can supply a custom
     EPG URL instead.</li>
+    <li><strong>Stalker Portal</strong> — for providers who give you a portal address
+    and a MAC address rather than a username and password. Enter the portal URL and
+    the MAC exactly as supplied. Channels, categories and guide data all come from the
+    portal itself, so there is usually no separate guide URL to add.</li>
+    <li><strong>Text List</strong> — a plain list of stream addresses, either pasted
+    in directly or fetched from a <strong>Text List URL</strong>. Useful for a handful
+    of individual streams that aren't part of a subscription.</li>
   </ul>
+  <p class="note">Stalker portals allow only one active session per account, so if a
+  stream refuses to start while another device is playing, that is the provider's
+  limit rather than the app's. If you use GiVo Server, let it handle the refreshing —
+  it keeps the single session for you and your devices read from it.</p>
   <p>You can add as many playlists as you like. One playlist is <em>active</em> at a
   time — switch between them from the sidebar's playlist picker (chapters 3 and 4)
   without re-entering anything.</p>
@@ -799,7 +813,125 @@
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 
   <!-- ============================ 11 ============================ -->
-  <h2 id="sync">11 · Sync &amp; Data</h2>
+  <h2 id="profiles">11 · Profiles &amp; sharing</h2>
+
+  <p>A profile is a complete, separate setup inside the app — its own playlists,
+  favorites, recently watched, customization and settings. Everyone in the house
+  gets the app the way they like it, and nobody has to scroll past anyone else's
+  channels.</p>
+
+  <h3>Creating a profile</h3>
+  <p>Go to <span class="key">Settings</span> → <span class="key">Profiles</span> and
+  choose <span class="key">Create Profile</span>. Give it a name and pick an avatar —
+  one of the built-in choices, or a photo from your iPhone or iPad. You can change
+  the avatar whenever you like, and each profile can have its own
+  <span class="key">Backdrop</span>, the artwork shown behind the
+  <em>Who's Watching</em> screen.</p>
+  <p>When you create a profile you choose what it starts with:
+  <span class="key">Fresh</span> gives you an empty setup to build from scratch, and
+  <span class="key">Copy Everything</span> starts it as a copy of your current one.
+  You can also copy your setup into an existing profile later with
+  <span class="key">Copy My Setup Into This Profile</span>.</p>
+
+  <h3>Which profile opens</h3>
+  <p>Two settings decide what happens when the app launches.
+  <span class="key">Start With</span> sets the general behavior — ask every time with
+  <em>Who's Watching</em>, reopen the last profile used, or always open one
+  particular profile. <span class="key">This Device Opens</span> then lets a single
+  device override that, so the Apple TV in the living room can always open the family
+  profile while your iPhone reopens whichever you used last.</p>
+
+  <h3>Locking a profile</h3>
+  <p><span class="key">Profile Lock</span> puts a PIN on a profile, so switching into
+  it asks for the code first. That is separate from
+  <a href="#parental">parental controls</a>, which restrict content <em>within</em> a
+  profile — use a lock when you want the profile itself to be private, and parental
+  controls when you want to limit what can be watched.</p>
+
+  <h3>Sharing a profile with someone</h3>
+  <p>Tap <span class="key">Share…</span> on a profile and the app creates an
+  invitation you can send however you like. Whoever opens it gets that profile on
+  their own device, kept in step through iCloud — the same playlists, the same
+  favorites, the same setup, updating for both of you.</p>
+  <p>The owner keeps control. The profile's name and avatar are managed by whoever
+  created it, and the <span class="key">Shared Profiles</span> screen shows exactly
+  who currently has access. A profile someone has shared with you appears under
+  <span class="key">Shared With You</span>.</p>
+  <p>If you no longer want a profile that was shared with you, choose
+  <span class="key">Leave</span>. It disappears from your devices and the owner's
+  data is untouched. If you own the profile, <span class="key">Delete Profile</span>
+  removes it for everyone.</p>
+  <p class="note">When a profile is shared, GiVo Stream shows you a recovery code and
+  asks you to confirm you have saved it. Keep it somewhere safe — it is how access is
+  restored if something goes wrong, and it cannot be reissued for you.</p>
+
+  <a class="chapter-end" href="#contents">↑ Back to contents</a>
+
+
+  <!-- ============================ 12 ============================ -->
+  <h2 id="customization">12 · Customization, room by room</h2>
+
+  <p><span class="key">Settings</span> → <span class="key">Customization</span> is
+  where GiVo Stream stops looking like everyone else's copy and starts looking like
+  yours. Each area below is its own screen.</p>
+
+  <h3>Themes</h3>
+  <p>The app's overall look. Pick a theme and the guide, channel list and player all
+  follow it.</p>
+
+  <h3>Guide/Channels</h3>
+  <p>How the two main screens are laid out and what they show:
+  <span class="key">Guide Tab View</span> and
+  <span class="key">Channels Tab View</span> choose what each tab opens to,
+  <span class="key">Channel Numbers</span> shows or hides numbering,
+  <span class="key">Channel List Artwork</span> and
+  <span class="key">Program List Artwork</span> control artwork,
+  <span class="key">Guide Panel Backdrop</span> sets the artwork behind the guide, and
+  <span class="key">Channel Tap</span> decides what a tap on a channel does.</p>
+
+  <h3>Favorite Customization and Favorites - All Playlists</h3>
+  <p>How favorites behave, and whether your hearts are gathered from every playlist
+  into one list or kept per playlist.</p>
+
+  <h3>Recently Watched</h3>
+  <p>Whether recently watched appears, whether it spans all playlists, and — through
+  <span class="key">Recently Watched Category</span> — whether it shows up as a
+  category inside the guide.</p>
+
+  <h3>App Startup Options</h3>
+  <p>What the app does when it opens.</p>
+
+  <h3>Clock Format</h3>
+  <p>12-hour or 24-hour, used everywhere a time is shown.</p>
+
+  <h3>Sounds</h3>
+  <p><span class="key">Playback Controls Click Sounds</span> and
+  <span class="key">Recording-Finished Sound</span>, each on or off.</p>
+
+  <h3>Accessibility</h3>
+  <p><span class="key">Text Size</span> and <span class="key">Monospaced Font</span>
+  for legibility, <span class="key">Reduce Flashing &amp; Auto-Scroll</span> for
+  calmer motion, <span class="key">Prefer Audio Descriptions</span> where a provider
+  offers them, <span class="key">Player Controls Auto-Hide</span> to keep the controls
+  on screen longer, and <span class="key">Language</span>.</p>
+
+  <h3>Automatic Naming</h3>
+  <p>Providers rarely name channels consistently — prefixes, country codes, quality
+  tags and stray symbols. <span class="key">Automatic Naming</span> cleans them up
+  across a whole playlist at once, and <span class="key">Before and After</span> shows
+  you exactly what a rule will do before you keep it. The original names are never
+  altered at the provider; this only changes what you see.</p>
+
+  <h3>Custom Playlists and Categories</h3>
+  <p>Build your own categories from channels across any of your playlists — a sports
+  category, a kids category, one for the channels you actually watch — and they appear
+  in the guide and channel list alongside the provider's own.</p>
+
+  <a class="chapter-end" href="#contents">↑ Back to contents</a>
+
+
+  <!-- ============================ 13 ============================ -->
+  <h2 id="sync">13 · Sync &amp; Data</h2>
 
   <p>Turn on sync in <span class="key">Settings</span> →
   <span class="key">Sync &amp; Data</span> and your setup follows you — playlists,
@@ -818,7 +950,7 @@
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 
   <!-- ============================ 12 ============================ -->
-  <h2 id="parental">12 · Parental controls</h2>
+  <h2 id="parental">14 · Parental controls</h2>
 
   <p><span class="key">Settings</span> → <span class="key">Parental Control</span>
   gives you two layers of protection behind a 4-digit PIN:</p>
@@ -841,7 +973,7 @@
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 
   <!-- ============================ 13 ============================ -->
-  <h2 id="settings">13 · Settings, room by room</h2>
+  <h2 id="settings">15 · Settings, room by room</h2>
 
   <p>A quick map of everything behind the Settings tab, on both platforms:</p>
   <div class="fig-row">
@@ -876,7 +1008,7 @@
   <a class="chapter-end" href="#contents">↑ Back to contents</a>
 
   <!-- ============================ 14 ============================ -->
-  <h2 id="tips">14 · Tips &amp; quick reference</h2>
+  <h2 id="tips">16 · Tips &amp; quick reference</h2>
 
   <ul>
     <li><strong>Pause is always free.</strong> The moment a stream starts, the blue

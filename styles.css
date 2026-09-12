@@ -250,6 +250,11 @@ section p.sub { color: var(--dim); text-align: center; max-width: 660px; margin:
 }
 .shot.tv img { max-width: 660px; }
 .shot.phone img { max-width: 235px; }
+/* Phone shots share one fixed column so the two rows line up: the caption used to
+   size the box, so a long caption pushed its phone off the column beneath it. */
+.shot.phone { flex: 0 0 300px; width: 300px; max-width: 300px; }
+.shot.phone .cap { max-width: 100%; }
+.shots:has(.shot.phone) { align-items: flex-start; }
 .shot .cap { color: var(--dim); font-size: 14px; margin-top: 12px; font-weight: 500; }
 
 /* ---- Features ---- */

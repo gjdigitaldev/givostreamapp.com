@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 58,
+  "build": 59,
   "released": "2026-09-12",
-  "notes": "GiVo Server 1.0 (build 58) for macOS, Windows and Linux/Docker. Fixes the portal cursor file being rewritten with unloaded memos after a restart (a retired guide lane could come back and hit the provider's rate limit hourly), plus review fixes: a sweep only counts as cut short on a real provider rate limit, the low-yield count resets on retirement and lapse, Clear Data purges every portal memo, the bulk-window re-settle only touches a settled ladder, and the once-more guide retry survives a re-arm.",
+  "notes": "GiVo Server 1.0 (build 59) for macOS, Windows and Linux/Docker. Playlist attribute names are now read regardless of case (tvg-ID, Group-Title), matching the app's fix for playlists written that way.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.58"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.59"
   }
 }

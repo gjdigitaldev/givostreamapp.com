@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 57,
+  "build": 58,
   "released": "2026-09-12",
-  "notes": "GiVo Server 1.0 (build 57) for macOS, Windows and Linux/Docker. Refreshes Stalker portals end to end (guide and VOD) and holds the provider session for all your devices; deeper portal guides through the provider's bulk guide endpoint; about one-seventh of the memory on large portal guides; live refresh progress and honest status; recordings on channels served only as HLS; overlapping recordings merged into one stream with both entries kept; VOD pages and search for Xtream playlists.",
+  "notes": "GiVo Server 1.0 (build 58) for macOS, Windows and Linux/Docker. Fixes the portal cursor file being rewritten with unloaded memos after a restart (a retired guide lane could come back and hit the provider's rate limit hourly), plus review fixes: a sweep only counts as cut short on a real provider rate limit, the low-yield count resets on retirement and lapse, Clear Data purges every portal memo, the bulk-window re-settle only touches a settled ladder, and the once-more guide retry survives a re-arm.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.57/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.57/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.57/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.57/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.57"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.58/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.58"
   }
 }

@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://givostreamapp.com/">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/styles.css?v=18">
+<link rel="stylesheet" href="/styles.css?v=19">
 </head>
 <body>
 
@@ -96,36 +96,39 @@
   <div class="wrap">
     <h2>See it in action</h2>
     <p class="sub">Real screens from GiVo Stream on Apple&nbsp;TV and iPhone.</p>
-    <div class="shots">
-      <div class="shot tv">
-        <img width="1400" height="787" src="/assets/shots/tv-player.png" alt="GiVo Stream fullscreen playback on Apple TV with scrub bar and controls" loading="lazy">
-        <div class="cap">Fullscreen playback on Apple&nbsp;TV — scrub bar, skip controls, and one-tap record</div>
-      </div>
+  </div>
+  <div class="gallery" aria-roledescription="carousel" aria-label="Screenshots of GiVo Stream">
+    <div class="gallery-track" tabindex="0">
+      <figure class="slide tv">
+        <div class="frame"><img width="1400" height="787" src="/assets/shots/tv-player.png" alt="GiVo Stream fullscreen playback on Apple TV with scrub bar and controls" loading="lazy"></div>
+        <figcaption>Fullscreen playback on Apple&nbsp;TV — scrub bar, skip controls, and one-tap record</figcaption>
+      </figure>
+      <figure class="slide tv">
+        <div class="frame"><img width="1400" height="787" src="/assets/shots/tv-sidebar.png" alt="GiVo Stream playlist and category sidebar on Apple TV" loading="lazy"></div>
+        <figcaption>Playlists, favorites, recents, and categories — one sidebar away</figcaption>
+      </figure>
+      <figure class="slide phone">
+        <div class="frame"><img width="460" height="1000" src="/assets/shots/phone-player.png" alt="GiVo Stream floating player on iPhone with scrub bar and record button" loading="lazy"></div>
+        <figcaption>The floating player — scrub, skip, and record in one tap</figcaption>
+      </figure>
+      <figure class="slide phone">
+        <div class="frame"><img width="460" height="1000" src="/assets/shots/phone-guide.png" alt="GiVo Stream program guide on iPhone" loading="lazy"></div>
+        <figcaption>The guide on iPhone</figcaption>
+      </figure>
+      <figure class="slide phone">
+        <div class="frame"><img width="460" height="1000" src="/assets/shots/phone-channels.png" alt="GiVo Stream channel list on iPhone with now-playing progress" loading="lazy"></div>
+        <figcaption>Channels with now-playing progress</figcaption>
+      </figure>
+      <figure class="slide phone">
+        <div class="frame"><img width="460" height="1000" src="/assets/shots/phone-sidebar.png" alt="GiVo Stream playlist and category sidebar on iPhone" loading="lazy"></div>
+        <figcaption>The sidebar — playlists, search, and categories</figcaption>
+      </figure>
     </div>
-    <div class="shots" style="margin-top:26px;">
-      <div class="shot tv">
-        <img width="1400" height="787" src="/assets/shots/tv-sidebar.png" alt="GiVo Stream playlist and category sidebar on Apple TV" loading="lazy">
-        <div class="cap">Playlists, favorites, recents, and categories — one sidebar away</div>
-      </div>
-    </div>
-    <div class="shots" style="margin-top:26px;">
-      <div class="shot phone">
-        <img width="460" height="1000" src="/assets/shots/phone-player.png" alt="GiVo Stream floating player on iPhone with scrub bar and record button" loading="lazy">
-        <div class="cap">The floating player — scrub, skip, and record in one tap</div>
-      </div>
-      <div class="shot phone">
-        <img width="460" height="1000" src="/assets/shots/phone-guide.png" alt="GiVo Stream program guide on iPhone" loading="lazy">
-        <div class="cap">The guide on iPhone</div>
-      </div>
-    </div>
-    <div class="shots" style="margin-top:26px;">
-      <div class="shot phone">
-        <img width="460" height="1000" src="/assets/shots/phone-channels.png" alt="GiVo Stream channel list on iPhone with now-playing progress" loading="lazy">
-        <div class="cap">Channels with now-playing progress</div>
-      </div>
-      <div class="shot phone">
-        <img width="460" height="1000" src="/assets/shots/phone-sidebar.png" alt="GiVo Stream playlist and category sidebar on iPhone" loading="lazy">
-        <div class="cap">The sidebar — playlists, search, and categories</div>
+    <div class="wrap gallery-nav">
+      <div class="gallery-dots" role="tablist" aria-label="Choose a screenshot"><button type="button" role="tab" aria-label="Screenshot 1" aria-selected="true"></button><button type="button" role="tab" aria-label="Screenshot 2" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 3" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 4" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 5" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 6" aria-selected="false"></button></div>
+      <div class="gallery-btns">
+        <button type="button" class="gallery-btn prev" aria-label="Previous screenshot" disabled><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="gallery-btn next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
   </div>
@@ -501,6 +504,43 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var g = document.querySelector(".gallery"); if (!g) return;
+  var track = g.querySelector(".gallery-track");
+  var slides = Array.prototype.slice.call(track.querySelectorAll(".slide"));
+  var dots = Array.prototype.slice.call(g.querySelectorAll(".gallery-dots [role=tab]"));
+  var prev = g.querySelector(".gallery-btn.prev"), next = g.querySelector(".gallery-btn.next");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function padLeft() { return parseFloat(getComputedStyle(track).paddingLeft) || 0; }
+  function current() {
+    var x = track.scrollLeft + padLeft() + 2, best = 0;
+    for (var i = 0; i < slides.length; i++) if (slides[i].offsetLeft <= x) best = i;
+    return best;
+  }
+  function goTo(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    track.scrollTo({ left: slides[i].offsetLeft - padLeft(), behavior: reduce ? "auto" : "smooth" });
+  }
+  function sync() {
+    var i = current(), atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    dots.forEach(function (d, k) { d.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = atEnd;
+  }
+  prev.addEventListener("click", function () { goTo(current() - 1); });
+  next.addEventListener("click", function () { goTo(current() + 1); });
+  dots.forEach(function (d, k) { d.addEventListener("click", function () { goTo(k); }); });
+  track.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); goTo(current() + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); goTo(current() - 1); }
+  });
+  var raf = 0;
+  track.addEventListener("scroll", function () { if (!raf) raf = requestAnimationFrame(function () { raf = 0; sync(); }); }, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+})();
+</script>
 <script>
 document.querySelectorAll("details.menu .dropdown a").forEach(function (a) {
   a.addEventListener("click", function () {

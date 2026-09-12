@@ -529,7 +529,7 @@ article h2[id], article h3[id] { scroll-margin-top: 86px; }
 }
 .gallery-track::-webkit-scrollbar { display: none; }
 .gallery-track:focus-visible { box-shadow: inset 0 0 0 2px var(--blue); border-radius: 12px; }
-.slide { flex: 0 0 auto; margin: 0; scroll-snap-align: center; text-align: center; }
+.slide { flex: 0 0 auto; margin: 0; scroll-snap-align: center; text-align: center; max-width: calc(100vw - 48px); }
 .slide .frame { height: var(--stage); display: flex; align-items: center; justify-content: center; }
 .slide .frame img {
   height: auto; width: auto; max-height: 100%; max-width: calc(100vw - 48px);
@@ -554,9 +554,13 @@ article h2[id], article h3[id] { scroll-margin-top: 86px; }
 .gallery-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .gallery-btn:disabled { opacity: .35; cursor: default; }
 @media (max-width: 700px) {
-  .gallery { --stage: min(420px, 58vh); }
-  .gallery-track { gap: 18px; padding-left: 24px; padding-right: 24px; }
+  .gallery { --stage: min(340px, 50vh); }
+  /* Phones: the TV shot shrinks to the screen width, so its frame hugs the image
+     and the row bottom-aligns; captions wrap inside the slide's width. */
+  .gallery-track { gap: 18px; padding-left: 24px; padding-right: 24px; align-items: center; }
+  .slide.tv .frame { height: auto; }
   .slide.phone { min-width: 220px; }
+  .slide figcaption { padding: 0 4px; }
   .gallery-btn { width: 40px; height: 40px; }
 }
 @media (prefers-reduced-motion: reduce) { .gallery-btn, .gallery-dots [role=tab] { transition: none; } }

@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://givostreamapp.com/">
 <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
-<link rel="stylesheet" href="/styles.css?v=19">
+<link rel="stylesheet" href="/styles.css?v=20">
 </head>
 <body>
 
@@ -125,11 +125,9 @@
       </figure>
     </div>
     <div class="wrap gallery-nav">
+      <button type="button" class="gallery-btn prev" aria-label="Previous screenshot" disabled><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <div class="gallery-dots" role="tablist" aria-label="Choose a screenshot"><button type="button" role="tab" aria-label="Screenshot 1" aria-selected="true"></button><button type="button" role="tab" aria-label="Screenshot 2" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 3" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 4" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 5" aria-selected="false"></button><button type="button" role="tab" aria-label="Screenshot 6" aria-selected="false"></button></div>
-      <div class="gallery-btns">
-        <button type="button" class="gallery-btn prev" aria-label="Previous screenshot" disabled><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" class="gallery-btn next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div>
+      <button type="button" class="gallery-btn next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
   </div>
 </section>
@@ -512,21 +510,24 @@
   var dots = Array.prototype.slice.call(g.querySelectorAll(".gallery-dots [role=tab]"));
   var prev = g.querySelector(".gallery-btn.prev"), next = g.querySelector(".gallery-btn.next");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function padLeft() { return parseFloat(getComputedStyle(track).paddingLeft) || 0; }
+  function center(el) { return el.offsetLeft + el.offsetWidth / 2; }
   function current() {
-    var x = track.scrollLeft + padLeft() + 2, best = 0;
-    for (var i = 0; i < slides.length; i++) if (slides[i].offsetLeft <= x) best = i;
+    var mid = track.scrollLeft + track.clientWidth / 2, best = 0, dist = Infinity;
+    for (var i = 0; i < slides.length; i++) {
+      var d = Math.abs(center(slides[i]) - mid);
+      if (d < dist) { dist = d; best = i; }
+    }
     return best;
   }
   function goTo(i) {
     i = Math.max(0, Math.min(slides.length - 1, i));
-    track.scrollTo({ left: slides[i].offsetLeft - padLeft(), behavior: reduce ? "auto" : "smooth" });
+    track.scrollTo({ left: center(slides[i]) - track.clientWidth / 2, behavior: reduce ? "auto" : "smooth" });
   }
   function sync() {
-    var i = current(), atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    var i = current();
     dots.forEach(function (d, k) { d.setAttribute("aria-selected", k === i ? "true" : "false"); });
-    prev.disabled = track.scrollLeft <= 2;
-    next.disabled = atEnd;
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
   }
   prev.addEventListener("click", function () { goTo(current() - 1); });
   next.addEventListener("click", function () { goTo(current() + 1); });

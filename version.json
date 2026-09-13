@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 59,
-  "released": "2026-09-12",
-  "notes": "GiVo Server 1.0 (build 59) for macOS, Windows and Linux/Docker. Playlist attribute names are now read regardless of case (tvg-ID, Group-Title), matching the app's fix for playlists written that way.",
+  "build": 60,
+  "released": "2026-09-13",
+  "notes": "GiVo Server 1.0 (build 60) for macOS, Windows and Linux/Docker. Recordings now report when a commercial scan finished with nothing found, so the app can say \"No breaks found\" instead of leaving the badge blank. Portal (Stalker/Ministra) guide refresh re-checks the next longer bulk period every four hours and adopts it only when it is actually deeper, so a provider whose guide depth changes after the first refresh is picked up instead of staying at the first answer. Portal refresh memos are merged on save instead of rewritten, so a restart no longer forgets a lane verdict the process had not read yet.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.59/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.59"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.60"
   }
 }

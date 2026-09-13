@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 60,
+  "build": 61,
   "released": "2026-09-13",
-  "notes": "GiVo Server 1.0 (build 60) for macOS, Windows and Linux/Docker. Recordings now report when a commercial scan finished with nothing found, so the app can say \"No breaks found\" instead of leaving the badge blank. Portal (Stalker/Ministra) guide refresh re-checks the next longer bulk period every four hours and adopts it only when it is actually deeper, so a provider whose guide depth changes after the first refresh is picked up instead of staying at the first answer. Portal refresh memos are merged on save instead of rewritten, so a restart no longer forgets a lane verdict the process had not read yet.",
+  "notes": "GiVo Server 1.0 (build 61) for macOS, Windows and Linux/Docker. Portal guides now deepen continuously: after each guide fetch the server keeps sweeping channels in short slices instead of waiting for the next hour, favourites and recently watched channels reported by the app are swept first, a channel that stopped answering is retried after six hours instead of a week, guides that reach only a few hours ahead are refetched sooner, and each playlist reports how far ahead its guide reaches so the app can show it on the refresh card.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.60/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.60"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.61/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.61/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.61/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.61/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.61"
   }
 }

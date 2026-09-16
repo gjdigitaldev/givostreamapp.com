@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 62,
-  "released": "2026-09-13",
-  "notes": "GiVo Server 1.0 (build 62) for macOS, Windows and Linux/Docker. Guide scheduling fixes from the release review: the refresh card's next-refresh time now matches the pass that will actually run; a channel lane that stopped answering no longer refetches the whole guide every hour for six hours; a guide slice whose stored guide cannot be loaded runs a full pass instead of publishing a partial one; a portal that rejects its session is not re-armed every ten minutes; and the ad-scan \"No breaks found\" state requires a readable scan result. A VOD catalogue crawl that draws a rate limit now stands down for six hours, so it stops pausing that host's guide sweep every hour.",
+  "build": 63,
+  "released": "2026-09-16",
+  "notes": "GiVo Server 1.0 (build 63).",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.62/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.62/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.62/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.62/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.62"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.63"
   }
 }

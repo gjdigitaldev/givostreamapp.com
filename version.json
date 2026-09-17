@@ -3,7 +3,7 @@
   "version": "1.0",
   "build": 63,
   "released": "2026-09-16",
-  "notes": "GiVo Server 1.0 (build 63).",
+  "notes": "GiVo Server 1.0 (build 63): Stalker guide sweeps re-arm on a bounded 3-second cadence with a 30-minute cool-off, and memo files are merged on save instead of overwritten.",
   "downloads": {
     "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-macOS-Universal.dmg",
     "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.63/GiVo-Server-Setup-x64.exe",

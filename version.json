@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 66,
+  "build": 67,
   "released": "2026-09-20",
-  "notes": "Portal guide refresh, corrections to build 65: when a device tunes on the same portal account while the guide is being read, the server now keeps its place and continues on the next cycle instead of treating the interrupted page as the end of the guide (build 65 could stop the forward guide for days after such a collision). An empty page after rows is confirmed with one request on the same session, without a re-login. A server error on the first page no longer retires the page-by-page path, and a plain server error pauses that provider for five minutes only.",
+  "notes": "Portal guide refresh: a refresh that resumes at the end of a provider's guide now confirms the session with one request on the first page of the window instead of logging in again, so resumed refreshes no longer add handshakes that can trip the provider's request limiter. Follow-up to build 66.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.66/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.66/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.66/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.66/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.66"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.67/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.67/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.67/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.67/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.67"
   }
 }

@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 64,
-  "released": "2026-09-18",
-  "notes": "GiVo Server 1.0 (build 64): a Stalker roster that arrives without channel names is refused and your previous channel list is kept. The roster leg retries once with a fresh portal handshake before giving up.",
+  "build": 65,
+  "released": "2026-09-20",
+  "notes": "Portal guide refresh: a provider push-back mid-walk (a limit answer without a retry hint, or a server error) now pauses that provider for five minutes and resumes where it left off instead of re-logging in, so a guide refresh no longer trips the provider's request limiter and other devices keep their sessions. Transport errors retry the same session; a plaintext rejection re-arms once per pass; an empty page after rows were gathered is trusted as the end.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.64/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.64/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.64/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.64/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.64"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.65/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.65/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.65/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.65/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.65"
   }
 }

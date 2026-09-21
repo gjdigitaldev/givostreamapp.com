@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 68,
+  "build": 69,
   "released": "2026-09-21",
-  "notes": "GiVo Server 1.0 (build 68).",
+  "notes": "GiVo Server 1.0 (build 69).",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.68/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.68/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.68/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.68/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.68"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.69"
   }
 }

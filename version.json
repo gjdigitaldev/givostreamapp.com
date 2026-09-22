@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 69,
+  "build": 70,
   "released": "2026-09-21",
-  "notes": "Overlapping recordings: watching an in-progress capture through the end of a program it absorbed no longer gets clamped to the first program's window while the capture is still held; a program recorded inside another recording's capture now reports the length it actually holds; portal playlists now carry each channel's number for the app's channel-number option.",
+  "notes": "Live recordings now hold their seal for the few seconds the file lags the clock (up to 45 seconds), so the last moments of a program are captured instead of cut; a program recorded inside another recording's capture is marked Shortened only when it really is short (the allowance scales with the program's length, and a capture you stopped early is never marked complete); each recording now also reports its captured length and its own window for the app.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.69/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.69"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.70"
   }
 }

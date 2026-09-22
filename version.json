@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 71,
+  "build": 72,
   "released": "2026-09-22",
-  "notes": "Recurring recordings are named after the program that actually aired: when a rule's channel id is not a guide id, the server now finds the channel in your playlist and reads the title from the guide at recording time; a saved catch-up keeps downloading when the provider closes the archive early (the remaining minutes are requested again, up to six times), and a save that still ends short is marked Shortened instead of complete.",
+  "notes": "A channel with a recording rule keeps its full guide depth again: the server now protects the channel by its real guide id even when the rule was saved with the app's channel key.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.71"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.72/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.72/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.72/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.72/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.72"
   }
 }

@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 70,
-  "released": "2026-09-21",
-  "notes": "Live recordings now hold their seal for the few seconds the file lags the clock (up to 45 seconds), so the last moments of a program are captured instead of cut; a program recorded inside another recording's capture is marked Shortened only when it really is short (the allowance scales with the program's length, and a capture you stopped early is never marked complete); each recording now also reports its captured length and its own window for the app.",
+  "build": 71,
+  "released": "2026-09-22",
+  "notes": "Recurring recordings are named after the program that actually aired: when a rule's channel id is not a guide id, the server now finds the channel in your playlist and reads the title from the guide at recording time; a saved catch-up keeps downloading when the provider closes the archive early (the remaining minutes are requested again, up to six times), and a save that still ends short is marked Shortened instead of complete.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.70/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.70"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.71/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.71"
   }
 }

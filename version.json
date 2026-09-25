@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 76,
-  "released": "2026-09-24",
-  "notes": "Watching a recording in progress: jumping to within a few seconds of the live point no longer stalls — a near-edge seek now starts a few seconds behind the newest indexed point where a full buffer already exists, the server tells the app its real media edge, and a finished part's size can no longer regress on a failed file check. Includes the build 75 catch-up recording fixes.",
+  "build": 77,
+  "released": "2026-09-25",
+  "notes": "Catch-up recordings: when a catch-up save has to ask the provider again for the part it missed, the request now reaches the end of the program instead of stopping a minute short. A catch-up the provider refuses to continue is saved as a partial recording instead of staying 'recovering' forever (which could also hold a recording slot and delay scheduled recordings), and a save waiting for a busy provider slot gives up after 2 hours and keeps what it has. Watching a recording in progress: the server now answers a seek right away instead of holding its reply until more video arrives. Reliability: an internal error during a guide refresh can no longer freeze scheduled recordings, and the recording index stays accurate when a finished file part can't be checked. Includes all earlier fixes.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.76/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.76/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.76/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.76/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.76"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.77/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.77/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.77/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.77/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.77"
   }
 }

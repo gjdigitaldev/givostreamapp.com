@@ -3,7 +3,7 @@
   "version": "1.0",
   "build": 75,
   "released": "2026-09-24",
-  "notes": "Catch-up recordings no longer splice minutes of the next program into a finished recording or end partial at the second window, and each window re-request trims the sub-minute head the panel replays. The portal guide note says how long a lane is retired, the guide-rule cache uses far less memory, and a refresh leg that hits an internal error is retried instead of stopping the server.",
+  "notes": "Catch-up recordings no longer splice minutes of the next program into a finished recording or end partial at the second window, each window re-request trims the sub-minute head the panel replays, and a network drop in the middle of a catch-up recording resumes from where it stopped instead of replaying. The portal guide note says how long a lane is retired, the guide-rule cache uses far less memory, and a refresh leg that hits an internal error is retried instead of stopping the server.",
   "downloads": {
     "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.75/GiVo-Server-macOS-Universal.dmg",
     "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.75/GiVo-Server-Setup-x64.exe",

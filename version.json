@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 78,
-  "released": "2026-09-25",
-  "notes": "Recordings: when a provider reconnects in the middle of a live recording and comes back with its video and audio in a different order, the recording now stays playable and skippable past that point (before, skipping stopped there and the finished recording would not play past it). Preview thumbnails no longer spend hours retrying a recording that cannot produce them. Portal (Ministra) movie and series posters now load on your devices. The Linux/Docker server no longer logs a sleep warning at every recording.",
+  "build": 79,
+  "released": "2026-09-27",
+  "notes": "GiVo Server 1.0 (build 79).",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.78/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.78/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.78/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.78/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.78"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.79/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.79/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.79/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.79/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.79"
   }
 }

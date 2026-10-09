@@ -1,14 +1,14 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 84,
+  "build": 85,
   "released": "2026-10-08",
-  "notes": "Version details for the app's Play From Any Playlist: the server reads several copies at once within each account's connection limit, backs off when a provider is busy and drops asks the app has abandoned; playlists it refreshes clean provider and language tags from titles the same way the app does; Filmography searches the full catalog; M3U movies tagged VOD count as VOD.",
+  "notes": "Version details for the app's Play From Any Playlist: on a 1-connection account the server now starts the next copy as soon as the provider's own count shows the previous read released, instead of waiting a fixed gap that grew to 20 s after a refusal — rows on such accounts fill in two to three times sooner, with fewer refusals. macOS, Windows, Linux (x64 and ARM64) and Docker.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.84/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.84/GiVo-Server-Setup-x64.exe",
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.84/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.84/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.84"
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.85/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.85/GiVo-Server-Setup-x64.exe",
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.85/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.85/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.85"
   }
 }

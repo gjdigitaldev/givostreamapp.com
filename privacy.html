@@ -51,102 +51,180 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective July 10, 2026 · Applies to the GiVo Stream app
-  (iOS, iPadOS, tvOS) and the GiVo Server app (macOS, Windows, Linux), published by
-  GJ Digital LLC.</p>
+  <p class="updated">Effective October 16, 2026 · Applies to the GiVo Stream app
+  (iOS, iPadOS, tvOS) and the GiVo Server app (macOS, Windows, Linux, and
+  Docker), published by GJ Digital LLC.</p>
 
   <p><strong>The short version: we don't collect your data.</strong> GiVo
-  Stream has no accounts, no advertising, and no tracking of our own. Your
-  playlists, viewing activity, and recordings stay on your devices and your
-  own computer. The only thing we can ever receive is a debug log you
-  explicitly choose to send us — never automatically (see <em>Optional
-  diagnostics you can send us</em> below). The one third-party component is
-  Google Cast, used only when you cast from an iPhone or iPad (see
-  <em>Casting</em> below).</p>
+  Stream has no accounts, no advertising, no tracking, and no analytics of our
+  own, and we never sell data. Your playlists, logins, viewing activity, and
+  recordings stay on your devices, in your own private iCloud if you turn on
+  sync, and on your own computer if you use GiVo Server. A few optional
+  features connect to outside services, and only when you use them (see
+  <em>Optional services</em> below). The only thing we can ever receive is a
+  diagnostic report you explicitly choose to send us — never automatically
+  (see <em>Optional diagnostics you can send us</em> below).</p>
 
   <h2>What the apps store, and where</h2>
 
   <h3>Playlists and credentials</h3>
-  <p>Playlist URLs and Xtream Codes logins you add are stored on your device.
-  Login credentials are kept in the device Keychain, Apple's encrypted
-  credential store. The apps connect directly from your device to the content
-  sources you configure — your playlist details are never sent to us or to
-  any intermediary we operate, with one exception you control: if you choose
-  to send us a diagnostic log (see <em>Optional diagnostics you can send
-  us</em> below), playlist addresses can appear in it. Login credentials are
-  removed from the log before anything is uploaded.</p>
+  <p>Playlist URLs and the logins you add are stored on your device. Login
+  credentials are kept in the device Keychain, Apple's encrypted credential
+  store, and so are API keys you add for optional services (a TMDB key, sports
+  data source keys) and an optional OpenSubtitles sign-in. The apps connect
+  directly from your device to the content sources you configure — your
+  playlist details are never sent to us or to any intermediary we operate,
+  with two exceptions you control: your own GiVo Server, if you pair one,
+  receives the playlist details it needs to record and refresh for you; and if
+  you choose to send us a diagnostic report (see <em>Optional diagnostics you
+  can send us</em> below), playlist addresses can appear in it. Login
+  credentials are removed from the report before anything is uploaded.</p>
 
   <h3>Guide data and viewing</h3>
-  <p>Programme-guide (EPG) data is downloaded from the source you configure
-  and cached on-device. What you watch, your favorites, and your timeshift
-  buffer exist only on your device. We have no way to see any of it — unless
-  recent activity appears in a diagnostic log you choose to send us (see
-  <em>Optional diagnostics you can send us</em> below).</p>
+  <p>Program-guide (EPG) data is downloaded from the source you configure and
+  cached on-device. What you watch, your favorites, and your timeshift buffer
+  exist only on your device (and in your private iCloud if you turn on sync).
+  We have no way to see any of it — unless recent activity appears in a
+  diagnostic report you choose to send us (see <em>Optional diagnostics you
+  can send us</em> below).</p>
 
   <h3>DVR recordings</h3>
   <p>If you use GiVo Server, recordings are written to a folder on your own
-  Mac, PC, or NAS and are streamed only to the devices you pair with it over
-  your network. Device pairing uses a TLS connection with certificate
-  pinning; the pairing token is stored in your device's Keychain. You can
-  revoke any device's access at any time from the app or the server.</p>
+  Mac, PC, Linux machine, or NAS and are streamed only to the devices you pair
+  with it, on your network or at a remote address you add yourself. Device
+  pairing uses a TLS connection with certificate pinning; the pairing token is
+  stored in your device's Keychain. You can revoke any device's access at any
+  time from the app or the server.</p>
+  <p>GiVo Server itself connects only to: the playlist, stream, and guide
+  sources you give it; givostreamapp.com, to check for updates (the Mac and
+  Windows apps once a day; on Linux when you run its update command); GitHub,
+  to download an update you choose to install; OpenSubtitles, when you ask for
+  subtitles on a recording or saved video or turn on its Auto-Fetch (it may
+  send a fingerprint, or hash, of the saved file to find an exact match); and
+  Hugging Face, to download speech-recognition models only if you turn on its
+  automatic captions.</p>
 
   <h3>iCloud sync</h3>
-  <p>If enabled, settings such as playlists and favorites sync between your
+  <p>Sync is off until you turn it on. When enabled, settings such as
+  playlists (with their logins), favorites, and service keys sync between your
   devices through your personal iCloud account (Apple CloudKit, private
   database). This data is governed by Apple's privacy terms, is encrypted in
-  transit, and is accessible only to your Apple ID — not to us.</p>
+  transit, and is accessible only to your Apple Account — not to us. If you
+  share a profile with another person, everything synced in that profile,
+  including its playlists and logins, becomes available to the people you
+  invite through Apple's iCloud sharing.</p>
 
   <h3>Casting (Google Cast)</h3>
   <p>On iPhone and iPad, the Cast button uses Google's Cast SDK to discover and
   stream to Chromecast and Cast-enabled TVs on your network. While the app is
-  running, that SDK may collect limited device identifiers, app-usage, and
-  diagnostic data for its own functionality, as described in
+  running, Google declares that this SDK may collect a device identifier,
+  diagnostic data, and product-interaction data, which Google uses for
+  analytics and to provide casting, as described in
   <a href="https://policies.google.com/privacy" rel="noopener">Google's Privacy
-  Policy</a>. That data is handled by Google and is not linked to your identity
-  by us — we never receive it. Casting and the Cast SDK are not present in the
-  Apple TV app.</p>
+  Policy</a>. Google declares that data as not linked to your identity and not
+  used for tracking, and we never receive it. When you cast, the video goes to
+  your Cast device over your local network, and the Cast device loads GiVo
+  Stream's receiver page (a web page we publish), which loads Google's Cast
+  framework and the open-source hls.js player from public code hosts. Casting
+  and the Cast SDK are not present in the Apple TV app.</p>
+
+  <h2>Optional services</h2>
+  <p>These services are contacted only in the situation described. Each one
+  sees your device's IP address and the request itself; none receives your
+  playlists, logins, or viewing history unless stated here. Requests to them,
+  and to our diagnostics relay, use HTTPS. Their own privacy policies apply to
+  what they receive. You can remove a key, sign out of OpenSubtitles, or turn
+  any of these features off in the app's Settings at any time.</p>
+  <p><strong>TMDB (The Movie Database) — only with your own key.</strong> If
+  you add a TMDB API key, the app sends TMDB your key together with the titles
+  and release years of the movies and series it shows, the titles of guide
+  programs it looks up artwork for, TMDB's own ids for titles and people, and
+  your device language, to fetch artwork, descriptions, and cast. Images load
+  from TMDB's image server. Without a key, the app never contacts TMDB.</p>
+  <p><strong>OpenSubtitles.</strong> When you search for subtitles, or if you
+  turn on Auto-Fetch Subtitles (off by default), the app sends OpenSubtitles
+  the title, year, season and episode number, the TMDB id if known, or the
+  text you type, along with your preferred subtitle languages, using the app's
+  own key. If you sign in to an OpenSubtitles account, your password is sent
+  to OpenSubtitles once in exchange for a sign-in token kept in the Keychain;
+  the app does not store the password. For recordings and videos saved on your
+  GiVo Server, the server makes the request (see <em>DVR recordings</em>
+  above).</p>
+  <p><strong>Sports Zone data sources — only with your own key.</strong>
+  Sports Zone is off by default and works without any data source. If you add
+  a source (TheSportsDB, API-Sports, BALLDONTLIE, football-data.org,
+  Highlightly, or SportsGameOdds) with your own key, the app sends that service
+  your key and requests for the teams, leagues, games, dates, and seasons you
+  follow or browse, including team names you search for. Matching games to
+  your channels and guide happens on your device; your playlists and guide are
+  never sent. If you turn on Team &amp; League Logos, logos load from the
+  chosen source's image servers.</p>
+  <p><strong>Channel logo database — off by default.</strong> If you turn on
+  "Fill missing logos from a public logo database" (Customization › Guide),
+  the app downloads the open iptv-org channel list from iptv-org.github.io
+  (GitHub Pages) at most once a week. No channel names or other data are sent:
+  the matching happens on your device, and the matched logos load from the
+  websites that host them.</p>
+  <p><strong>Auto-generated captions on Apple TV.</strong> The first time you
+  turn on Auto-Generated captions, the app downloads a speech-recognition
+  model from Hugging Face (huggingface.co). Captions are then created on the
+  Apple TV itself; no audio leaves the device.</p>
+  <p><strong>Trailers and other player apps.</strong> Playing a trailer opens
+  YouTube (its app, or Safari on iPhone and iPad) with the trailer or a search
+  for the title. If you choose to play a title in another video player app on
+  your device, the app hands that app the title's stream address, which can
+  include your provider login.</p>
 
   <h2>Optional diagnostics you can send us</h2>
-  <p>If you're troubleshooting a problem with us, GiVo Stream can send us a
-  debug log — but only when you ask it to. In the app's Settings, under Debug
-  Mode, the "Send Debug Log to Support" button uploads, after a confirmation
-  screen, exactly this: the most recent portion (about 1.5&nbsp;MB) of the
-  app's diagnostic log, your device model, OS version, the app version and
-  build, and an optional note you type. Playlist addresses can appear in the
-  log; login credentials (usernames, passwords, and tokens) are removed
-  before anything leaves your device.</p>
+  <p>GiVo Stream writes diagnostic logs on your device only while Debug Mode
+  capture is on (it is off unless you turn it on), and keeps a short crash
+  record on your device if the app closes unexpectedly. Both stay on your
+  device unless you send them, in one of two ways: Settings › Debug Mode ›
+  "Send Debug Log to Support", or the "GiVo Stream closed unexpectedly" prompt
+  shown once after a crash, by tapping Send. A report contains exactly this:
+  the most recent portion (about 1.5&nbsp;MB) of the app's diagnostic log, the
+  crash details if the app crashed, your device model, OS version, the app
+  version and build, and an optional note you type. Playlist addresses can
+  appear in the log; login credentials (usernames, passwords, and tokens) are
+  removed before anything leaves your device.</p>
   <p>Nothing is ever sent automatically — every upload requires your explicit
-  tap and confirmation, each time. The log goes to a private support channel
-  that only the developer can read, delivered via Discord, Inc. acting as our
-  service provider. We use it solely to investigate the bug you reported,
-  keep it only as long as needed for that, and never sell it, share it, or
-  use it for advertising or tracking. It is not linked to your identity. To
-  have a log you sent deleted, email
-  <a href="mailto:info@gj-digital.com">info@gj-digital.com</a>.</p>
+  tap, each time. The report is uploaded over HTTPS to a relay we run on
+  Cloudflare, which passes it to a private support channel on Discord that
+  only the developer can read; Cloudflare, Inc. and Discord, Inc. act as our
+  service providers. We use it solely to investigate the bug you reported,
+  keep it only as long as needed for that, and never sell it, share it, or use
+  it for advertising or tracking. It is not linked to your identity. You can
+  also share the log yourself instead ("Share Log Instead" on iPhone and iPad),
+  and on Apple TV, Debug Mode can show a QR code that lets a phone on the same
+  network download the log directly from the Apple TV. To have a report you
+  sent deleted, email
+  <a href="mailto:info@gj-digital.com">info@gj-digital.com</a> with the
+  reference code shown after sending.</p>
 
   <h2>What we don't do</h2>
   <ul>
     <li>No user accounts or sign-ups.</li>
-    <li>No analytics, telemetry, or crash-reporting that we operate — and
+    <li>No analytics, telemetry, or crash reporting that we operate — and
     nothing is ever sent to us automatically; diagnostics leave your device
-    only when you tap Send (see above). (Google Cast, used only when you cast
-    from an iPhone or iPad, is the one third-party component that collects
-    data — see "Casting" above.)</li>
+    only when you tap Send (see above). (On iPhone and iPad, Google's Cast SDK
+    collects data for Google's own use — see "Casting" above.)</li>
     <li>No advertising and no cross-app tracking.</li>
     <li>No sale or sharing of personal information — the only data we can
-    ever hold is a diagnostic log you chose to send us, and we never sell it,
-    share it, or use it for advertising.</li>
+    ever hold is a diagnostic report you chose to send us, and we never sell
+    it, share it, or use it for advertising.</li>
   </ul>
 
   <h2>Network connections the apps make</h2>
-  <p>The apps connect only to: (1) the playlist, stream, and EPG sources you
-  configure; (2) your own GiVo Server on your local network, if paired;
-  (3) Apple's iCloud, if you enable sync; (4) GitHub, when you download
-  GiVo Server updates from this website; (5) on iPhone and iPad, Google
-  Cast and your Cast-enabled TV, when you cast; and (6) our private support
-  channel (operated on Discord), only at the moment you tap "Send Debug Log
-  to Support" — see <em>Optional diagnostics you can send us</em> above.
-  Your content providers can see the
+  <p>GiVo Stream connects only to: (1) the playlist, stream, and EPG sources
+  you configure; (2) your own GiVo Server, if paired; (3) Apple's iCloud, if
+  you enable sync; (4) the optional services above — TMDB, OpenSubtitles, the
+  Sports Zone data sources you add, the channel logo database, Hugging Face,
+  and YouTube — only in the situations described there; (5) on iPhone and
+  iPad, Google Cast and your Cast-enabled TV, when you cast; and (6) our
+  diagnostics relay, only at the moment you tap Send — see <em>Optional
+  diagnostics you can send us</em> above. GiVo Server's own connections are
+  listed under <em>DVR recordings</em> above, and you download GiVo Server
+  itself from GitHub through this website. Your content providers can see the
   requests your device makes to them, exactly as they would with any player —
   their privacy practices are their own.</p>
 
@@ -169,7 +247,8 @@
   <p>If this policy changes, the new version will be posted here with an
   updated effective date. Since the apps collect nothing automatically,
   changes would most likely reflect new optional features (and would say so
-  plainly — as the <em>Optional diagnostics</em> section above does).</p>
+  plainly — as the <em>Optional services</em> and <em>Optional
+  diagnostics</em> sections above do).</p>
 
   <h2>Contact</h2>
   <p>GJ Digital LLC ·

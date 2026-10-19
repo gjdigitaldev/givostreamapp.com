@@ -68,10 +68,12 @@
   <h2>What the apps store, and where</h2>
 
   <h3>Playlists and credentials</h3>
-  <p>Playlist URLs and the logins you add are stored on your device. Login
-  credentials are kept in the device Keychain, Apple's encrypted credential
-  store, and so are API keys you add for optional services (a TMDB key, sports
-  data source keys) and an optional OpenSubtitles sign-in. The apps connect
+  <p>Playlist URLs and the logins you add are stored on your device. Logins
+  you type into the app's login fields are kept in the device Keychain, Apple's
+  encrypted credential store, and so are API keys you add for optional services
+  (a TMDB key, sports data source keys) and an optional OpenSubtitles sign-in.
+  A playlist or guide address that itself contains a login is stored as part of
+  the playlist, not in the Keychain. The apps connect
   directly from your device to the content sources you configure — your
   playlist details are never sent to us or to any intermediary we operate,
   with two exceptions you control: your own GiVo Server, if you pair one,
@@ -140,7 +142,9 @@
   and release years of the movies and series it shows, the titles of guide
   programs it looks up artwork for, TMDB's own ids for titles and people, and
   your device language, to fetch artwork, descriptions, and cast. Images load
-  from TMDB's image server. Without a key, the app never contacts TMDB.</p>
+  from TMDB's image server. Without a key, the app makes no requests of its own
+  to TMDB, but artwork your provider supplies may be hosted on TMDB's image
+  server and loads from there.</p>
   <p><strong>OpenSubtitles.</strong> When you search for subtitles, or if you
   turn on Auto-Fetch Subtitles (off by default), the app sends OpenSubtitles
   the title, year, season and episode number, the TMDB id if known, or the

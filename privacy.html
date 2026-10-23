@@ -51,36 +51,50 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective October 16, 2026 · Applies to the GiVo Stream app
+  <p class="updated">Effective October 23, 2026 · Applies to the GiVo Stream app
   (iOS, iPadOS, tvOS) and the GiVo Server app (macOS, Windows, Linux, and
   Docker), published by GJ Digital LLC.</p>
 
-  <p><strong>The short version: we don't collect your data.</strong> GiVo
-  Stream has no accounts, no advertising, no tracking, and no analytics of our
-  own, and we never sell data. Your playlists, logins, viewing activity, and
-  recordings stay on your devices, in your own private iCloud if you turn on
-  sync, and on your own computer if you use GiVo Server. A few optional
-  features connect to outside services, and only when you use them (see
-  <em>Optional services</em> below). The only thing we can ever receive is a
-  diagnostic report you explicitly choose to send us — never automatically
-  (see <em>Optional diagnostics you can send us</em> below).</p>
+  <p><strong>The short version: no accounts, no ads, no tracking, and we never
+  sell data. Nothing reaches us unless you choose to send a diagnostic
+  report.</strong> Your playlists, logins, viewing activity, and recordings stay
+  on your devices, in your own private iCloud if you turn on sync, and on your
+  own computer if you use GiVo Server. A few optional features connect to
+  outside services, and only when you use them (see <em>Optional services</em>
+  below).</p>
+
+  <h2>The apps provide no content</h2>
+  <p>GiVo Stream is a player only. It does not provide, host, supply, index,
+  aggregate, or distribute any media, channels, streams, or playlists. All
+  media sources are entered, imported, or configured by you. The app simply
+  plays back the media located at the addresses you provide.</p>
 
   <h2>What the apps store, and where</h2>
 
   <h3>Playlists and credentials</h3>
   <p>Playlist URLs and the logins you add are stored on your device. Logins
-  you type into the app's login fields are kept in the device Keychain, Apple's
-  encrypted credential store, and so are API keys you add for optional services
-  (a TMDB key, sports data source keys) and an optional OpenSubtitles sign-in.
-  A playlist or guide address that itself contains a login is stored as part of
-  the playlist, not in the Keychain. The apps connect
-  directly from your device to the content sources you configure — your
-  playlist details are never sent to us or to any intermediary we operate,
-  with two exceptions you control: your own GiVo Server, if you pair one,
-  receives the playlist details it needs to record and refresh for you; and if
-  you choose to send us a diagnostic report (see <em>Optional diagnostics you
-  can send us</em> below), playlist addresses can appear in it. Login
-  credentials are removed from the report before anything is uploaded.</p>
+  you type into the app's login fields, and sign-in tokens, are kept in the
+  device Keychain, Apple's encrypted credential store, and so are API keys you
+  add for optional services (a TMDB key, sports data source keys) and an
+  optional OpenSubtitles sign-in. A playlist or guide address that itself
+  contains a login is stored as part of the playlist, not in the Keychain.</p>
+  <p>Your TMDB key is kept in this device's Keychain and reaches your other
+  devices only through iCloud sync, when you turn it on. One exception: if an
+  earlier TestFlight version of the app saved your key in iCloud Keychain, that
+  copy stays. A key you save then also updates that copy, which iCloud Keychain
+  brings to your other devices, and removing the key removes it.</p>
+  <p>A playlist file you import stays on your device; it is uploaded to your
+  iCloud only while iCloud sync and playlist syncing are on and that playlist is
+  not kept off iCloud, and deleting the playlist deletes the file and its iCloud
+  copy (unless another profile on the device still uses it).</p>
+  <p>The apps connect directly from your device to the content sources you
+  configure — your playlist details are never sent to us or to any intermediary
+  we operate, with two exceptions you control: your own GiVo Server, if you pair
+  one, receives the playlist details it needs to record and refresh for you; and
+  if you choose to send us a diagnostic report (see <em>Optional diagnostics you
+  can send us</em> below), playlist addresses can appear in it. Usernames,
+  passwords, keys, and tokens are removed from the report before anything is
+  uploaded.</p>
 
   <h3>Guide data and viewing</h3>
   <p>Program-guide (EPG) data is downloaded from the source you configure and
@@ -118,7 +132,7 @@
 
   <h3>Casting (Google Cast)</h3>
   <p>On iPhone and iPad, the Cast button uses Google's Cast SDK to discover and
-  stream to Chromecast and Cast-enabled TVs on your network. While the app is
+  cast to Google Cast devices on your local network. While the app is
   running, Google declares that this SDK may collect a device identifier,
   diagnostic data, and product-interaction data, which Google uses for
   analytics and to provide casting, as described in
@@ -170,38 +184,48 @@
   the matching happens on your device, and the matched logos load from the
   websites that host them.</p>
   <p><strong>Auto-generated captions on Apple TV.</strong> The first time you
-  turn on Auto-Generated captions, the app downloads a speech-recognition
-  model from Hugging Face (huggingface.co). Captions are then created on the
-  Apple TV itself; no audio leaves the device.</p>
+  turn on Auto-Generated captions, and again if tvOS later removes the model to
+  free up storage, the app downloads a speech-recognition model from Hugging
+  Face (huggingface.co). Captions are then created on the Apple TV itself; no
+  audio leaves the device.</p>
   <p><strong>Trailers and other player apps.</strong> Playing a trailer opens
   YouTube (its app, or Safari on iPhone and iPad) with the trailer or a search
   for the title. If you choose to play a title in another video player app on
   your device, the app hands that app the title's stream address, which can
   include your provider login.</p>
 
+  <h2>In-app purchases (GiVo Pro)</h2>
+  <p>GiVo Pro is sold through the App Store. Apple processes the payment and
+  Family Sharing; the app checks your purchase on your device with Apple's
+  StoreKit. We receive no payment details, Apple Account information, or
+  purchase history. A diagnostic report you send can show which GiVo Pro plan
+  is active.</p>
+
   <h2>Optional diagnostics you can send us</h2>
-  <p>GiVo Stream writes diagnostic logs on your device only while Debug Mode
+  <p>GiVo Stream writes diagnostic logs on your device only while Diagnostics
   capture is on (it is off unless you turn it on), and keeps a short crash
   record on your device if the app closes unexpectedly. Both stay on your
-  device unless you send them, in one of two ways: Settings › Debug Mode ›
-  "Send Debug Log to Support", or the "GiVo Stream closed unexpectedly" prompt
-  shown once after a crash, by tapping Send. A report contains exactly this:
-  the most recent portion (about 1.5&nbsp;MB) of the app's diagnostic log, the
-  crash details if the app crashed, your device model, OS version, the app
-  version and build, and an optional note you type. Playlist addresses can
-  appear in the log; login credentials (usernames, passwords, and tokens) are
-  removed before anything leaves your device.</p>
+  device unless you send them, in one of two ways: Settings › Diagnostics ›
+  "Send Diagnostics to Support", or the "GiVo Stream closed unexpectedly"
+  prompt shown once after a crash, by tapping Send. A report contains the most
+  recent part (about 1.5&nbsp;MB) of the app's diagnostic log, which can
+  include playlist addresses and what you watched, the crash details if the app
+  crashed, your device model, OS version, the app version and build, and any
+  note you type. Usernames, passwords, keys, and tokens are removed before it
+  leaves your device. If you save a log on iPhone or iPad instead, it goes to
+  your iCloud Drive only when iCloud sync is on; otherwise it stays on the
+  device.</p>
   <p>Nothing is ever sent automatically — every upload requires your explicit
   tap, each time. The report is uploaded over HTTPS to a relay we run on
   Cloudflare, which passes it to a private support channel on Discord that
   only the developer can read; Cloudflare, Inc. and Discord, Inc. act as our
-  service providers. We use it solely to investigate the bug you reported,
-  keep it only as long as needed for that, and never sell it, share it, or use
-  it for advertising or tracking. It is not linked to your identity. You can
-  also share the log yourself instead ("Share Log Instead" on iPhone and iPad),
-  and on Apple TV, Debug Mode can show a QR code that lets a phone on the same
-  network download the log directly from the Apple TV. To have a report you
-  sent deleted, email
+  service providers. We use it solely to investigate the problem you hit, keep
+  it only as long as needed for that, and never sell it, share it, or use it
+  for advertising or tracking. It is not linked to your identity. You can also
+  share the log yourself instead ("Share Log Instead" on iPhone and iPad). On
+  Apple TV, Show QR Code in Diagnostics lets a phone on the same network
+  download the saved log from the Apple TV through a private link, only while
+  that screen is open. To have a report you sent deleted, email
   <a href="mailto:info@gj-digital.com">info@gj-digital.com</a> with the
   reference code shown after sending.</p>
 
@@ -224,13 +248,14 @@
   you enable sync; (4) the optional services above — TMDB, OpenSubtitles, the
   Sports Zone data sources you add, the channel logo database, Hugging Face,
   and YouTube — only in the situations described there; (5) on iPhone and
-  iPad, Google Cast and your Cast-enabled TV, when you cast; and (6) our
-  diagnostics relay, only at the moment you tap Send — see <em>Optional
-  diagnostics you can send us</em> above. GiVo Server's own connections are
-  listed under <em>DVR recordings</em> above, and you download GiVo Server
-  itself from GitHub through this website. Your content providers can see the
-  requests your device makes to them, exactly as they would with any player —
-  their privacy practices are their own.</p>
+  iPad, Google Cast and your Cast device, when you cast; (6) Apple's App
+  Store, for GiVo Pro purchases; and (7) our diagnostics relay, only at the
+  moment you tap Send — see <em>Optional diagnostics you can send us</em>
+  above. GiVo Server's own connections are listed under <em>DVR
+  recordings</em> above, and you download GiVo Server itself from GitHub
+  through this website. Your content providers can see the requests your
+  device makes to them, exactly as they would with any player — their privacy
+  practices are their own.</p>
 
   <h2>This website</h2>
   <p>givostreamapp.com is a static site hosted on GitHub Pages. We run no
@@ -243,16 +268,33 @@
   we receive your email address and whatever you include in the message. We
   use it only to reply, and we don't add it to any mailing list.</p>
 
+  <h2>Your control and deletion</h2>
+  <p>Because your data lives on your devices (and your iCloud), you can delete
+  it at any time by removing playlists in the app, turning off iCloud sync, or
+  deleting the app. Deleting the app removes locally stored data; iCloud data
+  can be managed in your device's iCloud settings. You can remove a service key
+  or sign out of OpenSubtitles in Settings, turn the optional services above
+  off, and forget a paired GiVo Server. To have a diagnostic report you sent
+  deleted, email us with the reference code shown after sending.</p>
+
+  <h2>Security</h2>
+  <p>We use Apple's platform protections for on-device and iCloud storage, and
+  the logins, keys, and tokens described above are kept in the Keychain. The
+  connection to your GiVo Server is encrypted and checked against that server's
+  certificate, and the app's requests to TMDB, OpenSubtitles, the sports data
+  sources, the logo database, Hugging Face, and our diagnostics relay use
+  HTTPS. No method of storage or transmission is 100% secure, and you are
+  responsible for safeguarding any credentials you enter.</p>
+
   <h2>Children</h2>
-  <p>The apps are not directed at children and collect no data automatically
-  from anyone, children included.</p>
+  <p>The apps are not directed to children under the age defined by applicable
+  law in your jurisdiction, and we do not knowingly collect personal
+  information from children.</p>
 
   <h2>Changes</h2>
-  <p>If this policy changes, the new version will be posted here with an
-  updated effective date. Since the apps collect nothing automatically,
-  changes would most likely reflect new optional features (and would say so
-  plainly — as the <em>Optional services</em> and <em>Optional
-  diagnostics</em> sections above do).</p>
+  <p>We may update this policy from time to time. Material changes will be
+  reflected by updating the effective date above and, where appropriate, an
+  in-app notice.</p>
 
   <h2>Contact</h2>
   <p>GJ Digital LLC ·

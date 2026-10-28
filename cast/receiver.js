@@ -50,7 +50,7 @@ var HLS_CONFIG = {
 
   // Live edge tracking. Segments are ~2 s; stay ~3 back (~6 s) so a brief
   // network dip doesn't underrun, and cap catch-up latency.
-  liveSyncDurationCount: 3,
+  liveSyncDurationCount: 4,     // R2787-b — start ~8 s behind live (the relay now lists 3+ segments at load)
   liveMaxLatencyDurationCount: 12,
   liveDurationInfinity: true,   // report an infinite (live) seekable range
 
@@ -274,6 +274,17 @@ context.addEventListener(cast.framework.system.EventType.SENDER_DISCONNECTED, fu
 //     above is the immediate terminate; this catches any edge it misses).
 var options = new cast.framework.CastReceiverOptions();
 options.maxInactivity = 300;   // 5 min idle grace (was 6 h — that was the zombie cause)
+// R2787-b — CAF's own buffering logic pauses the <video> whenever less than its
+// default resume threshold is buffered ahead, then waits to resume until more is
+// buffered. A live relay sits ~6 s behind the edge, so that threshold is met only
+// at the edge of each 2 s segment: CAF reported buffering / playing rate 0 at every
+// segment boundary (sender logs, 2026-10-27) while hls.js had the data. Let playback
+// resume as soon as one segment / ~1 s is buffered, and only pause when it is truly dry.
+var playbackConfig = new cast.framework.PlaybackConfig();
+playbackConfig.autoResumeDuration = 1;          // seconds buffered before resuming
+playbackConfig.autoPauseDuration = 0.2;         // pause only when ~empty
+playbackConfig.autoResumeNumberOfSegments = 1;  // one segment is enough to resume
+options.playbackConfig = playbackConfig;
 context.start(options);
 log('receiver started (hls.js '
     + (typeof Hls !== 'undefined' && Hls.version ? Hls.version : '?')

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trakt Sign-In — GiVo Stream</title>
+<meta name="description" content="Return page for the Trakt sign-in used by GiVo Stream. Sign-in completes on trakt.tv/activate; nothing is collected here.">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="stylesheet" href="/styles.css?v=19">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <img width="180" height="180" src="/assets/icon-180.png" alt="GiVo Stream icon">
+    <a class="brand" href="/">GiVo Stream</a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="/#sports">Sports Zone</a>
+      <a href="/#download">DVR Server</a>
+      <a href="/linux.html">Linux &amp; NAS</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/open-source.html">Open Source</a>
+      <a href="/about.html">About</a>
+    </div>
+    <details class="menu">
+      <summary aria-label="Menu"><span></span><span></span><span></span></summary>
+      <div class="dropdown">
+        <a href="/#features">Features</a>
+        <a href="/#sports">Sports Zone</a>
+        <a href="/#download">DVR Server Downloads</a>
+        <a href="/linux.html">Linux &amp; NAS Setup</a>
+        <a href="/userguide.html">User Guide</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/open-source.html">Open Source</a>
+        <a href="/about.html">About</a>
+        <div class="dd-sep"></div>
+        <a href="/#appstore">App Store <span class="soon-pill">COMING SOON</span></a>
+        <a href="https://testflight.apple.com/join/amYRbhWM" target="_blank" rel="noopener">Join the Beta</a>
+        <a href="https://discord.gg/Vh5wXTSwYg" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </details>
+  </div>
+</nav>
+
+<article>
+  <h1>Trakt sign-in</h1>
+  <p class="updated">You can close this page and return to GiVo Stream.</p>
+
+  <h2>How signing in works</h2>
+  <p>GiVo Stream connects to your Trakt account with Trakt's device sign-in. The app shows a short code,
+  you enter it at <a href="https://trakt.tv/activate" target="_blank" rel="noopener">trakt.tv/activate</a>
+  and approve GiVo Stream there, and the app picks up the approval on its own. No password is ever typed
+  into GiVo Stream, and nothing is collected on this page.</p>
+
+  <h2>What the connection is used for</h2>
+  <p>Once connected, the app can record what you watch to your Trakt history, keep your ratings, watchlist
+  and lists in sync, and show your Trakt lists inside the app. You can disconnect at any time from
+  Settings → Connected Services in GiVo Stream, or by revoking GiVo Stream under
+  <a href="https://trakt.tv/oauth/applications" target="_blank" rel="noopener">your Trakt connected apps</a>.</p>
+
+  <p>Questions? Email <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>.
+  See also the <a href="/privacy.html">privacy policy</a>.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <a href="https://gj-digital.com" target="_blank" rel="noopener">GJ Digital LLC</a> · GiVo Stream</span>
+    <div class="links">
+      <a href="mailto:support@givostreamapp.com">support@givostreamapp.com</a>
+      <a href="/userguide.html">User Guide</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/open-source.html">Open Source</a>
+      <a href="/about.html">About</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll("details.menu .dropdown a").forEach(function (a) {
+  a.addEventListener("click", function () {
+    a.closest("details").removeAttribute("open");
+  });
+});
+document.addEventListener("click", function (e) {
+  var d = document.querySelector("details.menu[open]");
+  if (d && !d.contains(e.target)) d.removeAttribute("open");
+});
+</script>
+</body>
+</html>

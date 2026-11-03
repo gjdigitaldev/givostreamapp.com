@@ -1,15 +1,15 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 93,
-  "released": "2026-10-30",
-  "notes": "Recordings whose provider switched audio codecs partway through now play with sound in GiVo Stream, and the saved file labels its audio correctly.",
+  "build": 94,
+  "released": "2026-11-02",
+  "notes": "Titles your provider removes are now taken out of the VOD catalog on every device: the server compares each full catalog pass with the last one, and GiVo Stream drops the rows and marks the titles you had in progress. Lists find a titles best copy across all your server-paged playlists with one request. Requires GiVo Stream 4031.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.93/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.93/GiVo-Server-Setup-x64.exe",
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.94/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.94/GiVo-Server-Setup-x64.exe",
 
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.93/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.93/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.93"
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.94/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.94/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.94"
   }
 }

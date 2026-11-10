@@ -51,7 +51,7 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective November 10, 2026 · Applies to the GiVo Stream app
+  <p class="updated">Effective November 11, 2026 · Applies to the GiVo Stream app
   (iOS, iPadOS, tvOS, macOS) and the GiVo Server app (macOS, Windows, Linux, and
   Docker), published by GJ Digital LLC.</p>
 
@@ -77,7 +77,8 @@
   you type into the app's login fields, and sign-in tokens, are kept in the
   device Keychain, Apple's encrypted credential store, and so are API keys you
   add for optional services (a TMDB key, sports data source keys) and an
-  optional OpenSubtitles or Simkl sign-in. A playlist or guide address that itself
+  optional OpenSubtitles or Simkl sign-in. A sign-in token stays on the device
+  that signed in; iCloud sync does not carry it. A playlist or guide address that itself
   contains a login is stored as part of the playlist, not in the Keychain.</p>
   <p>Your TMDB key is kept in this device's Keychain and reaches your other
   devices only through iCloud sync, when you turn it on. One exception: if an
@@ -144,7 +145,7 @@
   your Cast device over your local network, and the Cast device loads GiVo
   Stream's receiver page (a web page we publish), which loads Google's Cast
   framework and the open-source hls.js player from public code hosts. Casting
-  and the Cast SDK are not present in the Apple TV app.</p>
+  and the Cast SDK are not present in the Apple TV and Mac apps.</p>
 
   <h2>Optional services</h2>
   <p>These services are contacted only in the situation described. Each one
@@ -174,15 +175,25 @@
   <p><strong>Simkl (optional).</strong> If you connect a Simkl account in
   Connected Services, the app sends Simkl, under your Simkl sign-in, the
   titles, years, season and episode numbers and ids of the titles whose pages
-  you open (to match them) and of what you play or mark as watched, your
-  playback progress and when you finish, the Watchlist changes, list moves
-  (such as Remove from Continue Watching) and ratings you choose to sync, a
-  title you search for when you correct a match, and requests to read your
-  Simkl lists, history, ratings and paused positions so they can be shown and
-  imported. The sign-in token is kept in the device Keychain. Nothing is sent
-  to Simkl before you connect, and it stops when you choose Disconnect from
-  Simkl (VOD Settings › Connected Services). Simkl's privacy policy applies
-  to what it receives.</p>
+  you open (to match them) and of what you play or mark as watched or
+  unwatched, your playback progress and when you finish, the Watchlist changes,
+  list moves (such as Remove from Continue Watching) and ratings you choose to
+  sync, a title you search for when you correct a match, and requests to read
+  your Simkl account name, lists, history, ratings and paused positions so they
+  can be shown and imported. This goes from your device straight to your Simkl
+  account; we do not receive it, except in a diagnostic report you choose to
+  send (see <em>Optional diagnostics you can send us</em> below). The app shows
+  your Simkl account name ("Connected as …"). With iCloud sync on, the
+  profile's iCloud record carries that name and the fact that this device is
+  connected, so your other devices on that profile, and people you share the
+  profile with, can see it. The sign-in token is kept in this device's Keychain
+  and is never synced: each device signs in separately, and a new install of
+  the app starts disconnected. Nothing is sent to Simkl before you connect.
+  Disconnect from Simkl (VOD Settings › Connected Services) stops it on every
+  device of that profile and removes the sign-in, the updates not yet sent and
+  the Simkl lists the app stored; you choose whether to keep what you imported.
+  What Simkl holds is kept and deleted under Simkl's privacy policy and your
+  Simkl account settings.</p>
   <p><strong>Sports Zone data sources — only with your own key.</strong>
   Sports Zone is off by default and works without any data source. If you add
   a source (TheSportsDB, API-Sports, BALLDONTLIE, football-data.org,
@@ -204,8 +215,9 @@
   Face (huggingface.co). Captions are then created on the Apple TV itself; no
   audio leaves the device.</p>
   <p><strong>Trailers and other player apps.</strong> Playing a trailer opens
-  YouTube (its app, or Safari on iPhone and iPad) with the trailer or a search
-  for the title. If you choose to play a title in another video player app on
+  YouTube with the trailer or a search for the title, in the YouTube app or on
+  the YouTube website in your web browser (Safari on iPhone and iPad, your
+  default browser on a Mac). If you choose to play a title in another video player app on
   your device, the app hands that app the title's stream address, which can
   include your provider login.</p>
 
@@ -222,22 +234,22 @@
   record on your device if the app closes unexpectedly. Both stay on your
   device unless you send them, in one of two ways: Settings › Diagnostics ›
   "Send Diagnostics to Support", or the "GiVo Stream closed unexpectedly"
-  prompt shown once after a crash, by tapping Send. A report contains the most
+  prompt shown once after a crash, by tapping or clicking Send. A report contains the most
   recent part (about 1.5&nbsp;MB) of the app's diagnostic log, which can
   include playlist addresses and what you watched, the crash details if the app
   crashed, your device model, OS version, the app version and build, and any
   note you type. Usernames, passwords, keys, and tokens are removed before it
-  leaves your device. If you save a log on iPhone or iPad instead, it goes to
+  leaves your device. If you save a log on iPhone, iPad or Mac instead, it goes to
   your iCloud Drive only when iCloud sync is on; otherwise it stays on the
   device.</p>
   <p>Nothing is ever sent automatically — every upload requires your explicit
-  tap, each time. The report is uploaded over HTTPS to a relay we run on
+  tap or click, each time. The report is uploaded over HTTPS to a relay we run on
   Cloudflare, which passes it to a private support channel on Discord that
   only the developer can read; Cloudflare, Inc. and Discord, Inc. act as our
   service providers. We use it solely to investigate the problem you hit, keep
   it only as long as needed for that, and never sell it, share it, or use it
   for advertising or tracking. It is not linked to your identity. You can also
-  share the log yourself instead ("Share Log Instead" on iPhone and iPad). On
+  share the log yourself instead ("Share Log Instead" on iPhone, iPad and Mac). On
   Apple TV, Show QR Code in Diagnostics lets a phone on the same network
   download the saved log from the Apple TV through a private link, only while
   that screen is open. To have a report you sent deleted, email
@@ -249,7 +261,7 @@
     <li>No user accounts or sign-ups.</li>
     <li>No analytics, telemetry, or crash reporting that we operate — and
     nothing is ever sent to us automatically; diagnostics leave your device
-    only when you tap Send (see above). (On iPhone and iPad, Google's Cast SDK
+    only when you tap or click Send (see above). (On iPhone and iPad, Google's Cast SDK
     collects data for Google's own use — see "Casting" above.)</li>
     <li>No advertising and no cross-app tracking.</li>
     <li>No sale or sharing of personal information — the only data we can
@@ -265,7 +277,7 @@
   and YouTube — only in the situations described there; (5) on iPhone and
   iPad, Google Cast and your Cast device, when you cast; (6) Apple's App
   Store, for GiVo Pro purchases; and (7) our diagnostics relay, only at the
-  moment you tap Send — see <em>Optional diagnostics you can send us</em>
+  moment you tap or click Send — see <em>Optional diagnostics you can send us</em>
   above. GiVo Server's own connections are listed under <em>DVR
   recordings</em> above, and you download GiVo Server itself from GitHub
   through this website. Your content providers can see the requests your
@@ -286,8 +298,16 @@
   <h2>Your control and deletion</h2>
   <p>Because your data lives on your devices (and your iCloud), you can delete
   it at any time by removing playlists in the app, turning off iCloud sync, or
-  deleting the app. Deleting the app removes locally stored data; iCloud data
-  can be managed in your device's iCloud settings. You can remove a service key
+  deleting the app. Deleting the app removes the data it stores on that device,
+  except what it keeps in the device Keychain: logins and keys you typed in, and
+  sign-in and pairing tokens, can stay on the device, and a reinstalled app can
+  find some of them again, such as a GiVo Server pairing. To remove them first,
+  delete those playlists and keys, sign out and forget your GiVo Server in the
+  app. A Simkl sign-in left there is not reused: a new install of the app starts
+  disconnected from Simkl and clears it. On a Mac, the app's data folder in your
+  user Library can remain until you remove it; while it remains, a reinstalled
+  app keeps its settings and stays connected. iCloud data can be managed in your
+  device's iCloud settings. You can remove a service key
   or sign out of OpenSubtitles in Settings, choose Disconnect from Simkl (VOD
   Settings › Connected Services), turn the optional services above off, and
   forget a paired GiVo Server. To have a diagnostic report you sent

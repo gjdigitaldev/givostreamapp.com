@@ -51,7 +51,7 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective October 23, 2026 · Applies to the GiVo Stream app
+  <p class="updated">Effective November 10, 2026 · Applies to the GiVo Stream app
   (iOS, iPadOS, tvOS) and the GiVo Server app (macOS, Windows, Linux, and
   Docker), published by GJ Digital LLC.</p>
 
@@ -60,8 +60,9 @@
   report.</strong> Your playlists, logins, viewing activity, and recordings stay
   on your devices, in your own private iCloud if you turn on sync, and on your
   own computer if you use GiVo Server. A few optional features connect to
-  outside services, and only when you use them (see <em>Optional services</em>
-  below).</p>
+  outside services, and only when you use them. If you connect a Simkl
+  account, Simkl receives what you watch, rate and add to your Watchlist (see
+  <em>Optional services</em> below).</p>
 
   <h2>The apps provide no content</h2>
   <p>GiVo Stream is a player only. It does not provide, host, supply, index,
@@ -76,7 +77,7 @@
   you type into the app's login fields, and sign-in tokens, are kept in the
   device Keychain, Apple's encrypted credential store, and so are API keys you
   add for optional services (a TMDB key, sports data source keys) and an
-  optional OpenSubtitles sign-in. A playlist or guide address that itself
+  optional OpenSubtitles or Simkl sign-in. A playlist or guide address that itself
   contains a login is stored as part of the playlist, not in the Keychain.</p>
   <p>Your TMDB key is kept in this device's Keychain and reaches your other
   devices only through iCloud sync, when you turn it on. One exception: if an
@@ -99,7 +100,8 @@
   <h3>Guide data and viewing</h3>
   <p>Program-guide (EPG) data is downloaded from the source you configure and
   cached on-device. What you watch, your favorites, and your timeshift buffer
-  exist only on your device (and in your private iCloud if you turn on sync).
+  exist only on your device (and in your private iCloud if you turn on sync),
+  unless you connect a Simkl account (see <em>Optional services</em> below).
   We have no way to see any of it — unless recent activity appears in a
   diagnostic report you choose to send us (see <em>Optional diagnostics you
   can send us</em> below).</p>
@@ -149,8 +151,9 @@
   sees your device's IP address and the request itself; none receives your
   playlists, logins, or viewing history unless stated here. Requests to them,
   and to our diagnostics relay, use HTTPS. Their own privacy policies apply to
-  what they receive. You can remove a key, sign out of OpenSubtitles, or turn
-  any of these features off in the app's Settings at any time.</p>
+  what they receive. You can remove a key, sign out of OpenSubtitles, disconnect
+  Simkl, or turn any of these features off in the app's Settings at any
+  time.</p>
   <p><strong>TMDB (The Movie Database) — only with your own key.</strong> If
   you add a TMDB API key, the app sends TMDB your key together with the titles
   and release years of the movies and series it shows, the titles of guide
@@ -168,6 +171,18 @@
   the app does not store the password. For recordings and videos saved on your
   GiVo Server, the server makes the request (see <em>DVR recordings</em>
   above).</p>
+  <p><strong>Simkl (optional).</strong> If you connect a Simkl account in
+  Connected Services, the app sends Simkl, under your Simkl sign-in, the
+  titles, years, season and episode numbers and ids of the titles whose pages
+  you open (to match them) and of what you play or mark as watched, your
+  playback progress and when you finish, the Watchlist changes, list moves
+  (such as Remove from Continue Watching) and ratings you choose to sync, a
+  title you search for when you correct a match, and requests to read your
+  Simkl lists, history, ratings and paused positions so they can be shown and
+  imported. The sign-in token is kept in the device Keychain. Nothing is sent
+  to Simkl before you connect, and it stops when you choose Disconnect from
+  Simkl (VOD Settings › Connected Services). Simkl's privacy policy applies
+  to what it receives.</p>
   <p><strong>Sports Zone data sources — only with your own key.</strong>
   Sports Zone is off by default and works without any data source. If you add
   a source (TheSportsDB, API-Sports, BALLDONTLIE, football-data.org,
@@ -245,8 +260,8 @@
   <h2>Network connections the apps make</h2>
   <p>GiVo Stream connects only to: (1) the playlist, stream, and EPG sources
   you configure; (2) your own GiVo Server, if paired; (3) Apple's iCloud, if
-  you enable sync; (4) the optional services above — TMDB, OpenSubtitles, the
-  Sports Zone data sources you add, the channel logo database, Hugging Face,
+  you enable sync; (4) the optional services above — TMDB, OpenSubtitles, Simkl,
+  the Sports Zone data sources you add, the channel logo database, Hugging Face,
   and YouTube — only in the situations described there; (5) on iPhone and
   iPad, Google Cast and your Cast device, when you cast; (6) Apple's App
   Store, for GiVo Pro purchases; and (7) our diagnostics relay, only at the
@@ -273,16 +288,17 @@
   it at any time by removing playlists in the app, turning off iCloud sync, or
   deleting the app. Deleting the app removes locally stored data; iCloud data
   can be managed in your device's iCloud settings. You can remove a service key
-  or sign out of OpenSubtitles in Settings, turn the optional services above
-  off, and forget a paired GiVo Server. To have a diagnostic report you sent
+  or sign out of OpenSubtitles in Settings, choose Disconnect from Simkl (VOD
+  Settings › Connected Services), turn the optional services above off, and
+  forget a paired GiVo Server. To have a diagnostic report you sent
   deleted, email us with the reference code shown after sending.</p>
 
   <h2>Security</h2>
   <p>We use Apple's platform protections for on-device and iCloud storage, and
   the logins, keys, and tokens described above are kept in the Keychain. The
   connection to your GiVo Server is encrypted and checked against that server's
-  certificate, and the app's requests to TMDB, OpenSubtitles, the sports data
-  sources, the logo database, Hugging Face, and our diagnostics relay use
+  certificate, and the app's requests to TMDB, OpenSubtitles, Simkl, the sports
+  data sources, the logo database, Hugging Face, and our diagnostics relay use
   HTTPS. No method of storage or transmission is 100% secure, and you are
   responsible for safeguarding any credentials you enter.</p>
 

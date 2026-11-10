@@ -1,15 +1,15 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 95,
+  "build": 96,
   "released": "2026-11-09",
-  "notes": "A scheduled recording on a channel whose provider accepts the stream address but never answers it now tries the channel's other address forms at once and records from the one that delivers, instead of giving up on the program.",
+  "notes": "Recordings recover better when a provider answers on a different stream address: series recordings use the address that works, a network outage is no longer mistaken for a silent channel, and a busy provider is waited for instead of the recording failing.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.95/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.95/GiVo-Server-Setup-x64.exe",
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.96/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.96/GiVo-Server-Setup-x64.exe",
 
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.95/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.95/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.95"
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.96/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.96/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.96"
   }
 }

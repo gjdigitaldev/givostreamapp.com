@@ -1,15 +1,15 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 97,
-  "released": "2026-11-11",
-  "notes": "The cast and crew page matches more of your titles: names that start with a streaming-service tag or end with a region code after the year are now read the same way the app reads them.",
+  "build": 98,
+  "released": "2026-11-12",
+  "notes": "Recurring recordings are named after the program that actually aired. A recurring recording of a series no longer keeps the episode name from the week it was set up; when the guide has no entry it takes the series name. At its first start this build renames older recurring recordings that carry the wrong episode name to the series name. Nothing is deleted; one-off recordings and time-based recordings are left as they are.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.97/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.97/GiVo-Server-Setup-x64.exe",
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.98/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.98/GiVo-Server-Setup-x64.exe",
 
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.97/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.97/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.97"
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.98/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.98/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.98"
   }
 }

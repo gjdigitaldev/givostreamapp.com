@@ -51,7 +51,7 @@
 
 <article>
   <h1>Privacy Policy</h1>
-  <p class="updated">Effective November 11, 2026 · Applies to the GiVo Stream app
+  <p class="updated">Effective November 13, 2026 · Applies to the GiVo Stream app
   (iOS, iPadOS, tvOS, macOS) and the GiVo Server app (macOS, Windows, Linux, and
   Docker), published by GJ Digital LLC.</p>
 
@@ -60,8 +60,8 @@
   report.</strong> Your playlists, logins, viewing activity, and recordings stay
   on your devices, in your own private iCloud if you turn on sync, and on your
   own computer if you use GiVo Server. A few optional features connect to
-  outside services, and only when you use them. If you connect a Simkl
-  account, Simkl receives what you watch, rate and add to your Watchlist (see
+  outside services, and only when you use them. If you connect a Simkl or Trakt
+  account, that service receives what you watch, rate and add to your Watchlist (see
   <em>Optional services</em> below).</p>
 
   <h2>The apps provide no content</h2>
@@ -77,7 +77,7 @@
   you type into the app's login fields, and sign-in tokens, are kept in the
   device Keychain, Apple's encrypted credential store, and so are API keys you
   add for optional services (a TMDB key, sports data source keys) and an
-  optional OpenSubtitles or Simkl sign-in. A sign-in token stays on the device
+  optional OpenSubtitles, Simkl or Trakt sign-in. A sign-in token stays on the device
   that signed in; iCloud sync does not carry it. A playlist or guide address that itself
   contains a login is stored as part of the playlist, not in the Keychain.</p>
   <p>Your TMDB key is kept in this device's Keychain and reaches your other
@@ -102,7 +102,7 @@
   <p>Program-guide (EPG) data is downloaded from the source you configure and
   cached on-device. What you watch, your favorites, and your timeshift buffer
   exist only on your device (and in your private iCloud if you turn on sync),
-  unless you connect a Simkl account (see <em>Optional services</em> below).
+  unless you connect a Simkl or Trakt account (see <em>Optional services</em> below).
   We have no way to see any of it — unless recent activity appears in a
   diagnostic report you choose to send us (see <em>Optional diagnostics you
   can send us</em> below).</p>
@@ -153,7 +153,7 @@
   playlists, logins, or viewing history unless stated here. Requests to them,
   and to our diagnostics relay, use HTTPS. Their own privacy policies apply to
   what they receive. You can remove a key, sign out of OpenSubtitles, disconnect
-  Simkl, or turn any of these features off in the app's Settings at any
+  Simkl or Trakt, or turn any of these features off in the app's Settings at any
   time.</p>
   <p><strong>TMDB (The Movie Database) — only with your own key.</strong> If
   you add a TMDB API key, the app sends TMDB your key together with the titles
@@ -194,6 +194,30 @@
   the Simkl lists the app stored; you choose whether to keep what you imported.
   What Simkl holds is kept and deleted under Simkl's privacy policy and your
   Simkl account settings.</p>
+  <p><strong>Trakt (optional).</strong> If you connect a Trakt account in
+  Connected Services, the app sends Trakt, under your Trakt sign-in and with
+  GiVo Stream's registered Trakt app id, what it needs to keep your Trakt
+  account and the app's VOD library in step: to match a title whose page you
+  open or that you play, its TMDB id or, without one, its title (and a title
+  you search for when you correct a match); for what you play or mark as
+  watched or unwatched, its ids with season and episode numbers, your playback
+  progress and when you finish; and the Watchlist additions and removals,
+  ratings of movies, shows and episodes, and Remove from Continue Watching that
+  you choose to sync. It also reads your Trakt account name, watch history,
+  playback progress, Watchlist, ratings, your own, liked and smart lists, your
+  progress in shows and your calendar of upcoming episodes, so they can be shown
+  and imported. This goes from your device straight to your Trakt account; we
+  do not receive it, except in a diagnostic report you choose to send (see
+  <em>Optional diagnostics you can send us</em> below). The app shows your
+  Trakt account name, and with iCloud sync on, the profile's iCloud record
+  carries it and the fact that this device is connected. The sign-in token is
+  kept in this device's Keychain and is never synced; a new install of the app
+  starts disconnected. The app keeps the Trakt lists it read on your devices
+  until you disconnect. Disconnect from Trakt (VOD Settings › Connected
+  Services) stops it on every device of that profile and removes the sign-in,
+  the updates not yet sent and the stored Trakt lists; you choose whether to
+  keep what you imported. To delete what Trakt holds, use your Trakt account
+  settings; Trakt's privacy policy applies to what it receives.</p>
   <p><strong>Sports Zone data sources — only with your own key.</strong>
   Sports Zone is off by default and works without any data source. If you add
   a source (TheSportsDB, API-Sports, BALLDONTLIE, football-data.org,
@@ -272,7 +296,7 @@
   <h2>Network connections the apps make</h2>
   <p>GiVo Stream connects only to: (1) the playlist, stream, and EPG sources
   you configure; (2) your own GiVo Server, if paired; (3) Apple's iCloud, if
-  you enable sync; (4) the optional services above — TMDB, OpenSubtitles, Simkl,
+  you enable sync; (4) the optional services above — TMDB, OpenSubtitles, Simkl, Trakt,
   the Sports Zone data sources you add, the channel logo database, Hugging Face,
   and YouTube — only in the situations described there; (5) on iPhone and
   iPad, Google Cast and your Cast device, when you cast; (6) Apple's App
@@ -303,13 +327,13 @@
   sign-in and pairing tokens, can stay on the device, and a reinstalled app can
   find some of them again, such as a GiVo Server pairing. To remove them first,
   delete those playlists and keys, sign out and forget your GiVo Server in the
-  app. A Simkl sign-in left there is not reused: a new install of the app starts
-  disconnected from Simkl and clears it. On a Mac, the app's data folder in your
+  app. A Simkl or Trakt sign-in left there is not reused: a new install of the app
+  starts disconnected from both and clears it. On a Mac, the app's data folder in your
   user Library can remain until you remove it; while it remains, a reinstalled
   app keeps its settings and stays connected. iCloud data can be managed in your
   device's iCloud settings. You can remove a service key
-  or sign out of OpenSubtitles in Settings, choose Disconnect from Simkl (VOD
-  Settings › Connected Services), turn the optional services above off, and
+  or sign out of OpenSubtitles in Settings, choose Disconnect from Simkl or Disconnect from
+  Trakt (VOD Settings › Connected Services), turn the optional services above off, and
   forget a paired GiVo Server. To have a diagnostic report you sent
   deleted, email us with the reference code shown after sending.</p>
 
@@ -317,7 +341,7 @@
   <p>We use Apple's platform protections for on-device and iCloud storage, and
   the logins, keys, and tokens described above are kept in the Keychain. The
   connection to your GiVo Server is encrypted and checked against that server's
-  certificate, and the app's requests to TMDB, OpenSubtitles, Simkl, the sports
+  certificate, and the app's requests to TMDB, OpenSubtitles, Simkl, Trakt, the sports
   data sources, the logo database, Hugging Face, and our diagnostics relay use
   HTTPS. No method of storage or transmission is 100% secure, and you are
   responsible for safeguarding any credentials you enter.</p>

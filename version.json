@@ -1,23 +1,23 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 99,
+  "build": 100,
   "released": "2026-11-16",
-  "notes": "GiVo Server now installs updates on its own overnight (3:00 AM by default) on Mac, Windows and Linux, and waits while it is recording or someone is watching. Change the time or turn it off in Settings.",
+  "notes": "Automatic updates now also wait while someone is playing a recording, and on Linux a new version that does not start up properly is replaced by the previous one on its own.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.99/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.99/GiVo-Server-Setup-x64.exe",
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Setup-x64.exe",
 
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.99/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.99/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.99"
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.100"
   },
   "sha256": {
-    "linux-amd64": "23ade3923c6371b3875e78c823b19d3af82924cce5d361c4b7ab5b6611aba69d",
-    "linux-arm64": "e5c30635cfef26bb7ec135c1adb1dddf6b28413bd2e38010b6ebc7c2681f59fe",
+    "linux-amd64": "4097efd0bb6135ce1aa6b96ff59935d307612e658a1e8add3746becb92855918",
+    "linux-arm64": "4369f056b067331138c8c2cf87b94783c8e26dac1b1d45960c288c0c297385a3",
 
 
-    "macos": "570ad4013615875e3c3126ab36abcb4ed0de2a0e4e017a12059fd4b98650e4bc",
-    "windows": "98e0dda7c2b59d4e01fbb1a0db852411ff542a4e95bb7422c0c1452e91bae514"
+    "macos": "8956214827199c91a31d5bb835b7e5afcbe31186ebc7eab0b47206296dab2ac0",
+    "windows": "f4acca72c0c085d0d0d75840517018bc7fe24f632a0ce065ea1aac25af7e7c58"
   }
 }

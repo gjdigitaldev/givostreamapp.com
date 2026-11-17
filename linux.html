@@ -276,8 +276,11 @@ sudo useradd --system --home-dir /var/lib/givo-server --shell /usr/sbin/nologin 
 sudo mkdir -p /opt/givo-server /var/lib/givo-server/recordings
 sudo cp givo-server comskip comskip.ini whisper-cli /opt/givo-server/
 sudo chown -R givo:givo /var/lib/givo-server
-sudo cp givo-server.service /etc/systemd/system/
-sudo systemctl daemon-reload &amp;&amp; sudo systemctl enable --now givo-server
+sudo install -d -m 0755 -o root -g root /var/lib/givo-server-update
+sudo cp givo-server.service givo-server-update.service givo-server-update.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now givo-server
+sudo systemctl enable --now givo-server-update.timer
 journalctl -u givo-server | grep "PAIRING CODE" | tail -1
 </code></pre>
   <p>Keep <code>givo-server</code>, <code>comskip</code>,
@@ -285,18 +288,31 @@ journalctl -u givo-server | grep "PAIRING CODE" | tail -1
   directory — the server finds the feature binaries beside itself. Point
   <code>--recordings-dir</code> in the unit file at a big disk.</p>
 
-  <p><strong>Updating the native binary</strong> (build 37 and later): the
-  server updates itself in place —</p>
-<pre><code>sudo givo-server update --check    # see what's available
-sudo givo-server update            # download, verify, swap &amp; restart</code></pre>
-  <p>The update command never interrupts a recording — if one is running it
-  waits and tells you to retry, and the previous binary is kept beside the
-  new one as <code>givo-server.previous</code> in case you ever want to
-  roll back. Prefer it fully automatic? The tarball ships an optional
-  <code>givo-server-update.timer</code> systemd unit (off by default) that
-  checks once a day — enable it with
-  <code>sudo systemctl enable --now givo-server-update.timer</code>. See
-  §6 of the bundled README for details.</p>
+  <p><strong>Updates.</strong> The last <code>enable</code> line above turns on
+  the update timer, the recommended setup. A small root job installs new
+  releases at night while the server keeps running as the limited
+  <code>givo</code> user, which cannot change its own program. It runs at
+  3:00 AM and every 15 minutes until 6:00 AM. It never installs while a
+  recording is in progress, someone is watching through the server or playing
+  a recording from it, or a recording starts within 30 minutes. If the server
+  is busy until 6:00 AM, it tries again the next night. If a new build doesn't
+  keep running, the previous one is put back by itself. After two failed
+  nights, the update is left for you to install by hand.</p>
+  <p>Check for or install an update yourself at any time. It never interrupts a
+  recording, and the old program is kept as
+  <code>givo-server.previous</code>:</p>
+<pre><code>sudo /opt/givo-server/givo-server update --check   # report only
+sudo /opt/givo-server/givo-server update           # prompts y/N</code></pre>
+  <p>Installed GiVo Server from an earlier build? From the unpacked new
+  download, copy the two update unit files again once, so the timer gets the
+  new schedule:</p>
+<pre><code>sudo cp givo-server-update.service givo-server-update.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now givo-server-update.timer</code></pre>
+  <p>To turn automatic updates off:
+  <code>sudo systemctl disable --now givo-server-update.timer</code>.
+  Section 6 of the README in the download covers changing the time, reading
+  the update log, and the rest.</p>
 
   <h2 id="pairing">6. Pairing — codes, rotation &amp; fixed codes</h2>
   <p>The server prints a six-digit pairing code in its logs, inside a clearly
@@ -537,9 +553,9 @@ docker run --rm --network container:givo-server curlimages/curl \
     command: --schedule "0 0 5 * * *" --cleanup givo-server</code></pre>
     The 90-second grace period applies here too, so even an unlucky
     mid-recording update finalizes the recording before swapping.</li>
-    <li><strong>Native binary:</strong> <code>sudo givo-server update</code>
-    (build 37+) — see the update notes in
-    <a href="#native">section 5</a>.</li>
+    <li><strong>Native binary:</strong> the update timer installs new releases
+    at night, or run <code>sudo /opt/givo-server/givo-server update</code>
+    yourself — see <a href="#native">section 5</a>.</li>
   </ul>
 
   <h2 id="settings">11. All settings</h2>

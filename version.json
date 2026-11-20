@@ -1,23 +1,23 @@
 {
   "schema": 1,
   "version": "1.0",
-  "build": 100,
-  "released": "2026-11-16",
-  "notes": "Automatic updates now also wait while someone is playing a recording, and on Linux a new version that does not start up properly is replaced by the previous one on its own.",
+  "build": 101,
+  "released": "2026-11-20",
+  "notes": "Recording rows and status messages no longer show provider addresses, logins or device ids. A portal that stops answering can no longer make another recording miss its start, quitting GiVo Server at a program boundary no longer leaves a recording running, and every download now includes the license files of the bundled programs.",
   "downloads": {
-    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-macOS-Universal.dmg",
-    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Setup-x64.exe",
+    "macos": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.101/GiVo-Server-macOS-Universal.dmg",
+    "windows": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.101/GiVo-Server-Setup-x64.exe",
 
-    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Linux-amd64.tar.gz",
-    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.100/GiVo-Server-Linux-arm64.tar.gz",
-    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.100"
+    "linux-amd64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.101/GiVo-Server-Linux-amd64.tar.gz",
+    "linux-arm64": "https://github.com/gjdigitaldev/givostreamapp.com/releases/download/v1.0.101/GiVo-Server-Linux-arm64.tar.gz",
+    "docker": "ghcr.io/gjdigitaldev/givo-server:1.0.101"
   },
   "sha256": {
-    "linux-amd64": "4097efd0bb6135ce1aa6b96ff59935d307612e658a1e8add3746becb92855918",
-    "linux-arm64": "4369f056b067331138c8c2cf87b94783c8e26dac1b1d45960c288c0c297385a3",
+    "linux-amd64": "5016429b37c1d20efa19a2752783edcd9ccbfd9192ba912bb3d6ce96630db8b4",
+    "linux-arm64": "34b1bb86458a4f0d0e97a7f8f80c073ab75d034c8f46656c37fd3aff205b1dc1",
 
 
-    "macos": "8956214827199c91a31d5bb835b7e5afcbe31186ebc7eab0b47206296dab2ac0",
-    "windows": "f4acca72c0c085d0d0d75840517018bc7fe24f632a0ce065ea1aac25af7e7c58"
+    "macos": "de7ceec177ad12e300a0f763075b8a9ba8e9b67723ceba25a6632acef7d76621",
+    "windows": "53cf708cacb5e9fbb9917fce58908d81d93149d5b326e74bbf114bc0732e0bca"
   }
 }

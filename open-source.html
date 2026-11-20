@@ -189,6 +189,68 @@
     </tbody>
   </table></div>
 
+  <h2>GiVo Server</h2>
+  <p>GiVo Server, the free DVR companion you download from this site, is our own
+  program. Each download also carries the third-party programs below. GiVo Server
+  starts them as separate programs and does not build them into its own code; each
+  keeps its own license, and its license file comes with it. The Linux downloads do
+  not include FFmpeg: GiVo Server uses the one your system provides.</p>
+
+  <div class="gtable"><table>
+    <thead><tr><th>Program</th><th>Version</th><th>Downloads</th><th>License</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>FFmpeg (ffmpeg, ffprobe)</td><td>8.1.1: the evermeet.cx build on Intel, the martin-riedl.de build on Apple silicon</td><td>macOS</td><td>GPL-3.0-or-later (built with <code>--enable-gpl --enable-version3</code>)</td><td><a href="https://ffmpeg.org/releases/ffmpeg-8.1.1.tar.xz" target="_blank" rel="noopener">FFmpeg 8.1.1</a> · <a href="https://git.martin-riedl.de/ffmpeg/build-script" target="_blank" rel="noopener">martin-riedl.de build script</a> · <a href="https://evermeet.cx/ffmpeg/" target="_blank" rel="noopener">evermeet.cx</a></td></tr>
+      <tr><td>FFmpeg (ffmpeg, ffprobe)</td><td>N-124941-g54749da98a, a BtbN static build</td><td>Windows x64</td><td>GPL-3.0-or-later</td><td><a href="https://github.com/FFmpeg/FFmpeg/tree/54749da98a" target="_blank" rel="noopener">FFmpeg at 54749da98a</a> · <a href="https://github.com/BtbN/FFmpeg-Builds" target="_blank" rel="noopener">BtbN/FFmpeg-Builds</a></td></tr>
+      <tr><td>FFmpeg (ffmpeg, ffprobe)</td><td>N-125365-g9a01c1cb6a, BtbN release autobuild-2026-06-30-13-34</td><td>Windows ARM64</td><td>GPL-3.0-or-later</td><td><a href="https://github.com/BtbN/FFmpeg-Builds/releases/tag/autobuild-2026-06-30-13-34" target="_blank" rel="noopener">BtbN release</a> · <a href="https://github.com/FFmpeg/FFmpeg/tree/9a01c1cb6a" target="_blank" rel="noopener">FFmpeg at 9a01c1cb6a</a></td></tr>
+      <tr><td>FFmpeg (ffmpeg, ffprobe)</td><td>the Debian 12 (bookworm) package</td><td>Docker image</td><td>GPL (Debian's build)</td><td><a href="https://sources.debian.org/src/ffmpeg/" target="_blank" rel="noopener">sources.debian.org</a></td></tr>
+      <tr><td>Comskip</td><td>0.83.001, commit <code>a140b6a</code>, built by us without changes, with FFmpeg 7.1.1 (decode only, LGPL-2.1-or-later), argtable 2.13 and zlib</td><td>macOS, Linux, Docker image, Windows ARM64</td><td>GPL-2.0</td><td><a href="https://github.com/erikkaashoek/Comskip/tree/a140b6ac8bc8f596729e9052819affc779c3b377" target="_blank" rel="noopener">erikkaashoek/Comskip at a140b6a</a> · <a href="https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz" target="_blank" rel="noopener">FFmpeg 7.1.1</a> · <a href="https://downloads.sourceforge.net/project/argtable/argtable/argtable-2.13/argtable2-13.tar.gz" target="_blank" rel="noopener">argtable 2.13</a> · <a href="https://zlib.net/fossils/zlib-1.3.2.tar.gz" target="_blank" rel="noopener">zlib 1.3.2</a></td></tr>
+      <tr><td>Comskip</td><td>0.82.012, the author's own Windows build, unchanged</td><td>Windows x64</td><td>GPL-2.0</td><td><a href="http://www.kaashoek.com/comskip/" target="_blank" rel="noopener">kaashoek.com/comskip</a> · <a href="https://github.com/erikkaashoek/Comskip" target="_blank" rel="noopener">erikkaashoek/Comskip</a></td></tr>
+      <tr><td>whisper.cpp (whisper-cli)</td><td>v1.9.1, built by us for macOS (Apple silicon) and Linux; the official v1.9.1 release on Windows x64 and the official b5454 release on Windows ARM64</td><td>all downloads</td><td>MIT</td><td><a href="https://github.com/ggml-org/whisper.cpp/tree/v1.9.1" target="_blank" rel="noopener">whisper.cpp v1.9.1</a> · <a href="https://github.com/ggml-org/whisper.cpp/tree/b5454" target="_blank" rel="noopener">b5454</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <p>The Windows builds of whisper.cpp also carry SDL2 (zlib License) on x64 and
+  Microsoft's OpenMP runtime (<code>libomp140</code>) on ARM64, as in the official
+  release files. No speech-recognition model is part of any download: GiVo Server
+  downloads the one you pick from Hugging Face when you turn on automatic captions.</p>
+
+  <p>GiVo Server is written in Go. The downloads are built with Go 1.26.4 (the Docker
+  image with Go 1.25) and include the Go standard library, copyright The Go Authors,
+  under the <a href="https://github.com/golang/go/blob/master/LICENSE" target="_blank" rel="noopener">BSD-3-Clause license</a>, and these modules:</p>
+
+  <div class="gtable"><table>
+    <thead><tr><th>Module</th><th>Version</th><th>License</th><th>Used in</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://pkg.go.dev/fyne.io/systray@v1.12.2" target="_blank" rel="noopener">fyne.io/systray</a></td><td>v1.12.2</td><td>Apache-2.0</td><td>Windows tray app</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/cenkalti/backoff@v2.2.1+incompatible" target="_blank" rel="noopener">github.com/cenkalti/backoff</a></td><td>v2.2.1+incompatible</td><td>MIT</td><td>Windows, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/dustin/go-humanize@v1.0.1" target="_blank" rel="noopener">github.com/dustin/go-humanize</a></td><td>v1.0.1</td><td>MIT</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/ebitengine/purego@v0.10.0" target="_blank" rel="noopener">github.com/ebitengine/purego</a></td><td>v0.10.0</td><td>Apache-2.0</td><td>macOS</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/go-ole/go-ole@v1.2.6" target="_blank" rel="noopener">github.com/go-ole/go-ole</a></td><td>v1.2.6</td><td>MIT</td><td>Windows</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/godbus/dbus/v5@v5.1.0" target="_blank" rel="noopener">github.com/godbus/dbus/v5</a></td><td>v5.1.0</td><td>BSD-2-Clause</td><td>Windows tray app</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/google/uuid@v1.6.0" target="_blank" rel="noopener">github.com/google/uuid</a></td><td>v1.6.0</td><td>BSD-3-Clause</td><td>macOS, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/grandcat/zeroconf@v1.0.0" target="_blank" rel="noopener">github.com/grandcat/zeroconf</a></td><td>v1.0.0</td><td>MIT</td><td>Windows, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/jchv/go-webview2@v0.0.0-20260205173254-56598839c808" target="_blank" rel="noopener">github.com/jchv/go-webview2</a></td><td>v0.0.0-20260205173254-56598839c808</td><td>MIT</td><td>Windows tray app</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/jchv/go-winloader@v0.0.0-20250406163304-c1995be93bd1" target="_blank" rel="noopener">github.com/jchv/go-winloader</a></td><td>v0.0.0-20250406163304-c1995be93bd1</td><td>ISC</td><td>Windows tray app</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/mattn/go-isatty@v0.0.20" target="_blank" rel="noopener">github.com/mattn/go-isatty</a></td><td>v0.0.20</td><td>MIT</td><td>macOS, Windows</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/miekg/dns@v1.1.27" target="_blank" rel="noopener">github.com/miekg/dns</a></td><td>v1.1.27</td><td>BSD-3-Clause</td><td>Windows, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/ncruces/go-strftime@v1.0.0" target="_blank" rel="noopener">github.com/ncruces/go-strftime</a></td><td>v1.0.0</td><td>MIT</td><td>macOS, Windows</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/remyoudompheng/bigfft@v0.0.0-20230129092748-24d4a6f8daec" target="_blank" rel="noopener">github.com/remyoudompheng/bigfft</a></td><td>v0.0.0-20230129092748-24d4a6f8daec</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/shirou/gopsutil/v4@v4.26.5" target="_blank" rel="noopener">github.com/shirou/gopsutil/v4</a></td><td>v4.26.5</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/tklauser/go-sysconf@v0.3.16" target="_blank" rel="noopener">github.com/tklauser/go-sysconf</a></td><td>v0.3.16</td><td>BSD-3-Clause</td><td>macOS, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/tklauser/numcpus@v0.11.0" target="_blank" rel="noopener">github.com/tklauser/numcpus</a></td><td>v0.11.0</td><td>Apache-2.0</td><td>Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/github.com/yusufpapurcu/wmi@v1.2.4" target="_blank" rel="noopener">github.com/yusufpapurcu/wmi</a></td><td>v1.2.4</td><td>MIT</td><td>Windows</td></tr>
+      <tr><td><a href="https://github.com/golang/crypto/tree/87dc89f01550" target="_blank" rel="noopener">golang.org/x/crypto</a></td><td>v0.0.0-20191011191535-87dc89f01550</td><td>BSD-3-Clause</td><td>Windows, Linux</td></tr>
+      <tr><td><a href="https://github.com/golang/net/tree/6afb5195e5aa" target="_blank" rel="noopener">golang.org/x/net</a></td><td>v0.0.0-20200114155413-6afb5195e5aa</td><td>BSD-3-Clause</td><td>Windows, Linux</td></tr>
+      <tr><td><a href="https://pkg.go.dev/golang.org/x/sys@v0.42.0" target="_blank" rel="noopener">golang.org/x/sys</a></td><td>v0.42.0</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/modernc.org/libc@v1.72.3" target="_blank" rel="noopener">modernc.org/libc</a></td><td>v1.72.3</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/modernc.org/mathutil@v1.7.1" target="_blank" rel="noopener">modernc.org/mathutil</a></td><td>v1.7.1</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/modernc.org/memory@v1.11.0" target="_blank" rel="noopener">modernc.org/memory</a></td><td>v1.11.0</td><td>BSD-3-Clause</td><td>all</td></tr>
+      <tr><td><a href="https://pkg.go.dev/modernc.org/sqlite@v1.51.0" target="_blank" rel="noopener">modernc.org/sqlite</a></td><td>v1.51.0</td><td>BSD-3-Clause (SQLite itself is public domain)</td><td>all</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>The macOS menu-bar app is written in Swift and uses no third-party packages.</p>
+
   <h2>Third-party services</h2>
   <p>GiVo Stream uses Trakt but is not endorsed or certified by Trakt.</p>
 

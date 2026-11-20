@@ -541,18 +541,38 @@ docker run --rm --network container:givo-server curlimages/curl \
     untouched. The container shuts down gracefully (up to 90 seconds) so an
     in-progress recording is finalized, never truncated.</li>
     <li><strong>Automatic updates (optional):</strong> add
-    <a href="https://containrrr.dev/watchtower/">Watchtower</a> to your
-    compose file and it pulls new GiVo Server images on a schedule —
-    for example checking daily at 5&nbsp;AM, when a recording is least
-    likely to be running:
+    <a href="https://watchtower.nickfedor.com/">Watchtower</a> to your
+    compose file. We use the maintained version,
+    <code>nickfedor/watchtower</code>, at the version we tested; the
+    original project is no longer updated. Watchtower checks for a new
+    GiVo Server image every 15&nbsp;minutes from 3:00 to 5:45&nbsp;AM.
+    Before it replaces the container, it asks GiVo Server first. While a
+    recording is in progress or starts within 30&nbsp;minutes, or someone
+    is watching, the update waits for the next check. Your
+    <code>/config</code> and <code>/recordings</code> carry over, so your
+    devices stay paired:
 <pre><code>  watchtower:
-    image: containrrr/watchtower
+    image: nickfedor/watchtower:1.24.0
     restart: unless-stopped
+    environment:
+      - TZ=America/New_York
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "0 0 5 * * *" --cleanup givo-server</code></pre>
-    The 90-second grace period applies here too, so even an unlucky
-    mid-recording update finalizes the recording before swapping.</li>
+    command: --enable-lifecycle-hooks --cleanup --stop-timeout 90s --schedule "0 */15 3-5 * * *" givo-server</code></pre>
+    Watchtower is given the Docker socket, which means full control of the
+    machine it runs on. Add it only if you trust it; otherwise update by
+    hand with <code>docker compose pull &amp;&amp; docker compose up -d</code>.
+    Set <code>TZ</code> to your own time zone; the schedule follows it.
+    Keep <code>--enable-lifecycle-hooks</code>: only Watchtower started
+    with it waits for the check, and other image updaters ignore it.
+    <code>--stop-timeout 90s</code> gives a recording time to finish
+    writing before the swap. <code>givo-server</code> at the end limits
+    Watchtower to this one container. To see why an update waited, run
+    <code>docker compose logs givo-server</code>. The check runs inside the
+    container being replaced, so it first protects the update after
+    build&nbsp;101; the update to 101 itself happens the old way, so do
+    that one at a quiet time. To move to a newer Watchtower, change the
+    version on purpose after reading its release notes.</li>
     <li><strong>Native binary:</strong> the update timer installs new releases
     at night, or run <code>sudo /opt/givo-server/givo-server update</code>
     yourself — see <a href="#native">section 5</a>.</li>
